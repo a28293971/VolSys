@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, CanLoad } from '@angular/router';
+import { CanActivate, Router, CanLoad, Route } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate, CanLoad {
         return false;
     }
 
-    canLoad(): boolean {
+    canLoad(route: Route): boolean {
         // let oldUrl = this.router.routerState.snapshot.url;
         // console.log(this.router.routerState.snapshot);
         // console.log('url is' + oldUrl);

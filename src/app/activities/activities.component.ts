@@ -28,15 +28,18 @@ export class ActivitiesComponent implements OnInit {
   ) { }
 
   addData(data: Activity[]) {
-    for (let i = 0; i < data.length; i++) {
-      this.activities.push(data[i]);
-      this.activities[this.line].line = this.line++;
+    for (const i of data) {
+      this.activities.push(i);
     }
+    // for (let i = 0; i < data.length; i++) {
+    //   this.activities.push(data[i]);
+    //   this.activities[this.line].line = this.line++;
+    // }
   }
 
   ngOnInit() {
     this.activityService.getActivities()
-    .subscribe(res => this.addData(res.json().activities));
+    .subscribe(res => this.addData(res.json().data.allEvents));
     this.content = this.activities[0];
   }
 
@@ -48,52 +51,52 @@ export class ActivitiesComponent implements OnInit {
     // }
     // if (this.c++ > 4) {return; }
     this.activityService.getActivities()
-    .subscribe(res => this.addData(res.json().activities));
+    .subscribe(res => this.addData(res.json().data.allEvents));
   }
 
-  switchSate(line: number) {
-    if (this.activities[line].hadApl === 'false') {
-      console.log('join the activity id -> ' + this.activities[line].id);
-      this.activities[line].hadApl = "true";
-    } else {
-      console.log('cancel join the activity id -> ' + this.activities[line].id);
-      this.activities[line].hadApl = "false";
-    }
-  }
+  // switchSate(line: number) {
+  //   if (this.activities[line].hadApl === 'false') {
+  //     console.log('join the activity id -> ' + this.activities[line].id);
+  //     this.activities[line].hadApl = "true";
+  //   } else {
+  //     console.log('cancel join the activity id -> ' + this.activities[line].id);
+  //     this.activities[line].hadApl = "false";
+  //   }
+  // }
 
-  report(obj: Activity) {
-    this.content = obj;
-    console.log('report -> ' + this.content.name);
-    this.confirmationService.confirm({
-        message: `
-        <h4>Are you sure you want to report this activity:</h4>
-        <h2>${this.content.name}</h2>
-        `,
-        accept: () => {
-          console.log('succes to report');
-        }
-    });
-  }
+  // report(obj: Activity) {
+  //   this.content = obj;
+  //   console.log('report -> ' + this.content.name);
+  //   this.confirmationService.confirm({
+  //       message: `
+  //       <h4>Are you sure you want to report this activity:</h4>
+  //       <h2>${this.content.name}</h2>
+  //       `,
+  //       accept: () => {
+  //         console.log('succes to report');
+  //       }
+  //   });
+  // }
 
   // report(obj: Activity) {
   //   console.log('report -> ' + obj.name);
   // }
 
-  showDialog(obj: Activity) {
-    this.content = obj;
-    this.confirmationService.confirm({
-        message: `
-        <h3>
-          Name: ${this.content.name}<br>
-          College: ${toCollege(this.content.college)}<br>
-          Org: ${this.content.org}<br>
-          VolTime: ${this.content.volTime}H<br>
-          EndTime: ${this.content.endTime}
-        </h3>
-        <h3>Describe:</h3>
-        <h4>${this.content.describe}</h4>
-        `
-    });
-  }
+  // showDialog(obj: Activity) {
+  //   this.content = obj;
+  //   this.confirmationService.confirm({
+  //       message: `
+  //       <h3>
+  //         Name: ${this.content.name}<br>
+  //         College: ${toCollege(this.content.college)}<br>
+  //         Org: ${this.content.org}<br>
+  //         VolTime: ${this.content.volTime}H<br>
+  //         EndTime: ${this.content.endTime}
+  //       </h3>
+  //       <h3>Describe:</h3>
+  //       <h4>${this.content.describe}</h4>
+  //       `
+  //   });
+  // }
 
 }

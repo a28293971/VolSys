@@ -6,7 +6,8 @@ export class ActivityService {
 
     constructor(private http: Http) {}
 
-    getActivities(rows: number = 10) {
-        return this.http.get('/mock-data/activities.json');
+    getActivities() {
+        let token = JSON.parse(localStorage.getItem('currentUser')).token;
+        return this.http.post('http://192.168.148.6/list-all-event', JSON.stringify({token: token}));
     }
 }

@@ -1,15 +1,11 @@
 export class Activity {
     id?: number;
     name: string;
-    college: number;
-    org: string;
-    orgId?: number;
-    startTime?: string;
-    endTime?: string;
-    volTime: number;
-    describe: string;
-    members?: number;
-    hadApl?: string;
-    line?: number;
-    aplTime?: string;
+    org_name: string[];
+    org_id?: number[];
+    start?: string;
+    end?: string;
+    volunteer_time: number;
+    description: string;
+    members?: any[];
 }

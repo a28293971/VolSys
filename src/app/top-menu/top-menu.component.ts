@@ -55,7 +55,7 @@ export class TopMenuComponent implements OnInit {
     this.showTopMenu = !this.showTopMenu;
     if (this.showTopMenu) {
       this.isLoading = true;
-      this.http.get('/mock-data/msg-uid-1871239223')
+      this.http.get('/mock-data/msg-uid-1871239223.json')
       .subscribe(
         data => {
           this.newMsg = data.json().numbers;

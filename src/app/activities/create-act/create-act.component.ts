@@ -33,16 +33,15 @@ export class CreateActComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.act.startTime = new Date().toISOString().substr(0, 10);
-    console.log(this.act.startTime);
+    this.act.start = new Date().toISOString().substr(0, 10);
+    console.log(this.act.end);
     // this.college = toCollege(this.currentUser.college);
   }
 
   createAct() {
     // this.act.endTime = '20' + this.edT.years + '-' + this.edT.month + '-' + this.edT.day;
-    this.act.college = this.currentUser.college;
-    this.act.org = this.currentUser.name;
-    this.act.orgId = this.currentUser.id;
+    this.act.org_name.push(this.currentUser.name);
+    this.act.org_id.push(this.currentUser.id)
     this.createActService.create(this.act);
   }
 
