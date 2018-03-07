@@ -17,7 +17,7 @@
               <input required minlength="8" [(ngModel)]="user.password" name="password" #password="ngModel" type="password" class="form-control"
                 placeholder="请输入密码...">
               <div *ngIf="isWrrongPwd" class="text-danger" >
-                <h4 style="text-align:center;color:green">密码错误，请重新输入！</h4> 
+                <h4 style="text-align:center;color:red">密码错误，请重新输入！</h4> 
               </div>
             </div>
           </div>
