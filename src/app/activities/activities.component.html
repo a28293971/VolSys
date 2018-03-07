@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-md-offset-1 col-md-1">
+    <button type="button" class="btn btn-info" routerLink="/workspace/act/apllyact">
+      <i class="fa fa-fw fa-plus"></i>
+      申请活动
+    </button>
+  </div>
+  <div class="col-md-offset-7 col-md-1">
+    <button type="button" class="btn btn-primary" routerLink="/workspace/act/createact">
+      <i class="fa fa-fw fa-plus"></i>
+      创建活动
+    </button>
+  </div>
+</div>
+<div style="height:10px;"></div>
+
+<!-- <p-dataScroller [value]="activities" [rows]="11" (onLazyLoad)="loadData($event)" [lazy]="true" [totalRecords]="30">
+  <ng-template let-act pTemplate="item">
+    <div class="ui-datascroller-content">
+      <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px;border-bottom:1px solid #D5D5D5">
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-9">
+            <div class="ui-grid ui-grid-responsive ui-fluid">
+              <a href="javascript:void(0);" (click)="showDialog(act)">
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-3">Name: </div>
+                  <div class="ui-grid-col-9">{{act.name}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-3">Org: </div>
+                  <div class="ui-grid-col-9">{{act.org}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-3">Time: </div>
+                  <div class="ui-grid-col-9">{{act.volTime}}</div>
+                </div>
+                <div class="ui-grid-row">
+                  <div class="ui-grid-col-3">EndTime: </div>
+                  <div class="ui-grid-col-9">{{act.endTime}}</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="ui-grid-col-2">
+            <button type="button" class="btn" [ngClass]="{'btn-success': act.hadApl=='false', 'btn-danger': act.hadApl=='true'}" name="{{act.id}}"
+              (click)="switchSate(act.line)">
+              {{act.hadApl=='false'? '申请加入':'取消申请'}}</button>
+            <button type="button" class="btn btn-warning" (click)="report(act)">举报</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dataScroller> -->
+
+<p-accordion [multiple]="true" expandIcon="" collapseIcon="">
+  <p-dataScroller [value]="activities" [rows]="11" (onLazyLoad)="loadData($event)" [lazy]="true" [totalRecords]="30">
+    <ng-template let-act pTemplate="item">
+      <div class="ui-datascroller-content">
+        <!-- <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px;border-bottom:1px solid #D5D5D5"> -->
+        <div>
+          <p-accordionTab>
+            <p-header>
+              <div class="row">
+                <div class="col-sm-4"><h4>Name:{{act.name}}</h4></div>
+                <div class="col-sm-4"><h4>Org:{{act.org}}</h4></div>
+                <div class="col-sm-4"><h4>EndTime:{{act.endTime}}</h4></div>
+              </div>
+            </p-header>
+            <div>
+              <h3>des:</h3>
+              <h4>{{act.dscribe}}</h4>
+              <button type="button">555</button>
+              <button type="button">666</button>
+            </div>
+          </p-accordionTab>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataScroller>
+</p-accordion>
+
+<p-confirmDialog [rejectVisible]="false" width="500"></p-confirmDialog>

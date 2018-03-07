@@ -1,0 +1,33 @@
+<div>
+  <h3 style="text-align: center">{{actName}}</h3>
+</div>
+<div class="content-section implementation">
+  <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input #gb type="text" size="40" placeholder="Global Filter">
+  </div>
+  <p-dataTable [value]="members" [(selection)]="selectedMembers" dataKey="id" [rows]="10" [paginator]="true" 
+  [rowsPerPageOptions]="[10,15,20,50]" paginatorPosition="top" [globalFilter]="gb">
+    <!-- <ng-template pTemplate="paginatorLeft">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input #gb type="text" pInputText size="20" placeholder="Global Filter">
+    </ng-template> -->
+    <ng-template pTemplate="paginatorLeft">
+        <button type="button" routerLink="/workspace/apr/list">
+          <i class="fa fa-chevron-left"></i>
+          返回
+        </button>
+    </ng-template>
+    <p-column [style]="&#123;'width':'38px'&#125;" selectionMode="multiple"></p-column>
+    <p-column field="id" header="Id" [sortable]="true"></p-column>
+    <p-column field="name" header="Name" [sortable]="true"></p-column>
+    <p-column field="aplTime" header="AplTime" [sortable]="true"></p-column>
+    <p-footer>
+      <ul>
+          <li *ngFor="let mb of selectedMembers" style="text-align: left">
+            {{mb.id + ' - ' + mb.name + ' -' + mb.aplTime}}
+          </li>
+        </ul>
+    </p-footer>
+  </p-dataTable>
+</div>

@@ -1,0 +1,136 @@
+{
+    "activities":[
+        {
+            "id": 3,
+            "name": "吉庆社区环古城志愿者活动",
+            "college": 1,
+            "org": "计算机学院团委",
+            "orgId" : 3241234,
+            "endTime": "2016-3-28 02:47:10",
+            "volTime": 6,
+            "describe": "一般是指志愿者组织、志愿者服务社会公众生产生活和促进社会发展进步的行为。或者说,志愿服务泛指利用自己的时间、技能、资源、善心为邻居、社区、社会提供非盈利、无偿、非职业化援助的行为。\n志愿服务是指任何人志愿贡献个人的时间及精力，在不为任何物质报酬的情况下，为改善社会，促进社会进步而提供的服务。",
+            "members": 20,
+            "hadApl": "false"
+        },
+        {
+            "id": 324,
+            "name": "邂逅文成公主",
+            "college": 1,
+            "org": "计算机学院学生会青协",
+            "orgId" : 3244524234,
+            "endTime": "2016-4-12 22:11:55",
+            "volTime": 8,
+            "describe": "asdasd",
+            "members": 50,
+            "hadApl": "false"
+        },
+        {
+            "id": 2131,
+            "name": "微软编程之美宣讲会",
+            "college": 1,
+            "org": "苏州大学微软学生俱乐部",
+            "orgId" : 345345345,
+            "endTime": "2016-4-18 20:54:45",
+            "volTime": 5,
+            "describe": "这个宣讲会主要是为了新生准备asiduhasudoasdnoasdnoiasido的东</br>同样是为了测试asodinoasdnoi",
+            "members": 11,
+            "hadApl": "true"
+        },
+        {
+            "id": 12312,
+            "name": "“野狗杯”苏州全民在线编程宣讲会",
+            "college": 1,
+            "org": "计算机学院学生科技协会",
+            "orgId" : 3241234,
+            "endTime": "2016-6-3 16:11:27",
+            "volTime": 2,
+            "describe": "sdbdsfsdf",
+            "members": 100,
+            "hadApl": "false"
+        },
+        {
+            "id": 8392332,
+            "name": "学生会干部竞聘工作人员志愿者活动",
+            "college": 1,
+            "org": "计算机学院团委",
+            "orgId" : 2344574,
+            "endTime": "2016-3-28 02:47:10",
+            "volTime": 6,
+            "describe": "fgdfg34",
+            "members": 20,
+            "hadApl": "false"
+        },
+        {
+            "id": 123123,
+            "name": "团委部长活动时间",
+            "college": 1,
+            "org": "计算机学院团委",
+            "orgId" : 3241234,
+            "endTime": "2016-3-28 02:47:10",
+            "volTime": 6,
+            "describe": "sdfsd",
+            "members": 14,
+            "hadApl": "false"
+        },
+        {
+            "id": 2347237,
+            "name": "计科院“九型人格—人生基石”讲座",
+            "college": 1,
+            "org": "计算机学院学生会",
+            "orgId" : 2345646,
+            "endTime": "2016-11-30 22:09:10",
+            "volTime": 999,
+            "describe": "fdgdfg32",
+            "members": 18,
+            "hadApl": "false"
+        },
+        {
+            "id": 9,
+            "name": "暖心助力--新益小学运动会",
+            "college": 1,
+            "org": "WakeUp俱乐部",
+            "orgId" : 24234,
+            "endTime": "2016-12-13 20:50:53",
+            "volTime": 3,
+            "describe": "dgdfg",
+            "members": 20,
+            "hadApl": "false"
+        },
+        {
+            "id": 23423,
+            "name": "ACM新生赛工作人员",
+            "college": 1,
+            "org": "苏州大学微软学生俱乐部",
+            "orgId" : 3241234,
+            "endTime": "2016-12-26 12:21:06",
+            "volTime": 88,
+            "describe": "xcvsdf1",
+            "members": 100,
+            "hadApl": "true"
+        },
+        {
+            "id": 3132,
+            "name": "清华大学张长水教授讲座报告",
+            "college": 1,
+            "org": "计算机学院学生科技协会",
+            "orgId" : 56734534,
+            "endTime": "2017-4-8 20:30:40",
+            "volTime": 123,
+            "describe": "458t945jt",
+            "members": 20123,
+            "hadApl": "false"
+        },
+        {
+            "id": 32331667,
+            "name": "湖西书友会志愿者",
+            "college": 1,
+            "org": "计算机学院勤助中心",
+            "orgId" : 324564634,
+            "endTime": "2016-3-28 02:47:10",
+            "volTime": 6,
+            "describe": "sdbdasdsfsdf",
+            "members": 20,
+            "hadApl": "false"
+        }
+    ]
+}

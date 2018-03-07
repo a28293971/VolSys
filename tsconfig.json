@@ -8,8 +8,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
+    "baseUrl":"types",
     "typeRoots": [
-      "node_modules/@types"
+      "types"
     ],
     "lib": [
       "es2017",

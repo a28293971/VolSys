@@ -1,0 +1,87 @@
+<div [@flyIn]="'active'">
+  <h3 class="center-block sys-title">活动创建</h3>
+  <form #form="ngForm" (ngSubmit)="form.form.valid && createAct()" novalidate class="form-horizontal" role="form">
+    <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !actName.valid }">
+      <label class="col-sm-4 control-label">活动名称：</label>
+      <div class="col-sm-4">
+        <input required name="actName" [(ngModel)]="act.name" #actName="ngModel" type="text" class="form-control" placeholder="这里输入你的活动名称">
+      </div>
+    </div>
+    <div class="from-inline">
+      <div class="form-group col-sm-5" [ngClass]="{ 'has-error': form.submitted && !volTime.valid }">
+        <label class="col-sm-6 control-label">志愿时间：</label>
+        <div class="col-sm-4 input-group">
+          <input required name="volTime" [(ngModel)]="act.volTime" #volTime="ngModel" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+            class="form-control" style="text-align:right;" maxlength="3">
+          <div class="input-group-addon">小时</div>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 form-inline" [ngClass]="{ 'has-error': form.submitted && !date.valid }">
+        <label class="col-sm-3 control-label">结束时间：</label>
+        <div class="col-sm-3">
+          <input required name="date" [(ngModel)]="act.endTime" #date="ngModel" type="date" class="form-control">
+        </div>
+        <label class="col-sm-3 control-label">起始时间：</label>
+        <div class="col-sm-3">
+          <input required name="dateS" type="date" class="form-control" value="{{this.act.startTime}}">
+        </div>
+      </div>
+      <!-- <div class="form-group col-sm-6 form-inline" [ngClass]="{ 'has-error': form.submitted && (!years.valid || !month.valid || !day.valid)}">
+          <label class="col-sm-3 control-label">结束时间：</label>
+          <div class="col-sm-9">
+              <div class="input-group col-sm-3">
+                  <div class="input-group-addon">20</div>
+                  <input required name="years" [(ngModel)]="edT.years" #years="ngModel" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+                  class="form-control" style="text-align:right;" maxlength="2" minlength="2">
+                  <div class="input-group-addon">年</div>
+              </div>
+              <div class="input-group col-sm-2">
+                  <input required name="month" [(ngModel)]="edT.month" #month="ngModel" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+                  class="form-control" style="text-align:right;" maxlength="2">
+                  <div class="input-group-addon">月</div>
+              </div>
+              <div class="input-group col-sm-2">
+                  <input required name="day" [(ngModel)]="edT.day" #day="ngModel" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+                  class="form-control" style="text-align:right;" maxlength="2">
+                  <div class="input-group-addon">日</div>
+              </div>
+          </div>
+        </div> -->
+    </div>
+    <div class="from-inline">
+      <div class="form-group col-sm-5" [ngClass]="{ 'has-error': form.submitted && !members.valid }">
+        <label class="col-sm-6 control-label">参与人数：</label>
+        <div class="col-sm-4 input-group">
+          <input required name="members" [(ngModel)]="act.members" #members="ngModel" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+            class="form-control" style="text-align:right;" maxlength="5">
+          <div class="input-group-addon">人</div>
+        </div>
+      </div>
+      <div class="form-group col-sm-6">
+        <label class="col-sm-3 control-label">活动创建人：</label>
+        <label class="col-sm-9 control-label" style="text-align:left;">{{currentUser.college | toCollege}}{{' '+currentUser.name}}</label>
+      </div>
+    </div>
+    <div class="from-group" [ngClass]="{ 'has-error': form.submitted && !describe.valid }">
+      <div class="col-sm-8 col-sm-offset-2">
+        <textarea required [(ngModel)]="act.describe" name="describe" #describe="ngModel" class="form-control" rows="10" style="resize:none;"
+          placeholder="这里输入这个活动的简单描述..."></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-1">
+          <button type="submit" class="btn btn-success">
+            <i class="fa fa-fw fa-check"></i>
+            确认创建
+          </button>
+        </div>
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-danger" routerLink="/workspace/act/activities">
+            <i class="fa fa-fw fa-trash"></i>
+            取消创建
+          </button>
+        </div>
+      </div>
+  </form>
+</div>

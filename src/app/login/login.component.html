@@ -1,0 +1,44 @@
+<div class="container login-screen">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="login-form-container">
+        <h3 class="center-block sys-title">志愿者登陆</h3>
+        <form #form="ngForm" (ngSubmit)="form.form.valid && login()" novalidate class="form-horizontal" role="form">
+          <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !userId.valid }">
+            <label class="col-sm-2 control-label">账号：</label>
+            <div class="col-sm-8">
+              <input required name="userId" [(ngModel)]="user.id" #userId="ngModel" type="text" class="form-control" placeholder="请输入你的账号...">
+              <!-- <div *ngIf="form.submitted && !userId.valid" class="text-danger">账号必须输入！</div> -->
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': form.submitted && (!password.valid || isWrrongPwd) }">
+            <label class="col-sm-2 control-label">密码：</label>
+            <div class="col-sm-8">
+              <input required minlength="8" [(ngModel)]="user.password" name="password" #password="ngModel" type="password" class="form-control"
+                placeholder="请输入密码...">
+              <div *ngIf="isWrrongPwd" class="text-danger" >
+                <h4 style="text-align:center;color:green">密码错误，请重新输入！</h4> 
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input name="remeberMe" type="checkbox" [(ngModel)]="user.remeberMe" #remeberMe="ngModel">记住我
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6">
+              <button type="submit" class="btn btn-success" style="width:96px" [disabled]="!form.form.valid">登录</button>
+              <button type="button" class="btn btn-danger" (click)="forgetPwd()">忘记密码？</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
