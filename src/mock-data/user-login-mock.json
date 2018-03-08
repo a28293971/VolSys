@@ -1,6 +1,26 @@
 {
-    "id": 1871239223,
-    "name": "学生会青协",
-    "token": "fake-jwt-token",
-    "college": 1
+  "sysinfo":{
+    "auth":1,
+    "token":"666"
+  },
+  "data":{
+    "id":"1627405125",
+    "name":"周经松",
+    "college":"2740",
+    "major":"null",
+    "gender":1,
+    "events":[
+      { "id": "128304", "ratio": 1, "time": 5, "status": 0, "name": "啦啦啦", "timestamp": "2016-07-11T16:00:00.000Z" },
+      { "id": "23434", "ratio": 1, "time": 3, "status": 0, "name": "阿斯顿", "timestamp": "2016-07-11T13:00:00.000Z" },
+      { "id": "232564", "ratio": 1, "time": 4, "status": 1, "name": "大锅饭", "timestamp": "2016-07-12T16:00:00.000Z" },
+      { "id": "345345", "ratio": 1, "time": 12, "status": 1, "name": "人太多", "timestamp": "2016-07-21T16:00:00.000Z" },
+      { "id": "34325", "ratio": 1, "time": 15, "status": 0, "name": "人太热", "timestamp": "2016-06-30T16:00:00.000Z" },
+      { "id": "34533", "ratio": 1, "time": 12, "status": -1, "name": "喝奶粉", "timestamp": "2016-05-11T16:00:00.000Z" },
+      { "id": "25646", "ratio": 1, "time": 15, "status": -1, "name": "人融合", "timestamp": "2016-05-16T16:00:00.000Z"},
+      { "id": "875643", "ratio": 1, "time": 31, "status": 1, "name": "冯绍峰", "timestamp": "2016-06-08T16:00:00.000Z" },
+      { "id": "456424", "ratio": 1, "time": 15, "status": 0, "name": "人讨厌", "timestamp": "2016-03-11T16:00:00.000Z" }
+    ],
+    "volunteer_time":0,
+    "score":0
+  }
 }

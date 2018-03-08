@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { Activity } from '../models/activity-model';
 import { ActivityService } from './activities.service';
 import { ConfirmationService } from 'primeng/components/common/api';
-import { ContentChild } from '@angular/core/src/metadata/di';
-import { toCollege } from '../pipe/toCollege.func';
-import { Route } from '@angular/router/src/config';
+import { AuthService } from '../auth/auth.service';
+// import { toCollege } from '../pipe/toCollege.func';
 
 @Component({
   selector: 'activities',
@@ -24,45 +23,27 @@ export class ActivitiesComponent implements OnInit {
   constructor(
     public activityService: ActivityService,
     public confirmationService: ConfirmationService,
-    private router: Router
+    public authservice: AuthService
+    // private router: Router
   ) { }
 
-  addData(data: Activity[]) {
-    for (const i of data) {
-      this.activities.push(i);
-    }
-    // for (let i = 0; i < data.length; i++) {
-    //   this.activities.push(data[i]);
-    //   this.activities[this.line].line = this.line++;
-    // }
-  }
+  // addData(data: Activity[]) {
+  //   for (const i of data) {
+  //     this.activities.push(i);
+  //   }
+  // }
 
   ngOnInit() {
     this.activityService.getActivities()
-    .subscribe(res => this.addData(res.json().data.allEvents));
-    this.content = this.activities[0];
+    .subscribe(res => this.activities = res.json().data.allEvents);
+    // this.content = this.activities[0];
   }
 
-  loadData(event) {
-    // console.log('in function! the c =' + this.c);
-    // if (!this.activities) {
-    //   this.activityService.getActivities()
-    //   .subscribe(res => this.activities = res.json().activities);
-    // }
-    // if (this.c++ > 4) {return; }
-    this.activityService.getActivities()
-    .subscribe(res => this.addData(res.json().data.allEvents));
-  }
-
-  // switchSate(line: number) {
-  //   if (this.activities[line].hadApl === 'false') {
-  //     console.log('join the activity id -> ' + this.activities[line].id);
-  //     this.activities[line].hadApl = "true";
-  //   } else {
-  //     console.log('cancel join the activity id -> ' + this.activities[line].id);
-  //     this.activities[line].hadApl = "false";
-  //   }
+  // loadData(event) {
+  //   this.activityService.getActivities()
+  //   .subscribe(res => this.addData(res.json().data.allEvents));
   // }
+
 
   // report(obj: Activity) {
   //   this.content = obj;
@@ -78,25 +59,5 @@ export class ActivitiesComponent implements OnInit {
   //   });
   // }
 
-  // report(obj: Activity) {
-  //   console.log('report -> ' + obj.name);
-  // }
-
-  // showDialog(obj: Activity) {
-  //   this.content = obj;
-  //   this.confirmationService.confirm({
-  //       message: `
-  //       <h3>
-  //         Name: ${this.content.name}<br>
-  //         College: ${toCollege(this.content.college)}<br>
-  //         Org: ${this.content.org}<br>
-  //         VolTime: ${this.content.volTime}H<br>
-  //         EndTime: ${this.content.endTime}
-  //       </h3>
-  //       <h3>Describe:</h3>
-  //       <h4>${this.content.describe}</h4>
-  //       `
-  //   });
-  // }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, HostListener, Input } from '@angular/core';
 import { EventBusService } from '../../common/services/event-bus.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
     selector: 'app-side-menu',
@@ -12,11 +13,11 @@ export class AppSideMenuComponent implements OnInit {
         {
             id: "1",
             name: "志愿系统",
-            isOpen: false,
+            isOpen: true,
             icon: 'fa-heart',
             children: [
-                { name: "活动列表", icon: 'fa-list', route: 'act' },
-                { name: "活动审批", icon: 'fa-check-square', route: 'apr' }
+                { name: "活动列表", icon: 'fa-list', route: 'act' }
+                // , { name: "活动审批", icon: 'fa-check-square', route: 'apr' }
             ]
         }
     ];
@@ -25,13 +26,17 @@ export class AppSideMenuComponent implements OnInit {
 
     constructor(
         private elementRef: ElementRef,
-        private eventBusService: EventBusService
+        private eventBusService: EventBusService,
+        private authService: AuthService
     ) {}
 
     ngOnInit() {
         this.eventBusService.topToggleBtn.subscribe(value => {
             this.toggleMenuAll(value);
         });
+        if (this.authService.isAdmin) {
+            this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr' });
+        }
     }
 
     private toggleMenuAll(isCollapse: boolean): void {

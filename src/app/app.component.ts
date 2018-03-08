@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStat
 // import { TranslateService } from 'ng2-translate';
 import { LoginService } from './login/login.service';
 import { AuthService } from './auth/auth.service';
-import 'rxjs/add/operator/merge';
+// import 'rxjs/add/operator/merge';
 import { User } from './models/user-model';
 // import { from } from '_rxjs@5.5.2@rxjs/observable/from';
 
@@ -31,7 +31,9 @@ export class AppComponent implements OnInit, OnDestroy {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (this.currentUser) {
             this.authService.isLoggedIn = true;
-            this.authService.isAdmin = true;
+            if (this.currentUser.id[0] === 'a') {
+                this.authService.isAdmin = true;
+            }
             this.router.navigateByUrl('workspace');
         }
 
@@ -51,7 +53,9 @@ export class AppComponent implements OnInit, OnDestroy {
                 console.log(routerStateSnapshot);
 
                 this.authService.isLoggedIn = true;
-                this.authService.isAdmin = true;
+                if (this.currentUser.id[0] === 'a') {
+                    this.authService.isAdmin = true;
+                }
                 this.router.navigateByUrl('workspace');
                 console.log('--------succees login!-----------');
             },

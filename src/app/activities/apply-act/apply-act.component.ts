@@ -16,7 +16,7 @@ export class ApplyActComponent implements OnInit {
 
   act: ApplyAct = new ApplyAct();
   currentUser: User;
-  stTime: Date = new Date();
+  aplTime: Date = new Date();
 
   constructor(
     private applyActService: ApplyActService
@@ -31,7 +31,7 @@ export class ApplyActComponent implements OnInit {
     this.act.id = this.currentUser.id;
     this.act.name = this.currentUser.name;
     this.act.college = this.currentUser.college;
-    this.act.aplTime = this.stTime.toISOString().substr(0, 10);
+    this.act.aplTime = this.aplTime.toISOString().substr(0, 10);
     this.applyActService.apply(this.act);
   }
 

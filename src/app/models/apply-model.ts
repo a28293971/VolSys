@@ -1,8 +1,8 @@
 export class ApplyAct {
     id: number;
     name: string;
-    college: number;
-    volTime: number;
+    college: string;
+    volunteer_time: number;
     aplTime: string;
     other: File;
 }

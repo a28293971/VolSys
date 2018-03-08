@@ -5,7 +5,6 @@ import { Subject } from 'rxjs/Subject';
 import { User } from '../models/user-model';
 import { AuthService } from '../auth/auth.service';
 import * as CryptoJS from 'crypto-js';
-// import { sha1 } from './sha1';
 
 @Injectable()
 export class LoginService {
@@ -24,36 +23,32 @@ export class LoginService {
 
   public login(user: User) {
     console.log(user);
-    const body = JSON.stringify({
-      id: user.id,
-      password: user.password
-      // password: CryptoJS.MD5(user.password).toString()
-    });
-    // const body = 'ID=' + user.id + '&password=' + /*sha1(user.password.toString())*/ user.password;
-    // const headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
-    const headers = new Headers({'Content-Type': 'application/json'});
+    // const body = JSON.stringify({
+    //   id: user.id,
+    //   password: user.password
+    //   // password: CryptoJS.MD5(user.password).toString()
+    // });
+    // const headers = new Headers({'Content-Type': 'application/json'});
     // console.log('post the data');
     // console.log(body), console.log(headers);
     return this.http
-      // .get('mock-data/user-login-mock.json')
-      .post(this.userLoginURL, body, {headers: headers})
-      .map((response: Response) => {
-        const res = response.json();
-        console.log(res);
-        // console.log('user.token = ' + res.token);
-        if (res.sysinfo.pwdAuth) {
-          let nUser = new User();
-          nUser.id = res.data.id, nUser.name = res.data.name, nUser.token = res.sysinfo.token;
-          localStorage.setItem('currentUser', JSON.stringify(nUser));
-          localStorage.setItem('userActivities', JSON.stringify(res.data.events));
-          this.subject.next(Object.assign({}, nUser));
-        }else {
-          this.rPwd.next(true);
-        }
-        return response;
-      })
-      .subscribe(
-      data => console.log(data),
+      .get('mock-data/user-login-mock.json')
+      // .post(this.userLoginURL, body, {headers: headers})
+      .subscribe((response: Response) => {
+          const res = response.json();
+          console.log(res);
+          // console.log('user.token = ' + res.token);
+          if (res.sysinfo.auth) {
+            let nUser = new User();
+            nUser.id = res.data.id, nUser.name = res.data.name, nUser.volunteer_time = res.data.volunteer_time
+            nUser.token = res.sysinfo.token, nUser.college = res.data.college;
+            localStorage.setItem('currentUser', JSON.stringify(nUser));
+            localStorage.setItem('userActivities', JSON.stringify(res.data.events));
+            this.subject.next(Object.assign({}, nUser));
+          }else {
+            this.rPwd.next(true);
+          }
+        },
       error =>  console.error(error)
       );
   }
@@ -61,7 +56,7 @@ export class LoginService {
 
   public logout(): void {
     console.log('--------succees logout!-----------');
-    localStorage.removeItem('currentUser');
+    localStorage.clear();
     this.authService.isLoggedIn = false;
   }
 

@@ -3,7 +3,9 @@ export class User {
     name?: string;
     password?: string;
     remeberMe?: boolean;
-    college?: number;
+    college?: string;
     major?: string;
     token?: string;
+    volunteer_time?: number;
+    score?: number;
 }

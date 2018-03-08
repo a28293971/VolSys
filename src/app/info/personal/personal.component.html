@@ -11,7 +11,7 @@
       </div>
       <h3>志愿时间总时长：</h3>
       <div class="col-md-offset-1">
-        <h4><strong style="color:#00FF00">{{volTime}}  </strong>小时</h4>
+        <h4><strong style="color:#00FF00">{{currentUser.volunteer_time}}  </strong>小时</h4>
       </div>
     </p-tabPanel>
     <p-tabPanel header="已受审批的活动">
@@ -23,12 +23,10 @@
                 <div class="ui-g">
                   <div class="ui-g-2">Name:</div>
                   <div class="ui-g-10">{{act.name}}</div>
-                  <div class="ui-g-2">Org:</div>
-                  <div class="ui-g-10">{{act.college | toCollege}}{{' '+act.org}}</div>
                   <div class="ui-g-2">Time:</div>
-                  <div class="ui-g-10">{{act.volTime}}</div>
-                  <div class="ui-g-2">AplTime:</div>
-                  <div class="ui-g-10">{{act.aplTime}}</div>
+                  <div class="ui-g-10">{{act.time}}</div>
+                  <div class="ui-g-2">PassTime:</div>
+                  <div class="ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                 </div>
               </div>
               <div class="ui-md-3">
@@ -48,16 +46,34 @@
                 <div class="ui-g">
                   <div class="ui-g-2">Name:</div>
                   <div class="ui-g-10">{{act.name}}</div>
-                  <div class="ui-g-2">Org:</div>
-                  <div class="ui-g-10">{{act.college | toCollege}}{{' '+act.org}}</div>
                   <div class="ui-g-2">Time:</div>
-                  <div class="ui-g-10">{{act.volTime}}</div>
+                  <div class="ui-g-10">{{act.time}}</div>
                   <div class="ui-g-2">AplTime:</div>
-                  <div class="ui-g-10">{{act.aplTime}}</div>
+                  <div class="ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                 </div>
               </div>
               <div class="ui-md-3">
                 <button type="button" class="btn btn-warning" (click)="showDialog()">取消申请</button>
+              </div>
+            </div>
+          </ng-template>
+        </p-dataList>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="被拒绝的活动">
+      <div class="content-section implementation">
+        <p-dataList [value]="actRefuse" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
+          <ng-template let-act pTemplate="item">
+            <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
+              <div class="ui-md-9 car-details">
+                <div class="ui-g">
+                  <div class="ui-g-2">Name:</div>
+                  <div class="ui-g-10">{{act.name}}</div>
+                  <!-- <div class="ui-g-2">Time:</div>
+                  <div class="ui-g-10">{{act.volunteer_time}}</div> -->
+                  <div class="ui-g-2">RefuseTime:</div>
+                  <div class="ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                </div>
               </div>
             </div>
           </ng-template>

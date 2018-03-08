@@ -12,14 +12,14 @@
       </div>
       <div class="form-group col-sm-6">
           <label class="col-sm-3 control-label">申请时间：</label>
-          <label class="col-sm-9 control-label" style="text-align:left;">{{stTime | date:'yyyy-MM-dd'}}</label>
+          <label class="col-sm-9 control-label" style="text-align:left;">{{aplTime | date:'yyyy-MM-dd'}}</label>
         </div>
     </div>
     <div class="from-inline">
       <div class="form-group col-sm-6" [ngClass]="{ 'has-error': form.submitted && !volTime.valid }">
         <label class="col-sm-7 control-label">申请志愿时间：</label>
         <div class="col-sm-3 input-group">
-          <input required name="volTime" [(ngModel)]="act.volTime" #volTime="ngModel" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+          <input required name="volTime" [(ngModel)]="act.volunteer_time" #volTime="ngModel" type="text" oninput="value=value.replace(/[^\d]/g,'')"
             class="form-control" style="text-align:right;" maxlength="3">
           <div class="input-group-addon">小时</div>
         </div>
