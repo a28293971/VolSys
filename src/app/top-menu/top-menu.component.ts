@@ -19,7 +19,7 @@ export class TopMenuComponent implements OnInit {
   public isLoading: boolean = false;
 
   constructor(
-    private elementRef: ElementRef,
+    // private elementRef: ElementRef,
     private eventBusService: EventBusService,
     private loginService: LoginService,
     private router: Router,

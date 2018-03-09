@@ -25,7 +25,7 @@ export class AppSideMenuComponent implements OnInit {
     public isCollapse: boolean = false;
 
     constructor(
-        private elementRef: ElementRef,
+        // private elementRef: ElementRef,
         private eventBusService: EventBusService,
         private authService: AuthService
     ) {}

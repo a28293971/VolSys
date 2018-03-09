@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 // import { Router } from '@angular/router';
 import { Activity } from '../models/activity-model';
 import { ActivityService } from './activities.service';
@@ -23,7 +24,8 @@ export class ActivitiesComponent implements OnInit {
   constructor(
     public activityService: ActivityService,
     public confirmationService: ConfirmationService,
-    public authservice: AuthService
+    public authservice: AuthService,
+    private domSanitizer: DomSanitizer
     // private router: Router
   ) { }
 

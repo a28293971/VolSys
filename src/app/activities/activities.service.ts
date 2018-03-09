@@ -13,7 +13,9 @@ export class ActivityService {
 
     getActivities() {
         let token = JSON.parse(localStorage.getItem('currentUser')).token;
-        return this.http.post('http://192.168.148.6/list-all-event', JSON.stringify({token: token}))
+        return this.http
+        .get('mock-data/activities.json')
+        // .post('http://192.168.148.6/list-all-event', JSON.stringify({token: token}))
         .takeWhile((response: Response) => {
             if (!response.json().sysinfo.auth) {
                 this.router.navigateByUrl('login');

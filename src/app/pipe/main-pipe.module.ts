@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { ToCollege } from './toCollege.pipe';
+import { ShowEnterHtmllPipe } from './showEnterHtml.pipe';
 
 @NgModule({
     declarations: [
-        ToCollege
+        ToCollege,
+        ShowEnterHtmllPipe
     ],
     imports: [],
     exports: [
-        ToCollege
+        ToCollege,
+        ShowEnterHtmllPipe
     ]
 })
 export class MainPipe {}

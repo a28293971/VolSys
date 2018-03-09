@@ -28,10 +28,12 @@
                 <div class="col-sm-4"><h4>结束时间:{{act.end}}</h4></div>
               </div>
             </p-header>
-            <div>
+            <div class="row">
               <h3>Description:</h3>
               <!-- <h4>{{act.description}}</h4> -->
-              <p>{{act.description}}</p>
+              <div class="col-sm-offset-1 col-lg-10" style="background-color:rgb(246, 247, 249);border: 1px solid #d6d6d6;">
+                <p style="word-break:break-all; word-wrap:break-word;margin-top: 12px;" [innerHtml]="act.description | showEnterHtml"></p>
+              </div>
               <button type="button">555</button>
               <button type="button">666</button>
             </div>

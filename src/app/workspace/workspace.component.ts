@@ -13,7 +13,7 @@ export class WorkspaceComponent implements OnInit {
     public isCollapsed: boolean = false;
 
     constructor(
-        private elementRef: ElementRef,
+        // private elementRef: ElementRef,
         private eventBusService: EventBusService
     ) {
 
