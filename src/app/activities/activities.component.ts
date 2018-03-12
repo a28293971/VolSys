@@ -47,19 +47,20 @@ export class ActivitiesComponent implements OnInit {
   // }
 
 
-  // report(obj: Activity) {
-  //   this.content = obj;
-  //   console.log('report -> ' + this.content.name);
-  //   this.confirmationService.confirm({
-  //       message: `
-  //       <h4>Are you sure you want to report this activity:</h4>
-  //       <h2>${this.content.name}</h2>
-  //       `,
-  //       accept: () => {
-  //         console.log('succes to report');
-  //       }
-  //   });
-  // }
+  report(obj: Activity) {
+    this.content = obj;
+    // console.log('report -> ' + this.content.name);
+    this.confirmationService.confirm({
+        header: "确认窗口",
+        message: `
+        <h4>Are you sure you want to report this activity:</h4>
+        <h2>${this.content.name}</h2>
+        `,
+        accept: () => {
+          console.log('succes to report');
+        }
+    });
+  }
 
 
 }

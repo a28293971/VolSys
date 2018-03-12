@@ -2,7 +2,7 @@ export class Activity {
     id?: number;
     name: string;
     org_name?: string[];
-    org_id?: number[];
+    org_id?: string[];
     start?: string;
     end?: string;
     volunteer_time: number;
@@ -10,4 +10,6 @@ export class Activity {
     members?: any[];
     timestamp?: Date;
     status?: number;
+    type?: string;
+    token?: string;
 }

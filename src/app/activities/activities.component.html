@@ -23,19 +23,26 @@
           <p-accordionTab>
             <p-header>
               <div class="row">
-                <div class="col-sm-4"><h4>{{act.name}}</h4></div>
+                <div class="col-sm-5"><h4>{{act.name}}</h4></div>
                 <div class="col-sm-4"><h4>{{act.org_name[0]}}</h4></div>
-                <div class="col-sm-4"><h4>结束时间:{{act.end}}</h4></div>
+                <div class="col-sm-3"><h4>结束时间:{{act.end}}</h4></div>
               </div>
             </p-header>
             <div class="row">
               <h3>Description:</h3>
               <!-- <h4>{{act.description}}</h4> -->
-              <div class="col-sm-offset-1 col-lg-10" style="background-color:rgb(246, 247, 249);border: 1px solid #d6d6d6;">
-                <p style="word-break:break-all; word-wrap:break-word;margin-top: 12px;" [innerHtml]="act.description | showEnterHtml"></p>
+              <div class="col-sm-offset-1 col-lg-10 description">
+                <p class="description" [innerHtml]="act.description | showEnterHtml"></p>
               </div>
-              <button type="button">555</button>
-              <button type="button">666</button>
+              <div class="col-lg-1">
+                <button type="button" class="btn btn-primary" style="margin-top: 2px;margin-bottom: 2px;">
+                  申请活动
+                </button>
+                <button type="button" class="btn btn-warning" style="margin-top: 2px;margin-bottom: 2px;"
+                (click)="report(act)">
+                  举报活动
+                </button>
+              </div>
             </div>
           </p-accordionTab>
         </div>
@@ -44,4 +51,4 @@
   </p-dataScroller>
 </p-accordion>
 
-<p-confirmDialog [rejectVisible]="false" width="500"></p-confirmDialog>
+<p-confirmDialog [closable]="false" width="500"></p-confirmDialog>

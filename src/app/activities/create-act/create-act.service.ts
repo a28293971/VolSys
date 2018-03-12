@@ -14,9 +14,27 @@ export class CreateActService {
   ) { }
 
   create(act: Activity) {
-    console.log('had created new act');
+    // console.log('had created new act');
     console.log(act);
-    this.router.navigateByUrl('/workspace/act/activities');
+    return this.http
+    .get('/mock-data/create-event.json')
+    .takeWhile((response: Response) => {
+      if (!response.json().sysinfo.auth) {
+          this.router.navigateByUrl('login');
+          return false;
+      }
+      return true;
+  }).subscribe(
+    data => {
+      if (data.json().sysinfo.createEvent) {
+        alert("活动创建成功!");
+        this.router.navigateByUrl('workspace/act/activities');
+      }else {
+        alert("活动创建失败 请重试!");
+      }
+    },
+    error => console.log(error)
+  );
   }
 
 }

@@ -27,12 +27,21 @@ export class ApplyActComponent implements OnInit {
   }
 
   apllyAct() {
-    // console.log('had aplly!');
-    this.act.id = this.currentUser.id;
-    this.act.name = this.currentUser.name;
-    this.act.college = this.currentUser.college;
-    this.act.aplTime = this.aplTime.toISOString().substr(0, 10);
-    this.applyActService.apply(this.act);
+    let formData = new FormData();
+    formData.append("enctype", "multipart/form-data");
+    formData.append("id", this.currentUser.id.toString());
+    formData.append("file", this.act.other);
+    formData.append("token", this.currentUser.token);
+    this.applyActService.apply(formData);
   }
+
+  // fileWork(event) {
+  //   let formData = new FormData();
+  //   formData.append("enctype", "multipart/form-data");
+  //   formData.append("id", this.currentUser.id.toString());
+  //   formData.append("file", event.target.files[0]);
+  //   formData.append("token", this.currentUser.token);
+  //   this.applyActService.apply(formData);
+  // }
 
 }

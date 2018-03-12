@@ -1,5 +1,5 @@
 export class User {
-    id: number;
+    id: string;
     name?: string;
     password?: string;
     remeberMe?: boolean;
@@ -8,4 +8,5 @@ export class User {
     token?: string;
     volunteer_time?: number;
     score?: number;
+    description?: string;
 }
