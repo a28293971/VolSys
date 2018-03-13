@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Http, Headers } from '@angular/http';
 import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
 // import { TranslateService } from 'ng2-translate';
 import { LoginService } from './login/login.service';
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public currentUser: User;
 
     constructor(
+        private http: Http,
         public router: Router,
         public activatedRoute: ActivatedRoute,
         // public translate: TranslateService,
@@ -30,11 +32,28 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (this.currentUser) {
-            this.authService.isLoggedIn = true;
-            if (this.currentUser.id[0] === 'a') {
-                this.authService.isAdmin = true;
-            }
-            this.router.navigateByUrl('workspace');
+/*             const body = JSON.stringify({
+                id: this.currentUser.id,
+                token: this.currentUser.token
+            });
+            const headers = new Headers({'Content-Type': 'application/json'});
+            this.http.post("http://192.168.148.6/login", body,
+            {headers: new Headers({'Content-Type': 'application/json'})} ) */
+            this.http.get('mock-data/login-token.json')
+            .subscribe(
+                data => {
+                    const value = data.json();
+                    if (value.sysinfo.auth) {
+                        this.authService.isLoggedIn = true;
+                        if (this.currentUser.id[0] === 'a') {
+                            this.authService.isAdmin = true;
+                        }
+                        this.router.navigateByUrl('workspace');
+                    }
+                },
+                error => console.log(error)
+            );
+
         }
 
         this.loginService.currentUser

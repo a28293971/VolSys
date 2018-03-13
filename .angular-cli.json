@@ -22,6 +22,7 @@
             "styles.scss"
         ],
         "scripts": [
+            "../node_modules/chart.js/dist/Chart.js",
             "../node_modules/tinymce/tinymce.js",
             "../node_modules/tinymce/themes/modern/theme.js",
             "../node_modules/tinymce/plugins/advlist/plugin.js",

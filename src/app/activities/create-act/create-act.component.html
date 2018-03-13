@@ -1,4 +1,4 @@
-<div [@flyIn]="'active'">
+<!-- <div [@flyIn]="'active'"> -->
   <h3 class="center-block sys-title">活动创建</h3>
   <form #form="ngForm" (ngSubmit)="form.form.valid && createAct()" novalidate class="form-horizontal" role="form">
     <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !actName.valid }">
@@ -65,4 +65,4 @@
         </div>
       </div>
   </form>
-</div>
+<!-- </div> -->

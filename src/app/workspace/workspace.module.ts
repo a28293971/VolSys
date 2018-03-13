@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { AccordionModule } from 'primeng/primeng';
+import { ChartModule } from 'primeng/components/chart/chart';
 
 import { LeftNavComponent } from '../left-nav/left-nav.component';
 import { TopMenuComponent } from '../top-menu/top-menu.component';
@@ -16,9 +16,9 @@ import { workspaceRoutes } from './workspace.routes';
 
 @NgModule({
     imports: [
-        SharedModule,
-        AccordionModule,
-        RouterModule.forChild(workspaceRoutes)
+        CommonModule,
+        RouterModule.forChild(workspaceRoutes),
+        ChartModule
     ],
     exports: [],
     declarations: [

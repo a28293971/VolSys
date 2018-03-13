@@ -16,8 +16,7 @@ export class AppSideMenuComponent implements OnInit {
             isOpen: true,
             icon: 'fa-heart',
             children: [
-                { name: "活动列表", icon: 'fa-list', route: 'act' }
-                // , { name: "活动审批", icon: 'fa-check-square', route: 'apr' }
+                { name: "活动列表", icon: 'fa-list', route: 'act/activities' }
             ]
         }
     ];
@@ -34,9 +33,16 @@ export class AppSideMenuComponent implements OnInit {
         this.eventBusService.topToggleBtn.subscribe(value => {
             this.toggleMenuAll(value);
         });
-        if (this.authService.isAdmin) {
-            this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr' });
-        }
+/*         if (this.authService.isAdmin) {
+            this.menus[0].children.push({ name: "活动创建", icon: 'podcast', route: 'act/createact' });
+            this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr/list' });
+        }else {
+            this.menus[0].children.unshift({ name: "活动自主申请", icon: 'plus-circle', route: 'act/apllyact' });
+        } */
+
+        this.menus[0].children.push({ name: "活动创建", icon: 'fa-podcast', route: 'act/createact' });
+        this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr/list' });
+        this.menus[0].children.unshift({ name: "活动自主申请", icon: 'fa-plus-circle', route: 'act/apllyact' });
     }
 
     private toggleMenuAll(isCollapse: boolean): void {
