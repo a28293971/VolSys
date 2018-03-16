@@ -10,7 +10,7 @@ import * as CryptoJS from 'crypto-js';
 export class LoginService {
   public userLoginURL = 'http://192.168.148.6/login';
   public subject: Subject<User> = new Subject<User>();
-  public rPwd: Subject<boolean> = new Subject<boolean>();
+  public rMsg: Subject<number> = new Subject<number>();
 
   public get currentUser(): Observable<User> {
     return this.subject.asObservable();
@@ -23,30 +23,43 @@ export class LoginService {
 
   public login(user: User) {
     console.log(user);
-    // const body = JSON.stringify({
-    //   id: user.id,
-    //   password: user.password
-    //   // password: CryptoJS.MD5(user.password).toString()
-    // });
-    // const headers = new Headers({'Content-Type': 'application/json'});
+/*     let obj = '';
+    if (user.id[0] === '1') {
+      obj = 'org';
+    }else {
+      obj = 'user';
+    } */
+    const body = JSON.stringify({
+      id: user.id,
+      password: user.password,
+      authType: 1
+      // password: CryptoJS.MD5(user.password).toString()
+    });
+    const headers = new Headers({'Content-Type': 'application/json'});
     // console.log('post the data');
     // console.log(body), console.log(headers);
     return this.http
-      .get('mock-data/user-login-mock.json')
-      // .post(this.userLoginURL, body, {headers: headers})
+      // .get('mock-data/' + obj + '-login-mock.json')
+      .post(this.userLoginURL, body, {headers: headers})
       .subscribe((response: Response) => {
           const res = response.json();
           console.log(res);
           // console.log('user.token = ' + res.token);
           if (res.sysinfo.auth) {
-            let nUser = new User();
-            nUser.id = res.data.id, nUser.name = res.data.name, nUser.volunteer_time = res.data.volunteer_time
-            nUser.token = res.sysinfo.token, nUser.college = res.data.college;
-            localStorage.setItem('currentUser', JSON.stringify(nUser));
-            localStorage.setItem('userActivities', JSON.stringify(res.data.events));
+            let nUser = res.data;
+            nUser.token = res.sysinfo.token;
+            if (res.sysinfo.idType) {
+              nUser.isAdmin = true;
+              localStorage.setItem('currentUser', JSON.stringify(nUser));
+              // localStorage.setItem('orgActivities', JSON.stringify(nUser.events));
+            }else {
+              localStorage.setItem('currentUser', JSON.stringify(nUser));
+              // localStorage.setItem('userActivities', JSON.stringify(nUser.events));
+            }
+            // delete nUser.events;
             this.subject.next(Object.assign({}, nUser));
           }else {
-            this.rPwd.next(true);
+            this.rMsg.next(Number(res.sysinfo.errType));
           }
         },
       error =>  console.error(error)

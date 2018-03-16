@@ -9,4 +9,6 @@ export class User {
     volunteer_time?: number;
     score?: number;
     description?: string;
+    type?: number;
+    isAdmin?: boolean;
 }

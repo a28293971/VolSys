@@ -13,7 +13,7 @@ import { User } from '../models/user-model';
 })
 export class LoginComponent implements OnInit {
     public user: User = new User();
-    public isWrrongPwd: boolean = false;
+    public rMsg: number = 0;
 
     constructor(
         public router: Router,
@@ -24,11 +24,16 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loginService.rPwd.
+        this.loginService.rMsg.
         subscribe(
             data => {
-                this.isWrrongPwd = data;
-                this.user.password = "";
+                console.log(data);
+                if (data === 1) {
+                    this.rMsg = 1;
+                }else {
+                    this.rMsg = 2;
+                    this.user.password = "";
+                }
             },
             error => console.log(error)
         );

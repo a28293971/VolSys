@@ -7,7 +7,11 @@
           <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !userId.valid }">
             <label class="col-sm-2 control-label">账号：</label>
             <div class="col-sm-8">
-              <input required name="userId" [(ngModel)]="user.id" #userId="ngModel" type="text" class="form-control" placeholder="请输入你的账号...">
+              <input required name="userId" [(ngModel)]="user.id" #userId="ngModel" type="text" class="form-control" 
+              placeholder="请输入你的账号...">
+<!--               <div *ngIf="rMsg==1" class="text-danger" >
+                <h4 style="text-align:center;">账号不存在，请重新核实账号后重试！</h4> 
+              </div> -->
               <!-- <div *ngIf="form.submitted && !userId.valid" class="text-danger">账号必须输入！</div> -->
             </div>
           </div>
@@ -16,8 +20,8 @@
             <div class="col-sm-8">
               <input required minlength="8" [(ngModel)]="user.password" name="password" #password="ngModel" type="password" class="form-control"
                 placeholder="请输入密码...">
-              <div *ngIf="isWrrongPwd" class="text-danger" >
-                <h4 style="text-align:center;color:red">密码错误，请重新输入！</h4> 
+              <div *ngIf="rMsg" class="text-danger" >
+                <h3 style="text-align:center;">{{rMsg==1? '账号不存在，请重新核实账号后重试！':'密码错误，请重新输入！'}}</h3> 
               </div>
             </div>
           </div>
@@ -34,7 +38,7 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-6">
               <button type="submit" class="btn btn-success" style="width:96px" [disabled]="!form.form.valid">登录</button>
-              <button type="button" class="btn btn-danger" (click)="forgetPwd()">忘记密码？</button>
+              <button type="button" class="btn btn-danger" (click)="forgetPwd()" disabled>忘记密码？</button>
             </div>
           </div>
         </form>

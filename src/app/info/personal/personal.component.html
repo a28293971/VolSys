@@ -9,12 +9,14 @@
       <div class="col-md-offset-1">
         <h4>{{currentUser.college | toCollege}}</h4>
       </div>
-      <h3>志愿时间总时长：</h3>
-      <div class="col-md-offset-1">
-        <h4><strong style="color:#00FF00">{{currentUser.volunteer_time}}  </strong>小时</h4>
-      </div>
+      <ng-container *ngIf="!currentUser.isAdmin">
+        <h3>志愿时间总时长：</h3>
+        <div class="col-md-offset-1">
+          <h4><strong style="color:#00FF00">{{currentUser.volunteer_time}}  </strong>小时</h4>
+        </div>
+      </ng-container>
     </p-tabPanel>
-    <p-tabPanel header="已受审批的活动">
+    <p-tabPanel header="已受审批的活动" *ngIf="!currentUser.isAdmin">
       <div class="content-section implementation">
         <p-dataList [value]="actAceppted" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
           <ng-template let-act pTemplate="item">
@@ -24,7 +26,7 @@
                   <div class="ui-g-2">Name:</div>
                   <div class="ui-g-10">{{act.name}}</div>
                   <div class="ui-g-2">Time:</div>
-                  <div class="ui-g-10">{{act.time}}</div>
+                  <div class="ui-g-10">{{act.volunteer_time}}</div>
                   <div class="ui-g-2">PassTime:</div>
                   <div class="ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                 </div>
@@ -37,7 +39,7 @@
         </p-dataList>
       </div>
     </p-tabPanel>
-    <p-tabPanel header="待审批的活动">
+    <p-tabPanel header="待审批的活动" *ngIf="!currentUser.isAdmin">
       <div class="content-section implementation">
         <p-dataList [value]="actWaiting" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
           <ng-template let-act pTemplate="item">
@@ -47,7 +49,7 @@
                   <div class="ui-g-2">Name:</div>
                   <div class="ui-g-10">{{act.name}}</div>
                   <div class="ui-g-2">Time:</div>
-                  <div class="ui-g-10">{{act.time}}</div>
+                  <div class="ui-g-10">{{act.volunteer_time}}</div>
                   <div class="ui-g-2">AplTime:</div>
                   <div class="ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                 </div>
@@ -60,7 +62,7 @@
         </p-dataList>
       </div>
     </p-tabPanel>
-    <p-tabPanel header="被拒绝的活动">
+    <p-tabPanel header="被拒绝的活动" *ngIf="!currentUser.isAdmin">
       <div class="content-section implementation">
         <p-dataList [value]="actRefuse" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
           <ng-template let-act pTemplate="item">
@@ -69,10 +71,32 @@
                 <div class="ui-g">
                   <div class="ui-g-2">Name:</div>
                   <div class="ui-g-10">{{act.name}}</div>
-                  <!-- <div class="ui-g-2">Time:</div>
-                  <div class="ui-g-10">{{act.volunteer_time}}</div> -->
                   <div class="ui-g-2">RefuseTime:</div>
                   <div class="ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-dataList>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="已创建的活动" *ngIf="currentUser.isAdmin">
+      <div class="content-section implementation">
+        <p-dataList [value]="actCreat" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
+          <ng-template let-act pTemplate="item">
+            <div class="ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
+              <div class="ui-g ui-gcar-details">
+                <div class="ui-g-5">
+                  <h4 class="ui-g-3">Name:</h4>
+                  <h4 class="ui-g-9">{{act.name}}</h4>
+                </div>
+                <div class="ui-g-3">
+                  <h4 class="ui-g-3">Time:</h4>
+                  <h4 class="ui-g-9">{{act.volunteer_time}}</h4>
+                </div>
+                <div class="ui-g-4">
+                  <h4 class="ui-g-3">EndTime:</h4>
+                  <h4 class="ui-g-9">{{act.timestamp | date: 'yyyy-MM-dd'}}</h4>
                 </div>
               </div>
             </div>

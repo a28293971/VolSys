@@ -3,6 +3,7 @@ import { flyIn } from '../../animations/fly-in';
 import { CreateActService } from './create-act.service';
 import { Activity } from '../../models/activity-model';
 import { User } from '../../models/user-model';
+import { CurrentUser } from '../../shared/currentUser.data';
 // import { toCollege } from '../../pipe/toCollege.func';
 
 
@@ -28,11 +29,13 @@ export class CreateActComponent implements OnInit {
   college: string;
 
   constructor(
-    private createActService: CreateActService
-  ) { }
+    private createActService: CreateActService,
+    private CUser: CurrentUser
+  ) {
+    this.currentUser = this.CUser.currentUser;
+  }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.act.start = new Date().toISOString().substr(0, 10);
     // console.log(this.act.end);
     // this.college = toCollege(this.currentUser.college);
@@ -41,7 +44,6 @@ export class CreateActComponent implements OnInit {
   createAct() {
     this.act.org_name = [this.currentUser.name];
     this.act.org_id = [this.currentUser.id];
-    this.act.token = this.currentUser.token;
     this.createActService.create(this.act);
   }
 

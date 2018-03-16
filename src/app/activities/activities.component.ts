@@ -19,7 +19,6 @@ export class ActivitiesComponent implements OnInit {
   line: number = 0;
   display: boolean = false;
   content: Activity;
-  reason: string;
 
   constructor(
     public activityService: ActivityService,
@@ -36,8 +35,8 @@ export class ActivitiesComponent implements OnInit {
   // }
 
   ngOnInit() {
-    this.activityService.getActivities()
-    .subscribe(res => this.activities = res.json().data.allEvents);
+    this.activityService.getActivities(-1)
+    .subscribe(res => this.activities = res.json().data.events);
     // this.content = this.activities[0];
   }
 
@@ -45,6 +44,21 @@ export class ActivitiesComponent implements OnInit {
   //   this.activityService.getActivities()
   //   .subscribe(res => this.addData(res.json().data.allEvents));
   // }
+
+  joinAct(act: Activity) {
+    this.activityService.joinAct(act)
+    .subscribe(
+      data => {
+        const value = data.json();
+        if (value.sysinfo.auth) {
+          console.log('succees to join the act');
+        }else {
+          console.log('failed to join');
+        }
+      },
+      error => console.log(error)
+    );
+  }
 
 
   report(obj: Activity) {

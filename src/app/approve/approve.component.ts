@@ -21,7 +21,7 @@ export class ApproveComponent implements OnInit {
   ngOnInit() {
     this.approveService.getNeedApproveActivities()
     .subscribe(
-      data => this.act = data.json().activities,
+      data => this.act = data.json().data.events,
       error => console.log(error)
     );
   }
