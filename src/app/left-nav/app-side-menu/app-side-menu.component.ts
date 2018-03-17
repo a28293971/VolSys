@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, HostListener, Input } from '@angular/core';
 import { EventBusService } from '../../common/services/event-bus.service';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../auth/auth.service';
+import { AuthGuard } from '../../auth/auth.guard';
 
 @Component({
     selector: 'app-side-menu',
@@ -26,14 +26,14 @@ export class AppSideMenuComponent implements OnInit {
     constructor(
         // private elementRef: ElementRef,
         private eventBusService: EventBusService,
-        private authService: AuthService
+        private authGuard: AuthGuard
     ) {}
 
     ngOnInit() {
         this.eventBusService.topToggleBtn.subscribe(value => {
             this.toggleMenuAll(value);
         });
-        if (this.authService.isAdmin) {
+        if (this.authGuard.isAdmin) {
             this.menus[0].children.push({ name: "活动创建", icon: 'fa-podcast', route: 'act/createact' });
             this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr/list' });
         }else {

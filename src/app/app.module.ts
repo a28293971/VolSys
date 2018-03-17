@@ -12,8 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { appRoutes } from './app.routes';
 
 import { LoginService } from './login/login.service';
-import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
+import { CurrentUser } from './common/services/currentUser.data';
 
 
 // export function createTranslateLoader(http: Http) {
@@ -42,8 +42,8 @@ import { AuthGuard } from './auth/auth.guard';
   ],
   providers: [
     LoginService,
-    AuthService,
-    AuthGuard
+    AuthGuard,
+    CurrentUser
   ],
   bootstrap: [AppComponent]
 })

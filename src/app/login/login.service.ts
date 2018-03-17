@@ -3,7 +3,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { User } from '../models/user-model';
-import { AuthService } from '../auth/auth.service';
+import { AuthGuard } from '../auth/auth.guard';
 import * as CryptoJS from 'crypto-js';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class LoginService {
 
   constructor(
     public http: Http,
-    private authService: AuthService
+    private authGuard: AuthGuard
   ) { }
 
   public login(user: User) {
@@ -70,7 +70,8 @@ export class LoginService {
   public logout(): void {
     console.log('--------succees logout!-----------');
     localStorage.clear();
-    this.authService.isLoggedIn = false;
+    // this.http.get('http://192.168.148.6');
+    this.authGuard.isLoggedIn = false;
   }
 
 }

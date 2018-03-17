@@ -3,9 +3,10 @@ import { Http, Headers } from '@angular/http';
 import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
 // import { TranslateService } from 'ng2-translate';
 import { LoginService } from './login/login.service';
-import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
 // import 'rxjs/add/operator/merge';
 import { User } from './models/user-model';
+import { CurrentUser } from './common/services/currentUser.data';
 // import { from } from '_rxjs@5.5.2@rxjs/observable/from';
 
 @Component({
@@ -24,7 +25,8 @@ export class AppComponent implements OnInit, OnDestroy {
         public activatedRoute: ActivatedRoute,
         // public translate: TranslateService,
         public loginService: LoginService,
-        public authService: AuthService
+        private authGuard: AuthGuard,
+        private CUser: CurrentUser
     ) {
 
     }
@@ -45,9 +47,9 @@ export class AppComponent implements OnInit, OnDestroy {
                 data => {
                     const value = data.json();
                     if (value.sysinfo.auth) {
-                        this.authService.isLoggedIn = true;
+                        this.authGuard.isLoggedIn = true;
                         if (this.currentUser.isAdmin) {
-                            this.authService.isAdmin = true;
+                            this.authGuard.isAdmin = true;
                         }
                         this.router.navigateByUrl('workspace');
                     }
@@ -72,10 +74,11 @@ export class AppComponent implements OnInit, OnDestroy {
                 // console.log(routerState);
                 // console.log(routerStateSnapshot);
 
-                this.authService.isLoggedIn = true;
+                this.authGuard.isLoggedIn = true;
                 if (this.currentUser.type) {
-                    this.authService.isAdmin = true;
+                    this.authGuard.isAdmin = true;
                 }
+                this.CUser.update();
                 this.router.navigateByUrl('workspace');
                 console.log('--------succees login!-----------');
             },

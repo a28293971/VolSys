@@ -4,7 +4,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Activity } from '../models/activity-model';
 import { ActivityService } from './activities.service';
 import { ConfirmationService } from 'primeng/components/common/api';
-import { AuthService } from '../auth/auth.service';
 // import { toCollege } from '../pipe/toCollege.func';
 
 @Component({
@@ -23,7 +22,6 @@ export class ActivitiesComponent implements OnInit {
   constructor(
     public activityService: ActivityService,
     public confirmationService: ConfirmationService,
-    public authservice: AuthService,
     private domSanitizer: DomSanitizer
     // private router: Router
   ) { }

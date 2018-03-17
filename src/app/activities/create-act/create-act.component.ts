@@ -3,7 +3,7 @@ import { flyIn } from '../../animations/fly-in';
 import { CreateActService } from './create-act.service';
 import { Activity } from '../../models/activity-model';
 import { User } from '../../models/user-model';
-import { CurrentUser } from '../../shared/currentUser.data';
+import { CurrentUser } from '../../common/services/currentUser.data';
 // import { toCollege } from '../../pipe/toCollege.func';
 
 
@@ -44,6 +44,7 @@ export class CreateActComponent implements OnInit {
   createAct() {
     this.act.org_name = [this.currentUser.name];
     this.act.org_id = [this.currentUser.id];
+    this.act.token = this.currentUser.token;
     this.createActService.create(this.act);
   }
 

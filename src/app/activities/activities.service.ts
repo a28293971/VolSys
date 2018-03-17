@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/takeWhile';
-import { CurrentUser } from '../shared/currentUser.data';
+import { CurrentUser } from '../common/services/currentUser.data';
 
 import { User } from '../models/user-model';
 import { Activity } from '../models/activity-model';

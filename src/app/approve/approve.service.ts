@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Router } from '@angular/router'
 import 'rxjs/add/operator/takeWhile';
-import { CurrentUser } from '../shared/currentUser.data';
+import { CurrentUser } from '../common/services/currentUser.data';
 
 import { User } from '../models/user-model';
 
@@ -24,7 +24,7 @@ export class ApproveService {
       id: this.currentUser.id,
       token: this.currentUser.token,
       listAllEvent: '0',
-      status: '-1',
+      status: '0',
       eventCount: count.toString()
     });
     const headers = new Headers({'Content-Type': 'application/json'});

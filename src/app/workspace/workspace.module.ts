@@ -11,7 +11,7 @@ import { WelcomeComponent } from '../welcome/welcome.component';
 import { AppSideMenuComponent } from '../left-nav/app-side-menu/app-side-menu.component';
 
 import { EventBusService } from '../common/services/event-bus.service';
-import { CurrentUser } from '../shared/currentUser.data';
+// import { CurrentUser } from '../common/services/currentUser.data';
 
 import { workspaceRoutes } from './workspace.routes';
 
@@ -31,8 +31,7 @@ import { workspaceRoutes } from './workspace.routes';
         WelcomeComponent
     ],
     providers: [
-        EventBusService,
-        CurrentUser
+        EventBusService
     ]
 })
 export class WorkspaceModule { }

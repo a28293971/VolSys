@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrentUser } from '../../shared/currentUser.data';
+import { CurrentUser } from '../../common/services/currentUser.data';
 
 import { User } from '../../models/user-model';
 import { Activity } from '../../models/activity-model';
@@ -52,7 +52,7 @@ export class PersonalComponent implements OnInit {
     } */
 
     if (this.currentUser.isAdmin) {
-      this.personalService.getCreatedActivities(-1)
+      this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token, -1)
       .subscribe(
         data => {
           this.actCreat = data.json().data.events;
@@ -60,21 +60,21 @@ export class PersonalComponent implements OnInit {
         }
       );
     }else {
-      this.personalService.getAcceptedActivities(-1)
+      this.personalService.getAcceptedActivities(this.currentUser.id, this.currentUser.token, -1)
       .subscribe(
         data => {
           this.actAceppted = data.json().data.events;
           this.actAceppted.sort(this.sortFunc);
         }
       );
-      this.personalService.getWaitingActivities(-1)
+      this.personalService.getWaitingActivities(this.currentUser.id, this.currentUser.token, -1)
       .subscribe(
         data => {
           this.actWaiting = data.json().data.events;
           this.actWaiting.sort(this.sortFunc);
         }
       );
-      this.personalService.getRejectedActivities(-1)
+      this.personalService.getRejectedActivities(this.currentUser.id, this.currentUser.token, -1)
       .subscribe(
         data => {
           this.actRejecte = data.json().data.events;
