@@ -23,24 +23,24 @@ export class LoginService {
 
   public login(user: User) {
     console.log(user);
-/*     let obj = '';
+    let obj = '';
     if (user.id[0] === '1') {
       obj = 'org';
     }else {
       obj = 'user';
-    } */
-    const body = JSON.stringify({
+    }
+/*     const body = JSON.stringify({
       id: user.id,
       password: user.password,
       // password: '',
       authType: 1
     });
-    const headers = new Headers({'Content-Type': 'application/json'});
+    const headers = new Headers({'Content-Type': 'application/json'}); */
     // console.log('post the data');
     // console.log(body), console.log(headers);
     return this.http
-      // .get('mock-data/' + obj + '-login-mock.json')
-      .post(this.userLoginURL, body, {headers: headers})
+      .get('mock-data/' + obj + '-login-mock.json')
+      // .post(this.userLoginURL, body, {headers: headers})
       .subscribe((response: Response) => {
           const res = response.json();
           console.log(res);

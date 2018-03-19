@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FooterInfoComponent } from '../footer-info/footer-info.component';
 
 import { User } from '../models/user-model';
 

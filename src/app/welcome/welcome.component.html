@@ -1,34 +1,22 @@
 <div>
     <div class="row">
-        <div class="col-md-offset-3 col-md-2">
-            <div class="ui-card-shadow" style="background-color:#2ffff6">
-                <br/>
-                <h3 style="text-align:center">志愿时间</h3>
-                <h3 style="text-align:center;color:#2ea700">{{currentUser.volunteer_time}}H</h3>
-                <br/>
+        <div class="col-md-4" style="height: 100px;">
+            <div class="initials" style="background-color: #20d077;color: #038d4a;">
+                VTime
             </div>
-        </div>
-        <div class="col-md-2">
-            <div class="ui-card-shadow" style="background-color:#ff3900">
-                <br/>
-                <h3 style="text-align:center">第二成绩</h3>
-                <h3 style="text-align:center;color:#dcea00">{{currentUser.score}}</h3>
-                <br/>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="ui-card-shadow" style="background-color:#62ff3e">
-                <br/>
-                <h3 style="text-align:center">新的消息</h3>
-                <h3 style="text-align:center;color:#3e7fff">4条</h3>
-                <br/>
+            <div class="card">
+                <span class="count">{{currentUser.volunteer_time}}</span>
             </div>
         </div>
     </div>
+
+
     <br/><br/>
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <p-chart type="line" [data]="data"></p-chart>
         </div>
     </div>
+
+
 </div>
