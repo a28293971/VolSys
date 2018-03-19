@@ -14,6 +14,7 @@ import { ConfirmationService } from 'primeng/components/common/api';
 export class ActivitiesComponent implements OnInit {
 
   activities: Activity[] = [];
+  hadAplAct: Activity[] = [];
   c: number = 0;
   line: number = 0;
   display: boolean = false;
@@ -35,6 +36,8 @@ export class ActivitiesComponent implements OnInit {
   ngOnInit() {
     this.activityService.getActivities(-1)
     .subscribe(res => this.activities = res.json().data.events);
+    this.activityService.getHadAplAct(-1)
+    .subscribe(res => this.hadAplAct = res.json().data.events);
     // this.content = this.activities[0];
   }
 
@@ -50,8 +53,10 @@ export class ActivitiesComponent implements OnInit {
         const value = data.json();
         if (value.sysinfo.auth) {
           console.log('succees to join the act');
+          alert('活动申请成功！');
         }else {
           console.log('failed to join');
+          alert('活动申请失败！');
         }
       },
       error => console.log(error)
@@ -72,6 +77,22 @@ export class ActivitiesComponent implements OnInit {
           console.log('succes to report');
         }
     });
+  }
+
+  openCheck(event) {
+    let idx = event.index;
+    console.log(event.originalEvent);
+/*     let eid = this.activities[idx].id;
+    if (this.hadAplAct.findIndex((value, index, arr) => {
+      return value.id === eid;
+    }) !== -1) {
+      this.activities[idx].hadApl = true;
+    } */
+  }
+
+  cancelJoinAct(act: Activity) {
+    console.log('fuck!');
+    act.hadApl = false;
   }
 
 

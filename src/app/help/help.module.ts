@@ -6,7 +6,8 @@ import { HelpComponent } from './help.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   declarations: [
     HelpComponent

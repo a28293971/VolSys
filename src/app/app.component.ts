@@ -51,6 +51,7 @@ export class AppComponent implements OnInit, OnDestroy {
                         if (this.currentUser.isAdmin) {
                             this.authGuard.isAdmin = true;
                         }
+                        this.CUser.update();
                         this.router.navigateByUrl('workspace');
                     }
                 },

@@ -28,8 +28,9 @@
           <p-accordionTab>
             <p-header>
               <div class="row">
-                <div class="col-sm-5"><h4>{{act.name}}</h4></div>
-                <div class="col-sm-4"><h4>{{act.org_name[0]}}</h4></div>
+                <div class="col-sm-4"><h4>{{act.name}}</h4></div>
+                <div class="col-sm-3"><h4>{{act.org_name[0]}}</h4></div>
+                <div class="col-sm-2"><h4>志愿时间:{{act.volunteer_time}}</h4></div>
                 <div class="col-sm-3" *ngIf="act.end"><h4>结束时间:{{act.end}}</h4></div>
               </div>
             </p-header>
@@ -41,8 +42,12 @@
               </div>
               <div class="col-lg-1">
                 <button type="button" class="btn btn-primary" style="margin-top: 2px;margin-bottom: 2px;"
-                (click)="aplAct(act)">
+                (click)="joinAct(act)" *ngIf="act.hadApl != true">
                   申请活动
+                </button>
+                <button type="button" class="btn btn-primary" style="margin-top: 2px;margin-bottom: 2px;"
+                (click)="cancelJoinAct(act)" *ngIf="act.hadApl == true">
+                  取消申请
                 </button>
                 <button type="button" class="btn btn-warning" style="margin-top: 2px;margin-bottom: 2px;"
                 (click)="report(act)">

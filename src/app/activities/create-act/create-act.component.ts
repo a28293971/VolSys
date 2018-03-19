@@ -32,10 +32,11 @@ export class CreateActComponent implements OnInit {
     private createActService: CreateActService,
     private CUser: CurrentUser
   ) {
-    this.currentUser = this.CUser.currentUser;
+
   }
 
   ngOnInit() {
+    this.currentUser = this.CUser.currentUser;
     this.act.start = new Date().toISOString().substr(0, 10);
     // console.log(this.act.end);
     // this.college = toCollege(this.currentUser.college);

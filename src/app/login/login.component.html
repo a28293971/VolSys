@@ -4,7 +4,7 @@
       <div class="login-form-container">
         <h3 class="center-block sys-title">志愿者登陆</h3>
         <form #form="ngForm" (ngSubmit)="form.form.valid && login()" novalidate class="form-horizontal" role="form">
-          <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !userId.valid }">
+          <div class="form-group" [ngClass]="{ 'has-error': form.submitted && (!userId.valid || rMsg == 1) }">
             <label class="col-sm-2 control-label">账号：</label>
             <div class="col-sm-8">
               <input required name="userId" [(ngModel)]="user.id" #userId="ngModel" type="text" class="form-control" 
@@ -15,7 +15,7 @@
               <!-- <div *ngIf="form.submitted && !userId.valid" class="text-danger">账号必须输入！</div> -->
             </div>
           </div>
-          <div class="form-group" [ngClass]="{ 'has-error': form.submitted && (!password.valid || isWrrongPwd) }">
+          <div class="form-group" [ngClass]="{ 'has-error': form.submitted && (!password.valid || rMsg == 2) }">
             <label class="col-sm-2 control-label">密码：</label>
             <div class="col-sm-8">
               <input required minlength="8" [(ngModel)]="user.password" name="password" #password="ngModel" type="password" class="form-control"

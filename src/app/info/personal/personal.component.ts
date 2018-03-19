@@ -26,7 +26,7 @@ export class PersonalComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private CUser: CurrentUser
   ) {
-    this.currentUser = this.CUser.currentUser;
+
   }
 
   ngOnInit() {
@@ -50,6 +50,7 @@ export class PersonalComponent implements OnInit {
       this.actWaiting.sort(this.sortFunc);
       this.actRefuse.sort(this.sortFunc);
     } */
+    this.currentUser = this.CUser.currentUser;
 
     if (this.currentUser.isAdmin) {
       this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token, -1)
@@ -60,6 +61,13 @@ export class PersonalComponent implements OnInit {
         }
       );
     }else {
+      this.personalService.getRejectedActivities(this.currentUser.id, this.currentUser.token, -1)
+      .subscribe(
+        data => {
+          this.actRejecte = data.json().data.events;
+          this.actRejecte.sort(this.sortFunc);
+        }
+      );
       this.personalService.getAcceptedActivities(this.currentUser.id, this.currentUser.token, -1)
       .subscribe(
         data => {
@@ -74,13 +82,7 @@ export class PersonalComponent implements OnInit {
           this.actWaiting.sort(this.sortFunc);
         }
       );
-      this.personalService.getRejectedActivities(this.currentUser.id, this.currentUser.token, -1)
-      .subscribe(
-        data => {
-          this.actRejecte = data.json().data.events;
-          this.actRejecte.sort(this.sortFunc);
-        }
-      );
+
     }
   }
 

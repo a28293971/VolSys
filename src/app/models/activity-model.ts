@@ -12,4 +12,5 @@ export class Activity {
     status?: number;
     type?: string;
     token?: string;
+    hadApl?: boolean;
 }

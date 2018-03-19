@@ -9,8 +9,8 @@ import { User } from '../models/user-model';
 })
 export class WelcomeComponent implements OnInit {
 
-  private data: {};
-  private currentUser: User;
+  public data: {};
+  public currentUser: User;
 
   constructor() { }
 

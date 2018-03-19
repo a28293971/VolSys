@@ -32,8 +32,8 @@ export class LoginService {
     const body = JSON.stringify({
       id: user.id,
       password: user.password,
+      // password: '',
       authType: 1
-      // password: CryptoJS.MD5(user.password).toString()
     });
     const headers = new Headers({'Content-Type': 'application/json'});
     // console.log('post the data');
