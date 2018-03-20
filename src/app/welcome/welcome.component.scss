@@ -8,19 +8,49 @@
     box-sizing: border-box;
     height: 100%;
 }
+.highlight-box {
+    height: 100px;
+    }
+    .highlight-box .card {
+        background-color: #fff;
+        padding: 1em;
+        float: left;
+        width: 50%;
+        box-sizing: border-box;
+        height: 100%;
+        }
+        .highlight-box .card .count {
+            font-size: 54px;
+            display: block;
+            text-align: center;
+            // padding-bottom: 4px;
+            color: #a4a4a4;
+        }
+
 .card {
+    margin-top: 0;
     background-color: #fff;
     padding: 1em;
-    float: left;
-    width: 50%;
-    box-sizing: border-box;
-    height: 100%;
 }
 
-.count {
-    font-size: 54px;
-    display: block;
-    text-align: center;
-    // margin-top: 4px;
+
+.name {
+position: relative;
+left: 10px;
+top: 10px;
+font-size: 23px;
+}
+.id {
+    position: relative;
+    left: 10px;
+    top: 38px;
+    font-size: 18px;
     color: #a4a4a4;
+}
+.time {
+    position: relative;
+    right: 10px;
+    top: 10px;
+    font-size: 36px;
+    color: #32767c;
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { DataScrollerModule } from 'primeng/components/datascroller/datascroller'
 import { ChartModule } from 'primeng/components/chart/chart';
 import { LeftNavComponent } from '../left-nav/left-nav.component';
 import { TopMenuComponent } from '../top-menu/top-menu.component';
@@ -19,7 +20,8 @@ import { workspaceRoutes } from './workspace.routes';
     imports: [
         CommonModule,
         RouterModule.forChild(workspaceRoutes),
-        ChartModule
+        ChartModule,
+        DataScrollerModule
     ],
     exports: [],
     declarations: [

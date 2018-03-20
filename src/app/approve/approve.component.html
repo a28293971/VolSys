@@ -5,11 +5,11 @@
 <div class="content-section implementation">
   <p-dataList [value]="act" [paginator]="true" [rows]="10" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
     <ng-template let-act pTemplate="item">
-      <div class="ui-g">
-        <div class="ui-g-6">{{act.name}}</div>
-        <div class="ui-g-4">{{act.end}}</div>
-        <div class="ui-g-2">
-            <a href="javascript:void(0);" (click)="goToApprove(act.id)">进入审批界面</a>
+      <div class="row">
+        <div class="col-md-6">{{act.name}}</div>
+        <div class="col-md-4">{{act.end}}</div>
+        <div class="col-md-2">
+          <a href="javascript:void(0);" (click)="goToApprove(act.id)">进入审批界面</a>
         </div>
       </div>
     </ng-template>

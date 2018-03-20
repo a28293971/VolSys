@@ -1,22 +1,59 @@
 <div>
-    <div class="row">
-        <div class="col-md-4" style="height: 100px;">
-            <div class="initials" style="background-color: #20d077;color: #038d4a;">
-                VTime
-            </div>
-            <div class="card">
-                <span class="count">{{currentUser.volunteer_time}}</span>
-            </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="highlight-box">
+        <div class="initials" style="background-color: #20d077;color: #038d4a;">
+          VTime
         </div>
-    </div>
-
-
-    <br/><br/>
-    <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-            <p-chart type="line" [data]="data"></p-chart>
+        <div class="card">
+          <span class="count">{{currentUser?.volunteer_time}}</span>
         </div>
+      </div>
     </div>
+    <div class="col-md-4">
+      <div class="highlight-box">
+        <div class="initials" style="background-color: #ef6262;color: #a83d3b;">
+          Score
+        </div>
+        <div class="card">
+          <span class="count">{{currentUser?.score}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="highlight-box">
+        <div class="initials" style="background-color: #007be5;color: #00448f;">
+          Message
+        </div>
+        <div class="card">
+          <span class="count">4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br/>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <p-chart type="line" [data]="data"></p-chart>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <p-dataScroller [value]="ranklist" [rows]="6">
+        <p-header>Rank</p-header>
+        <ng-template let-stu pTemplate="item">
+          <div class="ui-datascroller-content">
+            <div class="row" style="padding:6px;border-bottom:1px solid #D5D5D5">
+              <span class="col-md-6" style="font-size: 32px;">{{stu.name}}</span>
+              <span class="col-md-6" style="font-size: 53px;color: #32767c;text-align: right;float: right;">{{stu.volunteer_time}}</span>
+              <span class="col-md-6" style="font-size: 21px;color: #a4a4a4;">{{stu.id}}</span>
+            </div> 
+          </div>
+        </ng-template>
+      </p-dataScroller>
+    </div>
+  </div>
 
 
 </div>

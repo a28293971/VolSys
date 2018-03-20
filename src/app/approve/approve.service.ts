@@ -20,16 +20,17 @@ export class ApproveService {
   }
 
   getNeedApproveActivities(count: Number = 10) {
-    const body = JSON.stringify({
+/*     const body = JSON.stringify({
       id: this.currentUser.id,
       token: this.currentUser.token,
       listAllEvent: '0',
       status: '0',
       eventCount: count.toString()
     });
-    const headers = new Headers({'Content-Type': 'application/json'});
+    const headers = new Headers({'Content-Type': 'application/json'}); */
   return this.http
-  .post('http://192.168.148.6/get-event', body, {headers: headers})
+  // .post('http://192.168.148.6/get-event', body, {headers: headers})
+  .get("mock-data/act-waitingApr.json")
   .takeWhile((response: Response) => {
       if (!response.json().sysinfo.auth) {
           this.router.navigateByUrl('login');

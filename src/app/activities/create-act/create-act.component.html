@@ -1,4 +1,5 @@
-<!-- <div [@flyIn]="'active'"> -->
+<div style="background-color: #fff;">
+  <br/><br/>
   <h3 class="center-block sys-title">活动创建</h3>
   <form #form="ngForm" (ngSubmit)="form.form.valid && createAct()" novalidate class="form-horizontal" role="form">
     <div class="form-group" [ngClass]="{ 'has-error': form.submitted && !actName.valid }">
@@ -7,7 +8,7 @@
         <input required name="actName" [(ngModel)]="act.name" #actName="ngModel" type="text" class="form-control" placeholder="这里输入你的活动名称">
       </div>
     </div>
-    <div class="from-inline">
+    <div class="form-group from-inline">
       <div class="form-group col-sm-5" [ngClass]="{ 'has-error': form.submitted && !volTime.valid }">
         <label class="col-sm-6 control-label">志愿时间：</label>
         <div class="col-sm-4 input-group">
@@ -29,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="from-inline">
+    <div class="form-group from-inline">
       <!-- <div class="form-group col-sm-5" [ngClass]="{ 'has-error': form.submitted && !members.valid }">
         <label class="col-sm-6 control-label">参与人数：</label>
         <div class="col-sm-4 input-group">
@@ -43,13 +44,13 @@
         <label class="col-sm-6 control-label" style="text-align:left;">{{currentUser.college | toCollege}}{{' '+currentUser.name}}</label>
       </div>
     </div>
-    <div class="from-group" [ngClass]="{ 'has-error': form.submitted && !describe.valid }">
+    <div class="row from-group" [ngClass]="{ 'has-error': form.submitted && !describe.valid }">
       <div class="col-sm-8 col-sm-offset-2">
         <textarea required [(ngModel)]="act.description" name="describe" #describe="ngModel" class="form-control" rows="10" style="resize:none;"
           placeholder="这里输入这个活动的简单描述..."></textarea>
       </div>
     </div>
-
+    <br/><br/>
     <div class="form-group">
         <div class="col-sm-offset-5 col-sm-1">
           <button type="submit" class="btn btn-success">
@@ -64,5 +65,6 @@
           </button>
         </div>
       </div>
+      <br/><br/>
   </form>
-<!-- </div> -->
+</div>

@@ -36,8 +36,8 @@ export class ActivitiesComponent implements OnInit {
   ngOnInit() {
     this.activityService.getActivities(-1)
     .subscribe(res => this.activities = res.json().data.events);
-    this.activityService.getHadAplAct(-1)
-    .subscribe(res => this.hadAplAct = res.json().data.events);
+/*     this.activityService.getHadAplAct(-1)
+    .subscribe(res => this.hadAplAct = res.json().data.events); */
     // this.content = this.activities[0];
   }
 
