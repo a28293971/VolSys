@@ -1,17 +1,49 @@
-<h3 class="center-block" style="text-align: center;margin-bottom: 50px;font-size: 32px;">
-  待审批的活动列表
-</h3>
-
-<div class="content-section implementation">
-  <p-dataList [value]="act" [paginator]="true" [rows]="10" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
-    <ng-template let-act pTemplate="item">
-      <div class="row">
-        <div class="col-md-6">{{act.name}}</div>
-        <div class="col-md-4">{{act.end}}</div>
-        <div class="col-md-2">
-          <a href="javascript:void(0);" (click)="goToApprove(act.id)">进入审批界面</a>
-        </div>
+<div class="user-table-container" [@flyIn]="'active'">
+  <div style="background-color: #fff;width: 100%;height: 100%">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h3 class="center-block" style="text-align: center;margin-bottom: 20px;font-size: 32px;">
+          待审批的活动列表
+        </h3>
       </div>
-    </ng-template>
-  </p-dataList>
+    </div>
+    <br/>
+    
+    <div class="content-section implementation" style="padding-left: 20px;padding-right: 20px;">
+      <p-table [value]="act" [paginator]="true" [rows]="10" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
+        <ng-template let-act pTemplate="header">
+          <tr>
+            <th>活动名称</th>
+            <th>志愿时间</th>
+            <th>活动结束时间</th>
+            <th>操作</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-act>
+          <tr>
+            <td>{{act.name}}</td>
+            <td>{{act.volunteer_time}}</td>
+            <td>{{act.end}}</td>
+            <td><button type="button" class="btn btn-primary">进入审批界面</button></td>
+          </tr>
+        </ng-template>
+<!--         <ng-template let-act pTemplate="item">
+          <div class="ui-datascroller-content">
+              <div style="padding:6px;border-bottom:1px solid #D5D5D5">
+                <div class="row">
+                  <div class="col-md-3"><label class="name">{{act.name}}</label></div>
+                  <div class="col-md-2"><label class="v-time">{{act.volunteer_time}}</label></div>
+                  <div class="col-md-2"><label class="end-time">{{act.end}}</label></div>
+                  <div class="col-md-5">
+                    <button type="button" class="btn btn-primary">进入审批界面</button>
+                    <a href="javascript:void(0);" (click)="goToApprove(act.id)">进入审批界面</a> 
+                  </div>
+                </div>
+              </div>
+          </div>
+        </ng-template> -->
+      </p-table>
+    </div>
+    <br/><br/>
+  </div>
 </div>

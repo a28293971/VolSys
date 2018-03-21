@@ -5,17 +5,20 @@ import { CanActivate, Router, CanLoad, Route } from '@angular/router';
 export class AuthGuard implements CanActivate, CanLoad {
 
     public isLoggedIn: boolean = false;
-    public isAdmin: boolean = false;
+/*     public isAdmin: boolean = false; */
 
     constructor(
         private router: Router
     ) { }
 
-    canActivate(): boolean {
+/*     canActivate(): boolean {
         if (this.isAdmin) {
             return true; }
-        // this.router.navigateByUrl('login');
+        this.router.navigateByUrl('login');
         return false;
+    } */
+    canActivate(): boolean {
+        return true;
     }
 
     canLoad(route: Route): boolean {

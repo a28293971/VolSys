@@ -5,11 +5,13 @@ import { Activity } from '../models/activity-model';
 import { ActivityService } from './activities.service';
 import { ConfirmationService } from 'primeng/components/common/api';
 // import { toCollege } from '../pipe/toCollege.func';
+import { flyIn } from '../animations/fly-in';
 
 @Component({
   selector: 'activities',
   templateUrl: './activities.component.html',
-  styleUrls: ['./activities.component.scss']
+  styleUrls: ['./activities.component.scss'],
+  animations: [flyIn]
 })
 export class ActivitiesComponent implements OnInit {
 

@@ -4,14 +4,17 @@ import { Router } from '@angular/router';
 
 import { ApproveService } from './approve.service';
 
+import { flyIn } from '../animations/fly-in';
+
 @Component({
   selector: 'approve',
   templateUrl: './approve.component.html',
-  styleUrls: ['./approve.component.scss']
+  styleUrls: ['./approve.component.scss'],
+  animations: [flyIn]
 })
 export class ApproveComponent implements OnInit {
 
-  act: Activity[] = [];
+  public act: Activity[] = [];
 
   constructor(
     private approveService: ApproveService,
