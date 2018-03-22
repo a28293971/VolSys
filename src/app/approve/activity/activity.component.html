@@ -1,33 +1,60 @@
-<div>
-  <h3 style="text-align: center">{{actName}}</h3>
-</div>
-<div class="content-section implementation">
-  <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
-      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-      <input #gb type="text" size="40" placeholder="Global Filter">
+<div class="user-table-container" [@flyIn]="'active'">
+  <div class="compoment-backgroud">
+    <br/>
+    <h3 style="text-align: center">{{actName}}</h3>
+    <br/>
+    <div class="content-section implementation" style="padding-left: 20px;padding-right: 20px;">
+      <p-table #dt [value]="members" [paginator]="true" [(selection)]="selectedMembers" [globalFilterFields]="['id','name','aplTime']"
+      [paginator]="true" [rows]="10" paginatorPosition="top" [rowsPerPageOptions]="[10,15,25,50]">
+          <ng-template pTemplate="caption">
+            <div style="text-align:left;float: left;">
+              <button type="button" style="padding-top: 4px;padding-bottom: 3px;float: left;" class="btn btn-info" routerLink="/workspace/apr/list">
+                <i class="fa fa-angle-left"></i>
+                返回
+              </button>
+              <button type="button" style="padding-top: 4px;padding-bottom: 3px;margin-left: 25px;" 
+              class="btn btn-success" (click)="aprMutileMeb()">
+                <i class="fa fa-check"></i>
+                批量审批通过
+              </button>
+            </div>
+            <div style="text-align:right;">
+              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+              <input type="text" size="50" placeholder="Global Filter" 
+              (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 2.25em">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
+              <th>Id</th>
+              <th>Name</th>
+              <th>AplTime</th>
+              <th>Opt</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr [pSelectableRow]="rowData">
+              <td>
+                <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+              </td>
+              <td>{{rowData.id}}</td>
+              <td>{{rowData.name}}</td>
+              <td>{{rowData.aplTime}}</td>
+              <td><button type="button" class="btn btn-success" (click)="aprSingleMeb(rowData.id)">审批通过</button></td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <ul>
+              <li *ngFor="let mb of selectedMembers" style="text-align: left">
+                {{mb.id + ' - ' + mb.name + ' - ' + mb.aplTime}}
+              </li>
+            </ul>
+          </ng-template>
+      </p-table>
+    </div>
+    <br/><br/>
   </div>
-  <p-dataTable [value]="members" [(selection)]="selectedMembers" dataKey="id" [rows]="10" [paginator]="true" 
-  [rowsPerPageOptions]="[10,15,20,50]" paginatorPosition="top" [globalFilter]="gb">
-    <!-- <ng-template pTemplate="paginatorLeft">
-      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-      <input #gb type="text" pInputText size="20" placeholder="Global Filter">
-    </ng-template> -->
-    <ng-template pTemplate="paginatorLeft">
-        <button type="button" routerLink="/workspace/apr/list">
-          <i class="fa fa-chevron-left"></i>
-          返回
-        </button>
-    </ng-template>
-    <p-column [style]="&#123;'width':'38px'&#125;" selectionMode="multiple"></p-column>
-    <p-column field="id" header="Id" [sortable]="true"></p-column>
-    <p-column field="name" header="Name" [sortable]="true"></p-column>
-    <p-column field="aplTime" header="AplTime" [sortable]="true"></p-column>
-    <p-footer>
-      <ul>
-          <li *ngFor="let mb of selectedMembers" style="text-align: left">
-            {{mb.id + ' - ' + mb.name + ' -' + mb.aplTime}}
-          </li>
-        </ul>
-    </p-footer>
-  </p-dataTable>
 </div>

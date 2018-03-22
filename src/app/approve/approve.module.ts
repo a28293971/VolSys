@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { ApproveComponent } from './approve.component';
 import { ActivityComponent } from './activity/activity.component';
 import { TableModule } from 'primeng/components/table/table';
-import { DataTableModule } from 'primeng/components/datatable/datatable';
 
 import { approveRoutes } from './approve.routes';
 
@@ -14,7 +13,6 @@ import { ActivityService } from './activity/activity.service';
 @NgModule({
   imports: [
     CommonModule,
-    DataTableModule,
     TableModule,
     RouterModule.forChild(approveRoutes),
   ],

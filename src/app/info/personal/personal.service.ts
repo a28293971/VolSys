@@ -19,7 +19,7 @@ export class PersonalService {
 
   }
 
-  getActivities(id: string, token: string, count: Number = 10) {
+/*   getActivities(id: string, token: string, count: Number = 10) {
     const body = JSON.stringify({
       id: id,
       token: token,
@@ -37,7 +37,7 @@ export class PersonalService {
         }
         return true;
     });
-  }
+  } */
 
   getAcceptedActivities(id: string, token: string, count: Number = 10) {
     const body = JSON.stringify({
@@ -51,7 +51,7 @@ export class PersonalService {
     return this.http
     .post('http://192.168.148.6/get-event', body, {headers: headers})
     .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.auth) {
+        if (!response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
             return false;
         }
@@ -71,7 +71,7 @@ export class PersonalService {
     return this.http
     .post('http://192.168.148.6/get-event', body, {headers: headers})
     .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.auth) {
+        if (!response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
             return false;
         }
@@ -91,7 +91,7 @@ export class PersonalService {
     return this.http
     .post('http://192.168.148.6/get-event', body, {headers: headers})
     .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.auth) {
+        if (!response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
             return false;
         }
@@ -111,7 +111,7 @@ export class PersonalService {
     return this.http
     .post('http://192.168.148.6/get-event', body, {headers: headers})
     .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.auth) {
+        if (!response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
             return false;
         }

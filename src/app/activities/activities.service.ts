@@ -21,18 +21,19 @@ export class ActivityService {
     }
 
     getActivities(count: Number = 10) {
-/*         const body = JSON.stringify({
+        const body = JSON.stringify({
             id: this.currentUser.id,
             token: this.currentUser.token,
             listAllEvent: '1',
-            eventCount: count.toString()
+            eventCount: count.toString(),
+            status: '-1'
           });
-          const headers = new Headers({'Content-Type': 'application/json'}); */
+          const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
         // .post('http://192.168.148.6/get-event', body, {headers: headers})
         .get('mock-data/activities.json')
         .takeWhile((response: Response) => {
-            if (!response.json().sysinfo.auth) {
+            if (!response.json().sysinfo.tokenUpdate) {
                 this.router.navigateByUrl('login');
                 return false;
             }
@@ -43,6 +44,7 @@ export class ActivityService {
     joinAct(act: Activity) {
         const body = JSON.stringify({
             id: this.currentUser.id,
+            name: this.currentUser.name,
             eid: act.id,
             ename: act.name,
             token: this.currentUser.token
@@ -50,7 +52,7 @@ export class ActivityService {
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post("http://192.168.148.6/join-event", body, {headers: headers})
         .takeWhile((response: Response) => {
-            if (!response.json().sysinfo.auth) {
+            if (!response.json().sysinfo.tokenUpdate) {
                 this.router.navigateByUrl('login');
                 return false;
             }
@@ -62,15 +64,16 @@ export class ActivityService {
         const body = JSON.stringify({
             id: this.currentUser.id,
             token: this.currentUser.token,
-            listAllEvent: '0',
-            eventCount: count.toString()
+            listAllEvent: '1',
+            eventCount: count.toString(),
+            status: '1'
           });
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
         .post('http://192.168.148.6/get-event', body, {headers: headers})
         // .get('mock-data/activities.json')
         .takeWhile((response: Response) => {
-            if (!response.json().sysinfo.auth) {
+            if (!response.json().sysinfo.tokenUpdate) {
                 this.router.navigateByUrl('login');
                 return false;
             }

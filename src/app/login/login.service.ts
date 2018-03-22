@@ -32,7 +32,6 @@ export class LoginService {
 /*     const body = JSON.stringify({
       id: user.id,
       password: user.password,
-      // password: '',
       authType: 1
     });
     const headers = new Headers({'Content-Type': 'application/json'}); */

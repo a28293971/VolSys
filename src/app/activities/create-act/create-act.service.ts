@@ -25,12 +25,12 @@ export class CreateActService {
     const body = JSON.stringify({
       org_id: act.org_id,
       org_name: act.org_name,
-      name: act.name,
+      ename: act.name,
       start: act.start,
       end: act.end,
       volunteer_time: act.volunteer_time,
       description: act.description,
-      type: '1',
+      etype: '1',
       token: act.token
     });
     console.log(body);
@@ -39,14 +39,14 @@ export class CreateActService {
     .post('http://192.168.148.6/create-event', body, {headers: headers})
     // .get('/mock-data/create-event.json')
     .takeWhile((response: Response) => {
-      if (!response.json().sysinfo.auth) {
+      if (!response.json().sysinfo.tokenUpdate) {
           this.router.navigateByUrl('login');
           return false;
       }
       return true;
     }).subscribe(
       data => {
-        if (data.json().sysinfo.createEvent) {
+        if (data.json().sysinfo.auth) {
           alert("活动创建成功!");
           this.router.navigateByUrl('workspace/act/activities');
         }else {

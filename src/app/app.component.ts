@@ -48,13 +48,8 @@ export class AppComponent implements OnInit, OnDestroy {
                     const value = data.json();
                     if (value.sysinfo.auth) {
                         this.authGuard.isLoggedIn = true;
-/*                         if (this.currentUser.isAdmin) {
-                            this.authGuard.isAdmin = true;
-                        }else {
-                            this.authGuard.isAdmin = false;
-                        } */
                         this.CUser.update();
-                        this.router.navigateByUrl('workspace');
+                        this.router.navigateByUrl('/workspace/welcome');
                     }else {
                         localStorage.clear();
                     }
@@ -84,7 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
                     this.authGuard.isAdmin = true;
                 } */
                 this.CUser.update();
-                this.router.navigateByUrl('workspace');
+                this.router.navigateByUrl('/workspace/welcome');
                 console.log('--------succees login!-----------');
             },
             error => console.error(error)

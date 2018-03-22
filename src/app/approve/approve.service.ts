@@ -23,7 +23,7 @@ export class ApproveService {
 /*     const body = JSON.stringify({
       id: this.currentUser.id,
       token: this.currentUser.token,
-      listAllEvent: '0',
+      listAllEvent: '1',
       status: '0',
       eventCount: count.toString()
     });
@@ -32,7 +32,7 @@ export class ApproveService {
   // .post('http://192.168.148.6/get-event', body, {headers: headers})
   .get("mock-data/act-waitingApr.json")
   .takeWhile((response: Response) => {
-      if (!response.json().sysinfo.auth) {
+      if (!response.json().sysinfo.tokenUpdate) {
           this.router.navigateByUrl('login');
           return false;
       }
