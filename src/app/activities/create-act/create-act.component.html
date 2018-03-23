@@ -13,8 +13,8 @@
         <div class="form-group col-sm-5" [ngClass]="{ 'has-error': form.submitted && !volTime.valid }">
           <label class="col-sm-6 control-label">志愿时间：</label>
           <div class="col-sm-4 input-group">
-            <input required name="volTime" [(ngModel)]="act.volunteer_time" #volTime="ngModel" type="text" oninput="value=value.replace(/[^\d]/g,'')"
-              class="form-control" style="text-align:right;" maxlength="3">
+            <input required name="volTime" [(ngModel)]="act.volunteer_time" #volTime="ngModel" type="text" style="text-align:right;" maxlength="5"
+            oninput="value=value.replace(/[^\d.]/g,'')" class="form-control" >
             <div class="input-group-addon">小时</div>
           </div>
         </div>

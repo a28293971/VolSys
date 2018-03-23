@@ -34,25 +34,30 @@
 
   <br/>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
       <div class="card">
-        <p-chart type="line" [data]="data"></p-chart>
+        <p-chart type="line" [data]="dataL"></p-chart>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
+      <div class="card">
+        <p-chart type="bar" [data]="dataB"></p-chart>
+      </div>
+    </div>
+<!--     <div class="col-md-4">
       <p-dataScroller [value]="ranklist" [rows]="6">
         <p-header>Rank</p-header>
         <ng-template let-stu pTemplate="item">
           <div class="ui-datascroller-content">
-            <div class="row" style="padding:6px;border-bottom:1px solid #D5D5D5">
-              <span class="col-md-6" style="font-size: 32px;">{{stu.name}}</span>
-              <span class="col-md-6" style="font-size: 53px;color: #32767c;text-align: right;float: right;">{{stu.volunteer_time}}</span>
-              <span class="col-md-6" style="font-size: 21px;color: #a4a4a4;">{{stu.id}}</span>
+            <div class="row" style="padding:0.375em;border-bottom:1px solid #D5D5D5">
+              <span class="col-md-6" style="font-size: 200%;">{{stu.name}}</span>
+              <span class="col-md-6" style="font-size: 392%;color: #32767c;text-align: right;float: right;">{{stu.volunteer_time}}</span>
+              <span class="col-md-6" style="font-size: 132.5%;color: #a4a4a4;">{{stu.id}}</span>
             </div> 
           </div>
         </ng-template>
       </p-dataScroller>
-    </div>
+    </div> -->
   </div>
 
 

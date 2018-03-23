@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+// import { ActivatedRoute } from '@angular/router';
 
 import { ActivityService } from './activity.service';
 
@@ -16,30 +16,34 @@ import { flyIn } from '../../animations/fly-in';
 export class ActivityComponent implements OnInit {
 
   actName: string;
+  actVolunteerTime: number;
   members: Member[] = [];
   selectedMembers: Member[];
   public cols = [
     { field: 'id', header: 'Id' },
     { field: 'name', header: 'Name' },
-    { field: 'aplTime', header: 'AplTime' }
+    { field: 'timestamp', header: 'AplTime' }
     ];
 
   constructor(
-    private activeRoute: ActivatedRoute,
+/*     private activeRoute: ActivatedRoute, */
     private activityService: ActivityService
   ) { }
 
   ngOnInit() {
-    this.activeRoute.params.subscribe(
+    this.actName = this.activityService.eInfo.name;
+    this.actVolunteerTime = this.activityService.eInfo.volunteer_time;
+    this.members = this.activityService.eInfo.members;
+/*     this.activeRoute.params.subscribe(
       params => {
         const eId = params['id'];
         this.activityService.eId = eId;
         this.getActivityById(eId);
       }
-    );
+    ); */
   }
 
-  getActivityById(id: number) {
+/*   getActivityById(id: number) {
     return this.activityService.getActivityMembers(id)
     .subscribe(
       data => {
@@ -48,7 +52,7 @@ export class ActivityComponent implements OnInit {
       },
       error => console.log(error)
     );
-  }
+  } */
 
   aprSingleMeb(id: string) {
     const member = [{

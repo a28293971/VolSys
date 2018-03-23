@@ -21,7 +21,7 @@ export class ActivityService {
     }
 
     getActivities(count: Number = 10) {
-        const body = JSON.stringify({
+/*         const body = JSON.stringify({
             id: this.currentUser.id,
             token: this.currentUser.token,
             listAllEvent: '1',
@@ -30,7 +30,8 @@ export class ActivityService {
           });
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
-        // .post('http://192.168.148.6/get-event', body, {headers: headers})
+        .post('http://192.168.148.6/get-event', body, {headers: headers}) */
+        return this.http
         .get('mock-data/activities.json')
         .takeWhile((response: Response) => {
             if (!response.json().sysinfo.tokenUpdate) {

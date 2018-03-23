@@ -3,19 +3,27 @@
     <br/>
     <h3 style="text-align: center">{{actName}}</h3>
     <br/>
-    <div class="content-section implementation" style="padding-left: 20px;padding-right: 20px;">
-      <p-table #dt [value]="members" [paginator]="true" [(selection)]="selectedMembers" [globalFilterFields]="['id','name','aplTime']"
+    <div class="content-section implementation" style="padding-left: 1.25rem;padding-right: 1.25rem;">
+      <div>
+        <p>志愿时间：{{actVolunteerTime}}</p>
+      </div>
+      <p-table #dt [value]="members" [paginator]="true" [(selection)]="selectedMembers" [globalFilterFields]="['id','name','timestamp']"
       [paginator]="true" [rows]="10" paginatorPosition="top" [rowsPerPageOptions]="[10,15,25,50]">
           <ng-template pTemplate="caption">
             <div style="text-align:left;float: left;">
-              <button type="button" style="padding-top: 4px;padding-bottom: 3px;float: left;" class="btn btn-info" routerLink="/workspace/apr/list">
+              <button type="button" style="padding-top: 0.25rem;padding-bottom: 0.1875rem;float: left;" class="btn btn-info" routerLink="/workspace/apr/list">
                 <i class="fa fa-angle-left"></i>
                 返回
               </button>
-              <button type="button" style="padding-top: 4px;padding-bottom: 3px;margin-left: 25px;" 
+              <button type="button" style="padding-top: 4px;padding-bottom: 3px;margin-left: 1.5625rem;" 
               class="btn btn-success" (click)="aprMutileMeb()">
                 <i class="fa fa-check"></i>
                 批量审批通过
+              </button>
+              <button type="button" style="padding-top: 4px;padding-bottom: 3px;margin-left: 1.5625rem;" 
+              class="btn btn-danger">
+                <i class="fa fa-close"></i>
+                批量拒绝通过
               </button>
             </div>
             <div style="text-align:right;">
@@ -32,6 +40,7 @@
               <th>Id</th>
               <th>Name</th>
               <th>AplTime</th>
+              <th></th>
               <th>Opt</th>
             </tr>
           </ng-template>
@@ -42,8 +51,17 @@
               </td>
               <td>{{rowData.id}}</td>
               <td>{{rowData.name}}</td>
-              <td>{{rowData.aplTime}}</td>
-              <td><button type="button" class="btn btn-success" (click)="aprSingleMeb(rowData.id)">审批通过</button></td>
+              <td>{{rowData.timestamp | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+              <td>
+                <input #vt type="number" style="width: 5em;float: left;" value="1">
+                <div style="width:4em;float: left;margin: 0.3125em;">{{actVolunteerTime*vt.value}}</div>
+                <input type="number" style="width: 5em;float: left;" value="1">
+                <div style="width:4em;float: left;margin: 0.3125em;">0</div>
+              </td>
+              <td>
+                <button type="button" class="btn btn-success" (click)="aprSingleMeb(rowData.id)">审批通过</button>
+                <button type="button" class="btn btn-danger">拒绝通过</button>
+              </td>
             </tr>
           </ng-template>
           <ng-template pTemplate="summary">

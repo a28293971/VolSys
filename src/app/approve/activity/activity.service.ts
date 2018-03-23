@@ -6,11 +6,12 @@ import 'rxjs/add/operator/takeWhile';
 import { CurrentUser } from '../../common/services/currentUser.data';
 
 import { User } from '../../models/user-model';
+import { Activity } from '../../models/activity-model';
 
 @Injectable()
 export class ActivityService {
 
-  public eId: string;
+  public eInfo: Activity;
   public currentUser: User;
 
 
@@ -22,14 +23,14 @@ export class ActivityService {
     this.currentUser = this.CUser.currentUser;
   }
 
-  getActivityMembers(id: number) {
+/*   getActivityMembers(id: number) {
     return this.http.get('/mock-data/act-' + id + '.json').map((res: Response) => res.json());
-  }
+  } */
 
   aprMembers(members: any[]) {
     const body = JSON.stringify({
       id: this.currentUser.id,
-      eid: this.eId,
+      eid: this.eInfo.id,
       token: this.currentUser.token,
       members: members
     });

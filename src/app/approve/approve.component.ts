@@ -3,6 +3,7 @@ import { Activity } from '../models/activity-model';
 import { Router } from '@angular/router';
 
 import { ApproveService } from './approve.service';
+import { ActivityService } from './activity/activity.service'
 
 import { flyIn } from '../animations/fly-in';
 
@@ -17,6 +18,7 @@ export class ApproveComponent implements OnInit {
   public act: Activity[] = [];
 
   constructor(
+    private activityService: ActivityService,
     private approveService: ApproveService,
     private router: Router
   ) { }
@@ -29,8 +31,9 @@ export class ApproveComponent implements OnInit {
     );
   }
 
-  goToApprove(id: number) {
-    this.router.navigateByUrl('/workspace/apr/activity/' + id);
+  goToApprove(act: Activity) {
+    this.activityService.eInfo = act;
+    this.router.navigateByUrl('/workspace/apr/activity/' + act.id);
   }
 
 }

@@ -1,5 +1,6 @@
 export class Member {
     id: number;
-    name?: string;
-    aplTime?: string;
+    name: string;
+    status: string;
+    timestamp: string;
 }

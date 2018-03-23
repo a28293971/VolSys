@@ -10,7 +10,8 @@ import { User } from '../models/user-model';
 })
 export class WelcomeComponent implements OnInit {
 
-  public data: {};
+  public dataL: {};
+  public dataB: {};
   public ranklist: any[];
   public currentUser: User;
 
@@ -18,7 +19,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.data = {
+    this.dataL = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
           {
@@ -35,13 +36,18 @@ export class WelcomeComponent implements OnInit {
           }
       ]
     };
-    this.ranklist = [
-      { name: "王大木", id: "1530286493", volunteer_time: 188},
-      { name: "李光光", id: "1530242363", volunteer_time: 99},
-      { name: "王太木", id: "1537326493", volunteer_time: 56.6},
-      { name: "呵呵哒", id: "1690286493", volunteer_time: 37.2},
-      { name: "六大洋", id: "1583286493", volunteer_time: 18}
-    ];
+    this.dataB = {
+      labels: ['王大木', '李光光', '王太木', '呵呵哒', '六大洋', '233', '666', '张大哥', '王小星', '牛大力'],
+      datasets: [
+          {
+              label: 'VolTime',
+              data: [188, 172, 156, 138, 120, 99 , 89, 56.6, 37.2, 18],
+              fill: false,
+              borderColor: '#2ea700',
+              backgroundColor: '#2ea700'
+          }
+      ]
+    };
   }
 
   trackById(idx, stu) {
