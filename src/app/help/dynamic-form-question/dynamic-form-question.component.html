@@ -1,0 +1,19 @@
+<div class="row" [formGroup]="form">
+  <div [ngSwitch]="question.controlType">
+    <ng-container *ngSwitchCase="'textbox'">
+      <label class="col-md-4 control-label">{{question.label}}</label>
+      <div class="col-md-4">
+        <input type="text" [formControlName]="question.key" class="form-control">
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'textarea'">
+      <label class="col-md-4 control-label" style="font-size: 2em">{{question.label}}</label>
+      <div class="col-md-8"></div>
+      <div class="col-md-6 col-md-offset-3">
+        <textarea [formControlName]="question.key" class="form-control" rows="10" style="resize:none;"></textarea>
+      </div>
+    </ng-container>
+  </div>
+  <!-- <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div> -->
+</div>  

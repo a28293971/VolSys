@@ -18,16 +18,11 @@
             <div class="input-group-addon">小时</div>
           </div>
         </div>
-        <div class="form-group col-sm-6 form-inline" [ngClass]="{ 'has-error': form.submitted && (!dateE.valid || !dateS.valid) }">
-          <label class="col-sm-3 control-label">起始时间：</label>
+        <div class="form-group col-sm-6" [ngClass]="{ 'has-error': form.submitted && !volTime.valid }">
+          <label class="col-sm-3 control-label">第二成绩：</label>
           <div class="col-sm-3">
-            <input required name="dateS" type="date" [(ngModel)]="act.start" #dateS="ngModel" 
-            class="form-control" [max]="act.end">
-          </div>
-          <label class="col-sm-3 control-label">结束时间：</label>
-          <div class="col-sm-3">
-            <input required name="dateE" [(ngModel)]="act.end" #dateE="ngModel" type="date" 
-            class="form-control" [min]="act.start">
+            <input style="text-align:right;" maxlength="5"
+            oninput="value=value.replace(/[^\d.]/g,'')" class="form-control" >
           </div>
         </div>
       </div>
@@ -40,9 +35,23 @@
             <div class="input-group-addon">人</div>
           </div>
         </div> -->
-        <div class="form-group col-sm-5">
-          <label class="col-sm-6 control-label">活动创建人：</label>
-          <label class="col-sm-6 control-label" style="text-align:left;">{{currentUser.college | toCollege}}{{' '+currentUser.name}}</label>
+        <div class="form-group form-inline">
+          <div class="form-group col-md-5">
+            <label class="col-sm-6 control-label">活动创建人：</label>
+            <label class="col-sm-6 control-label" style="text-align:left;">{{currentUser.college | toCollege}}{{' '+currentUser.name}}</label>
+          </div>
+          <div class="form-group col-sm-6" [ngClass]="{ 'has-error': form.submitted && (!dateE.valid || !dateS.valid) }">
+            <label class="col-sm-3 control-label">起始时间：</label>
+            <div class="col-sm-3">
+              <input required name="dateS" type="date" [(ngModel)]="act.start" #dateS="ngModel" 
+              class="form-control" [max]="act.end">
+            </div>
+            <label class="col-sm-3 control-label">结束时间：</label>
+            <div class="col-sm-3">
+              <input required name="dateE" [(ngModel)]="act.end" #dateE="ngModel" type="date" 
+              class="form-control" [min]="act.start">
+            </div>
+          </div>
         </div>
       </div>
       <div class="row from-group" [ngClass]="{ 'has-error': form.submitted && !describe.valid }">

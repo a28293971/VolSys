@@ -51,6 +51,11 @@ export class TopMenuComponent implements OnInit {
     this.router.navigateByUrl('/workspace/info/msg');
   }
 
+  goHelp() {
+    this.showTopMenu = false;
+    this.router.navigateByUrl('/workspace/help');
+  }
+
   openOrClose() {
     this.showTopMenu = !this.showTopMenu;
     if (this.showTopMenu) {

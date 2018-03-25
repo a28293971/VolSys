@@ -9,68 +9,68 @@
       </div>
       <p-table #dt [value]="members" [paginator]="true" [(selection)]="selectedMembers" [globalFilterFields]="['id','name','timestamp']"
       [paginator]="true" [rows]="10" paginatorPosition="top" [rowsPerPageOptions]="[10,15,25,50]">
-          <ng-template pTemplate="caption">
-            <div style="text-align:left;float: left;">
-              <button type="button" style="padding-top: 0.25rem;padding-bottom: 0.1875rem;float: left;" class="btn btn-info" routerLink="/workspace/apr/list">
-                <i class="fa fa-angle-left"></i>
-                返回
-              </button>
-              <button type="button" style="padding-top: 4px;padding-bottom: 3px;margin-left: 1.5625rem;" 
-              class="btn btn-success" (click)="aprMutileMeb()">
-                <i class="fa fa-check"></i>
-                批量审批通过
-              </button>
-              <button type="button" style="padding-top: 4px;padding-bottom: 3px;margin-left: 1.5625rem;" 
-              class="btn btn-danger">
-                <i class="fa fa-close"></i>
-                批量拒绝通过
-              </button>
-            </div>
-            <div style="text-align:right;">
-              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-              <input type="text" size="50" placeholder="Global Filter" 
-              (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
-            </div>
-          </ng-template>
-          <ng-template pTemplate="header">
-            <tr>
-              <th style="width: 2.25em">
-                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-              </th>
-              <th>Id</th>
-              <th>Name</th>
-              <th>AplTime</th>
-              <th></th>
-              <th>Opt</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-rowData>
-            <tr [pSelectableRow]="rowData">
-              <td>
-                <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
-              </td>
-              <td>{{rowData.id}}</td>
-              <td>{{rowData.name}}</td>
-              <td>{{rowData.timestamp | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
-              <td>
-                <input #vt type="number" style="width: 5em;float: left;" value="1">
-                <div style="width:4em;float: left;margin: 0.3125em;">{{actVolunteerTime*vt.value}}</div>
-                <input type="number" style="width: 5em;float: left;" value="1">
-                <div style="width:4em;float: left;margin: 0.3125em;">0</div>
-              </td>
-              <td>
-                <button type="button" class="btn btn-success" (click)="aprSingleMeb(rowData.id)">审批通过</button>
-                <button type="button" class="btn btn-danger">拒绝通过</button>
-              </td>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="summary">
-            <ul>
-              <li *ngFor="let mb of selectedMembers" style="text-align: left">
-                {{mb.id + ' - ' + mb.name + ' - ' + mb.aplTime}}
-              </li>
-            </ul>
-          </ng-template>
+        <ng-template pTemplate="caption">
+          <div style="text-align:left;float: left;">
+            <button type="button" style="padding-top: 0.25rem;padding-bottom: 0.1875rem;float: left;" class="btn btn-info" routerLink="/workspace/apr/list">
+              <i class="fa fa-angle-left"></i>
+              返回
+            </button>
+            <button type="button" style="padding-top: 4px;padding-bottom: 3px;margin-left: 1.5625rem;" 
+            class="btn btn-success" (click)="aprMutileMeb()">
+              <i class="fa fa-check"></i>
+              批量审批通过
+            </button>
+            <button type="button" style="padding-top: 4px;padding-bottom: 3px;margin-left: 1.5625rem;" 
+            class="btn btn-danger">
+              <i class="fa fa-close"></i>
+              批量拒绝通过
+            </button>
+          </div>
+          <div style="text-align:right;">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" size="50" placeholder="Global Filter" 
+            (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 2.25em">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>AplTime</th>
+            <th></th>
+            <th>Opt</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr [pSelectableRow]="rowData">
+            <td>
+              <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+            </td>
+            <td>{{rowData.id}}</td>
+            <td>{{rowData.name}}</td>
+            <td>{{rowData.timestamp | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+            <td>
+              <input #vt type="number" style="width: 5em;float: left;" value="1" min="0" max="1" step="0.1">
+              <div style="width:4em;float: left;margin: 0.3125em;">{{actVolunteerTime*vt.value}}</div>
+              <input type="number" style="width: 5em;float: left;" value="1" min="0" max="1" step="0.1">
+              <div style="width:4em;float: left;margin: 0.3125em;">0</div>
+            </td>
+            <td>
+              <button type="button" class="btn btn-success" (click)="aprSingleMeb(rowData.id)">审批通过</button>
+              <button type="button" class="btn btn-danger">拒绝通过</button>
+            </td>
+          </tr>
+        </ng-template>
+<!--         <ng-template pTemplate="summary">
+          <ul>
+            <li *ngFor="let mb of selectedMembers" style="text-align: left">
+              {{mb.id + ' - ' + mb.name + ' - ' + mb.aplTime}}
+            </li>
+          </ul>
+        </ng-template> -->
       </p-table>
     </div>
     <br/><br/>

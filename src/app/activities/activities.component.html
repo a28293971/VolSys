@@ -32,17 +32,17 @@
                       <p class="description" [innerHtml]="act.description | showEnterHtml"></p>
                     </div>
                     <div class="col-lg-1">
-                      <button type="button" class="btn btn-primary" style="margin-top: 2px;margin-bottom: 2px;"
+                      <button type="button" class="btn btn-primary" style="margin-top: 0.125em;margin-bottom: 0.125em;"
                       (click)="joinAct(act)" *ngIf="act.hadApl != true">
                         申请活动
                       </button>
-                      <button type="button" class="btn btn-primary" style="margin-top: 2px;margin-bottom: 2px;"
+<!--                       <button type="button" class="btn btn-primary" style="margin-top: 2px;margin-bottom: 2px;"
                       (click)="cancelJoinAct(act)" *ngIf="act.hadApl == true">
                         取消申请
-                      </button>
-                      <button type="button" class="btn btn-warning" style="margin-top: 2px;margin-bottom: 2px;"
+                      </button> -->
+                      <button type="button" class="btn btn-warning" style="margin-top: 0.125em;margin-bottom: 0.125em;"
                       (click)="report(act)">
-                        举报活动
+                        活动反馈
                       </button>
                     </div>
                   </div>

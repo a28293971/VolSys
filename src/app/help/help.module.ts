@@ -1,16 +1,24 @@
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { HelpComponent } from './help.component';
+import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-form-question.component';
+
+const routes: Routes = [
+  { path: '', component: HelpComponent }
+];
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [
-    HelpComponent
+    HelpComponent,
+    DynamicFormQuestionComponent
   ]
 })
 export class HelpModule { }
