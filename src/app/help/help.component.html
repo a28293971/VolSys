@@ -14,7 +14,7 @@
 
     <form (ngSubmit)="onSubmit()" novalidate class="form-horizontal" 
     role="form" [formGroup]="form">
-      <div class="form-group" *ngFor="let question of questions[selectHelpType]">
+      <div class="form-group" *ngFor="let question of questions">
           <dynamic-form-question [question]="question" [form]="form"></dynamic-form-question>
       </div>
       <div class="form-group">

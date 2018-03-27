@@ -10,14 +10,15 @@ import { Activity } from '../models/activity-model';
 @Injectable()
 export class ActivityService {
 
-    private currentUser: User
+    public currentUser: User
 
     constructor(
         private http: Http,
         private router: Router,
         private CUser: CurrentUser
     ) {
-        this.currentUser = this.CUser.currentUser;
+        this.currentUser = this.CUser.user;
+        this.CUser.currentUser.subscribe(data => this.currentUser = data);
     }
 
     getActivities(count: Number = 10) {
@@ -81,4 +82,14 @@ export class ActivityService {
             return true;
         });
     }
+
+    reportAct(act: Activity) {
+        const data = JSON.stringify({
+            eid: act.id,
+            ename: act.name
+        });
+        localStorage.setItem('feedbackAct', data);
+        this.router.navigateByUrl('workspace/help');
+    }
+
 }

@@ -5,18 +5,22 @@ import 'rxjs/add/operator/takeWhile';
 
 
 import { User } from '../../models/user-model';
+import { CurrentUser } from '../../common/services/currentUser.data';
 
 @Injectable()
 export class PersonalService {
 
   private body: JSON
   private headers: Headers
+  public currentUser: User
 
   constructor(
     private http: Http,
-    private router: Router
+    private router: Router,
+    private CUser: CurrentUser
   ) {
-
+    this.currentUser = this.CUser.user;
+    this.CUser.currentUser.subscribe(data => this.currentUser = data);
   }
 
 /*   getActivities(id: string, token: string, count: Number = 10) {

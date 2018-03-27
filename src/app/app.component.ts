@@ -7,6 +7,7 @@ import { AuthGuard } from './auth/auth.guard';
 // import 'rxjs/add/operator/merge';
 import { User } from './models/user-model';
 import { CurrentUser } from './common/services/currentUser.data';
+import { Subscription } from 'rxjs';
 // import { from } from '_rxjs@5.5.2@rxjs/observable/from';
 
 @Component({
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private globalClickCallbackFn: Function;
     private loginSuccessCallbackFn: Function;
     public currentUser: User;
+    private currentUser$: Subscription
 
     constructor(
         private http: Http,
@@ -59,7 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
         }
 
-        this.loginService.currentUser
+        this.currentUser$ = this.CUser.currentUser
             // .merge(this.userRegisterService.currentUser)
             .subscribe(
             data => {
@@ -78,7 +80,6 @@ export class AppComponent implements OnInit, OnDestroy {
 /*                 if (this.currentUser.type) {
                     this.authGuard.isAdmin = true;
                 } */
-                this.CUser.update();
                 this.router.navigateByUrl('/workspace/welcome');
                 console.log('--------succees login!-----------');
             },
@@ -98,5 +99,6 @@ export class AppComponent implements OnInit, OnDestroy {
         if (this.globalClickCallbackFn) {
             this.globalClickCallbackFn();
         }
+        this.currentUser$.unsubscribe();
     }
 }

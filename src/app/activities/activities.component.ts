@@ -21,19 +21,13 @@ export class ActivitiesComponent implements OnInit {
   line: number = 0;
   display: boolean = false;
   content: Activity;
+  isAdmin: boolean;
 
   constructor(
     public activityService: ActivityService,
     public confirmationService: ConfirmationService,
     private domSanitizer: DomSanitizer
-    // private router: Router
   ) { }
-
-  // addData(data: Activity[]) {
-  //   for (const i of data) {
-  //     this.activities.push(i);
-  //   }
-  // }
 
   ngOnInit() {
     this.activityService.getActivities(-1)
@@ -41,12 +35,9 @@ export class ActivitiesComponent implements OnInit {
 /*     this.activityService.getHadAplAct(-1)
     .subscribe(res => this.hadAplAct = res.json().data.events); */
     // this.content = this.activities[0];
+    this.isAdmin = !!this.activityService.currentUser.isAdmin;
   }
 
-  // loadData(event) {
-  //   this.activityService.getActivities()
-  //   .subscribe(res => this.addData(res.json().data.allEvents));
-  // }
 
   joinAct(act: Activity) {
     this.activityService.joinAct(act)
@@ -76,7 +67,7 @@ export class ActivitiesComponent implements OnInit {
         <h2>${this.content.name}</h2>
         `,
         accept: () => {
-          console.log('succes to report');
+          this.activityService.reportAct(obj);
         }
     });
   }

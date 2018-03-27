@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrentUser } from '../../common/services/currentUser.data';
 
 import { User } from '../../models/user-model';
 import { Activity } from '../../models/activity-model';
@@ -23,11 +22,8 @@ export class PersonalComponent implements OnInit {
 
   constructor(
     private personalService: PersonalService,
-    private confirmationService: ConfirmationService,
-    private CUser: CurrentUser
-  ) {
-
-  }
+    private confirmationService: ConfirmationService
+  ) { }
 
   ngOnInit() {
 
@@ -50,7 +46,7 @@ export class PersonalComponent implements OnInit {
       this.actWaiting.sort(this.sortFunc);
       this.actRefuse.sort(this.sortFunc);
     } */
-    this.currentUser = this.CUser.currentUser;
+    this.currentUser = this.personalService.currentUser;
 
     if (this.currentUser.isAdmin) {
       this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token, -1)

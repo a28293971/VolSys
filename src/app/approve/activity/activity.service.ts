@@ -20,7 +20,8 @@ export class ActivityService {
     private http: Http,
     private CUser: CurrentUser
   ) {
-    this.currentUser = this.CUser.currentUser;
+    this.currentUser = this.CUser.user;
+    this.CUser.currentUser.subscribe(data => this.currentUser = data);
   }
 
 /*   getActivityMembers(id: number) {

@@ -1,24 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Subject, Observable } from 'rxjs';
 import { User } from '../models/user-model';
 import { AuthGuard } from '../auth/auth.guard';
+import { CurrentUser } from '../common/services/currentUser.data';
 import * as CryptoJS from 'crypto-js';
 
 @Injectable()
 export class LoginService {
   public userLoginURL = 'http://192.168.148.6/login';
-  public subject: Subject<User> = new Subject<User>();
+  // public subject: Subject<User> = new Subject<User>();
   public rMsg: Subject<number> = new Subject<number>();
 
-  public get currentUser(): Observable<User> {
+/*   public get currentUser(): Observable<User> {
     return this.subject.asObservable();
-  }
+  } */
 
   constructor(
     public http: Http,
-    private authGuard: AuthGuard
+    private authGuard: AuthGuard,
+    private CUser: CurrentUser
   ) { }
 
   public login(user: User) {
@@ -45,7 +46,7 @@ export class LoginService {
           console.log(res);
           // console.log('user.token = ' + res.token);
           if (res.sysinfo.auth) {
-            let nUser = res.data;
+            let nUser: User = res.data;
             nUser.token = res.sysinfo.token;
             if (res.sysinfo.idType) {
               nUser.isAdmin = true;
@@ -56,7 +57,8 @@ export class LoginService {
               // localStorage.setItem('userActivities', JSON.stringify(nUser.events));
             }
             // delete nUser.events;
-            this.subject.next(Object.assign({}, nUser));
+            this.CUser.update();
+            // this.subject.next(Object.assign({}, nUser));
           }else {
             this.rMsg.next(Number(res.sysinfo.errType));
           }

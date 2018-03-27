@@ -16,7 +16,8 @@ export class ApproveService {
     private router: Router,
     private CUser: CurrentUser
   ) {
-    this.currentUser = this.CUser.currentUser;
+    this.currentUser = this.CUser.user;
+    this.CUser.currentUser.subscribe(data => this.currentUser = data);
   }
 
   getNeedApproveActivities(count: Number = 10) {

@@ -1,7 +1,8 @@
-import { Component, OnInit, ElementRef, HostListener, Input } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { EventBusService } from '../../common/services/event-bus.service';
 import { CommonModule } from '@angular/common';
 import { CurrentUser } from '../../common/services/currentUser.data';
+import { User } from '../../models/user-model';
 
 @Component({
     selector: 'app-side-menu',
@@ -22,18 +23,20 @@ export class AppSideMenuComponent implements OnInit {
     ];
 
     public isCollapse: boolean = false;
+    public currentUser: User;
 
     constructor(
         // private elementRef: ElementRef,
         private eventBusService: EventBusService,
         private CUser: CurrentUser
-    ) {}
+    ) { }
 
     ngOnInit() {
+        this.currentUser = this.CUser.user;
         this.eventBusService.topToggleBtn.subscribe(value => {
             this.toggleMenuAll(value);
         });
-        if (this.CUser.currentUser.isAdmin) {
+        if (this.currentUser.isAdmin) {
             this.menus[0].children.push({ name: "活动创建", icon: 'fa-podcast', route: 'act/createact' });
             this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr/list' });
         }else {
@@ -73,5 +76,6 @@ export class AppSideMenuComponent implements OnInit {
             });
         }
     }
+
 }
 
