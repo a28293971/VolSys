@@ -15,7 +15,7 @@ export class ApplyActService {
     let headers = new Headers({'Content-Type': undefined});
     return this.http.post("http://192.168.148.6/upload", value)
     .takeWhile((response: Response) => {
-      if (!response.json().sysinfo.auth) {
+      if (response.json().sysinfo.auth) {
           this.router.navigateByUrl('login');
           return false;
       }

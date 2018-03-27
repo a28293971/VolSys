@@ -40,7 +40,7 @@ export class ActivityService {
     .post('http://192.168.148.6/approve-event', body, {headers: headers})
     // .get('mock-data/activities.json')
     .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.tokenUpdate) {
+        if (response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
             return false;
         }

@@ -24,23 +24,23 @@ export class LoginService {
 
   public login(user: User) {
     console.log(user);
-    let obj = '';
+/*     let obj = '';
     if (user.id[0] === '1') {
       obj = 'org';
     }else {
       obj = 'user';
-    }
-/*     const body = JSON.stringify({
+    } */
+    const body = JSON.stringify({
       id: user.id,
       password: user.password,
       authType: 1
     });
-    const headers = new Headers({'Content-Type': 'application/json'}); */
+    const headers = new Headers({'Content-Type': 'application/json'});
     // console.log('post the data');
     // console.log(body), console.log(headers);
     return this.http
-      .get('mock-data/' + obj + '-login-mock.json')
-      // .post(this.userLoginURL, body, {headers: headers})
+      // .get('mock-data/' + obj + '-login-mock.json')
+      .post(this.userLoginURL, body, {headers: headers})
       .subscribe((response: Response) => {
           const res = response.json();
           console.log(res);
@@ -48,15 +48,19 @@ export class LoginService {
           if (res.sysinfo.auth) {
             let nUser: User = res.data;
             nUser.token = res.sysinfo.token;
+            if (nUser.volunteer_time) {
+              nUser.volunteer_time = nUser.volunteer_time[0];
+            }
             if (res.sysinfo.idType) {
               nUser.isAdmin = true;
-              localStorage.setItem('currentUser', JSON.stringify(nUser));
+              // localStorage.setItem('currentUser', JSON.stringify(nUser));
               // localStorage.setItem('orgActivities', JSON.stringify(nUser.events));
             }else {
-              localStorage.setItem('currentUser', JSON.stringify(nUser));
+              // localStorage.setItem('currentUser', JSON.stringify(nUser));
               // localStorage.setItem('userActivities', JSON.stringify(nUser.events));
             }
             // delete nUser.events;
+            localStorage.setItem('currentUser', JSON.stringify(nUser));
             this.CUser.update();
             // this.subject.next(Object.assign({}, nUser));
           }else {

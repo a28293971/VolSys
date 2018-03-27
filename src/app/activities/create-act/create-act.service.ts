@@ -26,6 +26,7 @@ export class CreateActService {
 
   create(act: Activity) {
     const body = JSON.stringify({
+      id: act.org_id,
       org_id: act.org_id,
       org_name: act.org_name,
       ename: act.name,
@@ -42,7 +43,7 @@ export class CreateActService {
     .post('http://192.168.148.6/create-event', body, {headers: headers})
     // .get('/mock-data/create-event.json')
     .takeWhile((response: Response) => {
-      if (!response.json().sysinfo.tokenUpdate) {
+      if (response.json().sysinfo.tokenUpdate) {
           this.router.navigateByUrl('login');
           return false;
       }

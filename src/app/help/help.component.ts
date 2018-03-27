@@ -33,7 +33,6 @@ export class HelpComponent implements OnInit {
 
   ngOnInit() {
     this.edata = JSON.parse(localStorage.getItem('feedbackAct'));
-    console.log(this.edata);
     if (this.edata) {
       localStorage.removeItem('feedbackAct');
       this.selectHelpType = 1;

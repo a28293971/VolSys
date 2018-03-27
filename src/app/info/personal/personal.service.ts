@@ -55,7 +55,7 @@ export class PersonalService {
     return this.http
     .post('http://192.168.148.6/get-event', body, {headers: headers})
     .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.tokenUpdate) {
+        if (response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
             return false;
         }
@@ -75,7 +75,7 @@ export class PersonalService {
     return this.http
     .post('http://192.168.148.6/get-event', body, {headers: headers})
     .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.tokenUpdate) {
+        if (response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
             return false;
         }
@@ -95,7 +95,7 @@ export class PersonalService {
     return this.http
     .post('http://192.168.148.6/get-event', body, {headers: headers})
     .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.tokenUpdate) {
+        if (response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
             return false;
         }
@@ -115,7 +115,7 @@ export class PersonalService {
     return this.http
     .post('http://192.168.148.6/get-event', body, {headers: headers})
     .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.tokenUpdate) {
+        if (response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
             return false;
         }

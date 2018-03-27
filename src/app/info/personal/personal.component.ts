@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { flyIn } from '../../animations/fly-in';
 
 import { User } from '../../models/user-model';
 import { Activity } from '../../models/activity-model';
@@ -11,6 +12,9 @@ import { ConfirmationService } from 'primeng/components/common/api';
   selector: 'personal',
   templateUrl: './personal.component.html',
   styleUrls: ['./personal.component.scss'],
+  animations: [
+    flyIn
+  ]
 })
 export class PersonalComponent implements OnInit {
 
