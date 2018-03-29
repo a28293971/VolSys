@@ -10,16 +10,18 @@ import { User } from '../models/user-model';
 })
 export class WelcomeComponent implements OnInit {
 
-  public dataL: {};
-  public dataB: {};
+  public dataLine: {};
+  public dataBar: {};
   public ranklist: any[];
   public currentUser: User;
+  public header: any;
+  public events: any[];
 
   constructor() { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.dataL = {
+    this.dataLine = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
           {
@@ -36,7 +38,7 @@ export class WelcomeComponent implements OnInit {
           }
       ]
     };
-    this.dataB = {
+    this.dataBar = {
       labels: ['王大木', '李光光', '王太木', '呵呵哒', '六大洋', '233', '666', '张大哥', '王小星', '牛大力'],
       datasets: [
           {
@@ -48,6 +50,11 @@ export class WelcomeComponent implements OnInit {
           }
       ]
     };
+    this.header = {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,agendaWeek,agendaDay'
+  };
   }
 
   trackById(idx, stu) {

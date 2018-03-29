@@ -35,15 +35,15 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (this.currentUser) {
-            const body = JSON.stringify({
+            /* const body = JSON.stringify({
                 id: this.currentUser.id,
                 token: this.currentUser.token,
                 authType: 0
             });
             const headers = new Headers({'Content-Type': 'application/json'});
             this.http.post("http://192.168.148.6/login", body,
-            {headers: new Headers({'Content-Type': 'application/json'})} )
-            // this.http.get('mock-data/login-token.json')
+            {headers: new Headers({'Content-Type': 'application/json'})} ) */
+            this.http.get('mock-data/login-token.json')
             .subscribe(
                 data => {
                     const value = data.json();

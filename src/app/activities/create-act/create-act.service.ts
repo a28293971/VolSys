@@ -25,7 +25,7 @@ export class CreateActService {
   }
 
   create(act: Activity) {
-    const body = JSON.stringify({
+    /* const body = JSON.stringify({
       id: act.org_id,
       org_id: act.org_id,
       org_name: act.org_name,
@@ -38,10 +38,10 @@ export class CreateActService {
       token: this.currentUser.token
     });
     console.log(body);
-    const headers = new Headers({'Content-Type': 'application/json'});
+    const headers = new Headers({'Content-Type': 'application/json'}); */
     return this.http
-    .post('http://192.168.148.6/create-event', body, {headers: headers})
-    // .get('/mock-data/create-event.json')
+    // .post('http://192.168.148.6/create-event', body, {headers: headers})
+    .get('/mock-data/create-event.json')
     .takeWhile((response: Response) => {
       if (response.json().sysinfo.tokenUpdate) {
           this.router.navigateByUrl('login');

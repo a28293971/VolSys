@@ -1,51 +1,57 @@
-<!-- <div [@flyIn]="'active'"> -->
-  <h3 class="center-block" style="text-align: center;margin-bottom: 50px;font-size: 32px;">活动申请</h3>
-  <h4 style="text-align:center; color:red;">
-    注意！   请正确填好所申请的志愿时间，并且将活动主办方所颁发的证明清晰地拍下来后上传。
-  </h4>
-  <form #form="ngForm" (ngSubmit)="form.form.valid && apllyAct()" novalidate class="form-horizontal" role="form">
-    <div class="form-group">
-    <div class="from-inline">
-      <div class="form-group col-sm-6">
-        <label class="col-sm-7 control-label">活动申请人：</label>
-        <label class="col-sm-5 control-label" style="text-align:left;">{{currentUser.id+' '+currentUser.name}}</label>
-      </div>
-      <div class="form-group col-sm-6">
-          <label class="col-sm-3 control-label">申请时间：</label>
-          <label class="col-sm-9 control-label" style="text-align:left;">{{aplTime | date:'yyyy-MM-dd'}}</label>
+<div class="user-table-container" [@flyIn]="'active'">
+  <div class="compoment-backgroud">
+    <br/><br/>
+    <h3 class="center-block" style="text-align: center;margin-bottom: 50px;font-size: 32px;">
+      活动申请
+    </h3>
+    <h4 style="text-align:center; color:red;">
+      注意！   请正确填好所申请的志愿时间，并且将活动主办方所颁发的证明清晰地拍下来后上传。
+    </h4>
+    <form #form="ngForm" (ngSubmit)="form.form.valid && apllyAct()" novalidate class="form-horizontal" role="form">
+      <div class="form-group">
+      <div class="from-inline">
+        <div class="form-group col-sm-6">
+          <label class="col-sm-7 control-label">活动申请人：</label>
+          <label class="col-sm-5 control-label" style="text-align:left;">{{currentUser.id+' '+currentUser.name}}</label>
         </div>
-    </div>
-    <div class="from-inline">
-      <div class="form-group col-sm-6" [ngClass]="{ 'has-error': form.submitted && !volTime.valid }">
-        <label class="col-sm-7 control-label">申请志愿时间：</label>
-        <div class="col-sm-3 input-group">
-          <input required name="volTime" [(ngModel)]="act.volunteer_time" #volTime="ngModel" type="text" oninput="value=value.replace(/[^\d]/g,'')"
-            class="form-control" style="text-align:right;" maxlength="3">
-          <div class="input-group-addon">小时</div>
+        <div class="form-group col-sm-6">
+            <label class="col-sm-3 control-label">申请时间：</label>
+            <label class="col-sm-9 control-label" style="text-align:left;">{{aplTime | date:'yyyy-MM-dd'}}</label>
+          </div>
+      </div>
+      <div class="from-inline">
+        <div class="form-group col-sm-6" [ngClass]="{ 'has-error': form.submitted && !volTime.valid }">
+          <label class="col-sm-7 control-label">申请志愿时间：</label>
+          <div class="col-sm-3 input-group">
+            <input required name="volTime" [(ngModel)]="act.volunteer_time" #volTime="ngModel" type="text" oninput="value=value.replace(/[^\d]/g,'')"
+              class="form-control" style="text-align:right;" maxlength="3">
+            <div class="input-group-addon">小时</div>
+          </div>
+        </div>
+        <div class="form-group col-sm-6" [ngClass]="{ 'has-error': form.submitted && !F.valid }">
+          <label class="col-sm-3 control-label">附件：</label>
+          <div class="col-sm-4">
+            <input type="file" required name="F" [(ngModel)]="act.other" #F="ngModel" style="height:34px">
+            <!-- <input type="file" required name="F" #F="ngModel" [(ngModel)]="act.other" style="height:34px" (change)="fileWork($event)"> -->
+          </div>
         </div>
       </div>
-      <div class="form-group col-sm-6" [ngClass]="{ 'has-error': form.submitted && !F.valid }">
-        <label class="col-sm-3 control-label">附件：</label>
-        <div class="col-sm-4">
-          <input type="file" required name="F" [(ngModel)]="act.other" #F="ngModel" style="height:34px">
-          <!-- <input type="file" required name="F" #F="ngModel" [(ngModel)]="act.other" style="height:34px" (change)="fileWork($event)"> -->
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-1">
+          <button type="submit" class="btn btn-success">
+            <i class="fa fa-fw fa-check"></i>
+            确认申请
+          </button>
+        </div>
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-danger" routerLink="/workspace/act/activities">
+            <i class="fa fa-fw fa-trash"></i>
+            取消申请
+          </button>
         </div>
       </div>
-    </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-5 col-sm-1">
-        <button type="submit" class="btn btn-success">
-          <i class="fa fa-fw fa-check"></i>
-          确认申请
-        </button>
-      </div>
-      <div class="col-sm-1">
-        <button type="button" class="btn btn-danger" routerLink="/workspace/act/activities">
-          <i class="fa fa-fw fa-trash"></i>
-          取消申请
-        </button>
-      </div>
-    </div>
-  </form>
-<!-- </div> -->
+      <br/><br/>
+    </form>
+  </div>
+</div>

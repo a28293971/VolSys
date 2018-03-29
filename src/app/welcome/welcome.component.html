@@ -36,12 +36,12 @@
   <div class="row">
     <div class="col-md-6">
       <div class="card">
-        <p-chart type="line" [data]="dataL"></p-chart>
+        <p-chart type="line" [data]="dataLine"></p-chart>
       </div>
     </div>
     <div class="col-md-6">
       <div class="card">
-        <p-chart type="bar" [data]="dataB"></p-chart>
+        <p-chart type="bar" [data]="dataBar"></p-chart>
       </div>
     </div>
 <!--     <div class="col-md-4">
@@ -58,6 +58,14 @@
         </ng-template>
       </p-dataScroller>
     </div> -->
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <div class="card">
+        <p-schedule [events]="events" [header]="header" local="zh-cn"></p-schedule>
+      </div>
+    </div>
   </div>
 
 

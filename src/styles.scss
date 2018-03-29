@@ -8,5 +8,8 @@
 // @import "/assets/css/primeng-themes-my/primeng.min.css";
 // @import "/assets/css/primeng-themes-my/themes/bootstrap-my/theme.css";
 
+//日历
+@import "~fullcalendar/dist/fullcalendar.min.css";
+
 //这是应用的整体布局样式，放在最底部引入，用来覆盖以上样式里面不好看的部分选择器
 @import "/assets/css/nicefish/layout-default.scss";

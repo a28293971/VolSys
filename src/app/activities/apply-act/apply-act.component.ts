@@ -23,7 +23,7 @@ export class ApplyActComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = this.applyActService.currentUser;
   }
 
   apllyAct() {

@@ -40,7 +40,7 @@ export class AppSideMenuComponent implements OnInit {
             this.menus[0].children.push({ name: "活动创建", icon: 'fa-podcast', route: 'act/createact' });
             this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr/list' });
         }else {
-            // this.menus[0].children.unshift({ name: "活动自主申请", icon: 'plus-circle', route: 'act/apllyact' });
+            this.menus[0].children.push({ name: "活动自主申请", icon: 'fa-plus-circle', route: 'act/apllyact' });
         }
 
 /*         this.menus[0].children.push({ name: "活动创建", icon: 'fa-podcast', route: 'act/createact' });
