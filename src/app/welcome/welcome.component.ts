@@ -3,6 +3,8 @@ import { FooterInfoComponent } from '../footer-info/footer-info.component';
 
 import { User } from '../models/user-model';
 
+import { WelcomeService } from './welcome.service';
+
 @Component({
   selector: 'welcome',
   templateUrl: './welcome.component.html',
@@ -16,11 +18,16 @@ export class WelcomeComponent implements OnInit {
   public currentUser: User;
   public header: any;
   public events: any[];
+  public msgs: any[];
 
-  constructor() { }
+  constructor(
+    private welcomeService: WelcomeService
+  ) { }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = this.welcomeService.currentUser;
+    this.welcomeService.getMsg()
+    .subscribe(data => this.msgs = data.json().data.msgs);
     this.dataLine = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -54,7 +61,7 @@ export class WelcomeComponent implements OnInit {
       left: 'prev,next today',
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
-  };
+    };
   }
 
   trackById(idx, stu) {

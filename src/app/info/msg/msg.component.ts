@@ -16,14 +16,14 @@ export class MsgComponent implements OnInit {
 
   ngOnInit() {
     this.msgService.getMsgList()
-    .subscribe(data => this.msgList = data.json().msg);
+    .subscribe(data => this.msgList = data.json().data.msgs);
   }
 
   loadData(event) {
     this.msgService.getMsgList()
     .subscribe(
       data => {
-        let ls = data.json().msg;
+        let ls = data.json().data.msgs;
         for (let i = 0; i < ls.length; i++) {
           this.msgList.push(ls[i]);
         }

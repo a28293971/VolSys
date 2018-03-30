@@ -1,8 +1,8 @@
 <div>
-  <p-dataScroller [value]="msgList" [rows]="8" (onLazyLoad)="loadData($event)" [lazy]="true" [totalRecords]="30">
+  <p-dataScroller [value]="msgList" [rows]="15" (onLazyLoad)="loadData($event)" [lazy]="true" [totalRecords]="30">
     <ng-template let-msg pTemplate="item">
       <div class="ui-datascroller-content">
-          <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:10px;border-bottom:1px solid #D5D5D5">
+        <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:10px;border-bottom:1px solid #D5D5D5">
           <h4 style="text-align:center;">你申请的 <strong style="color:red">{{msg.name}}</strong> 活动，经过活动管理员的
             审批，最终的结果是 <strong style="color:yellowgreen">{{msg.opt>0? '成功通过':'未通过审批'}}</strong>
           </h4>

@@ -61,9 +61,22 @@
   </div>
   <br/>
   <div class="row">
-    <div class="col-md-offset-1 col-md-10">
+    <div class="col-md-8">
       <div class="card">
-        <p-schedule [events]="events" [header]="header" local="zh-cn"></p-schedule>
+        <p-schedule [events]="events" [header]="header" local="zh-cn" [height]="730"></p-schedule>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card" style="height: 100%;">
+        <p-dataScroller [value]="msgs" [rows]="10" [inline]="true" scrollHeight="69.5rem">
+          <p-header>Message List</p-header>
+          <ng-template let-msg pTemplate="item">
+            <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:1.2em;padding:0.2em;border-bottom:1px solid #D5D5D5">
+              <p style="color:red">活动:{{msg.name}}</p>
+              <p style="color:yellowgreen">结果{{msg.opt>0? '审批通过':'审批未通过'}}</p>
+            </div>
+          </ng-template>
+        </p-dataScroller>
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { ChartModule } from 'primeng/components/chart/chart';
 import { ScheduleModule } from 'primeng/components/schedule/schedule';
+import { DataScrollerModule } from 'primeng/components/datascroller/datascroller';
 
 import { LeftNavComponent } from '../left-nav/left-nav.component';
 import { TopMenuComponent } from '../top-menu/top-menu.component';
@@ -13,6 +14,7 @@ import { WelcomeComponent } from '../welcome/welcome.component';
 import { AppSideMenuComponent } from '../left-nav/app-side-menu/app-side-menu.component';
 
 import { EventBusService } from '../common/services/event-bus.service';
+import { WelcomeService } from '../welcome/welcome.service';
 // import { CurrentUser } from '../common/services/currentUser.data';
 
 import { workspaceRoutes } from './workspace.routes';
@@ -22,7 +24,8 @@ import { workspaceRoutes } from './workspace.routes';
         CommonModule,
         RouterModule.forChild(workspaceRoutes),
         ChartModule,
-        ScheduleModule
+        ScheduleModule,
+        DataScrollerModule
     ],
     exports: [],
     declarations: [
@@ -34,7 +37,8 @@ import { workspaceRoutes } from './workspace.routes';
         WelcomeComponent
     ],
     providers: [
-        EventBusService
+        EventBusService,
+        WelcomeService
     ]
 })
 export class WorkspaceModule { }
