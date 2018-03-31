@@ -13,4 +13,5 @@ export class Activity {
     type?: string;
     token?: string;
     hadApl?: boolean;
+    idx?: number;
 }

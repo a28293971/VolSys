@@ -31,29 +31,43 @@ export class ActivitiesComponent implements OnInit {
 
   ngOnInit() {
     this.activityService.getActivities(-1)
-    .subscribe(res => this.activities = res.json().data.events);
-/*     this.activityService.getHadAplAct(-1)
-    .subscribe(res => this.hadAplAct = res.json().data.events); */
+    .subscribe(
+      res => {
+        this.activities = res.json().data.events;
+        this.activities.forEach((value, idx, arr) => value.idx = idx);
+      });
+    this.activityService.getHadAplAct(-1)
+    .subscribe(res => this.hadAplAct = res.json().data.events);
     // this.content = this.activities[0];
     this.isAdmin = !!this.activityService.currentUser.isAdmin;
   }
 
 
   joinAct(act: Activity) {
-    this.activityService.joinAct(act)
-    .subscribe(
-      data => {
-        const value = data.json();
-        if (value.sysinfo.auth) {
-          console.log('succees to join the act');
-          alert('活动申请成功！');
-        }else {
-          console.log('failed to join');
-          alert('活动申请失败！');
-        }
-      },
-      error => console.log(error)
-    );
+    if (act.hadApl) {
+      alert('次活动在此前已申请过,请勿重复申请！');
+    }else if (this.hadAplAct.findIndex((value, index, arr) => value.id === act.id) !== -1) {
+        act.hadApl = true;
+        alert('次活动在此前已申请过,请勿重复申请！');
+    }
+
+    if (!act.hadApl) {
+      this.activityService.joinAct(act)
+      .subscribe(
+        data => {
+          const value = data.json();
+          if (value.sysinfo.auth) {
+            act.hadApl = true;
+            console.log('succees to join the act');
+            alert('活动申请成功！');
+          }else {
+            console.log('failed to join');
+            alert('活动申请失败！');
+          }
+        },
+        error => console.log(error)
+      );
+    }
   }
 
 
@@ -73,12 +87,10 @@ export class ActivitiesComponent implements OnInit {
   }
 
   openCheck(event) {
-    let idx = event.index;
-    console.log(event.originalEvent);
-/*     let eid = this.activities[idx].id;
-    if (this.hadAplAct.findIndex((value, index, arr) => {
-      return value.id === eid;
-    }) !== -1) {
+    console.log(event);
+/*     console.log(idx);
+    console.log(eid); */
+/*     if (this.hadAplAct.findIndex((value, index, arr) => value.id === eid) !== -1) {
       this.activities[idx].hadApl = true;
     } */
   }

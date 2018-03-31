@@ -63,7 +63,7 @@
   <div class="row">
     <div class="col-md-8">
       <div class="card">
-        <p-schedule [events]="events" [header]="header" local="zh-cn" [height]="730"></p-schedule>
+        <p-schedule [events]="events" [header]="header" local="zh-cn" [height]="730" ></p-schedule>
       </div>
     </div>
     <div class="col-md-4">
@@ -72,8 +72,8 @@
           <p-header>Message List</p-header>
           <ng-template let-msg pTemplate="item">
             <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:1.2em;padding:0.2em;border-bottom:1px solid #D5D5D5">
-              <p style="color:red">活动:{{msg.name}}</p>
-              <p style="color:yellowgreen">结果{{msg.opt>0? '审批通过':'审批未通过'}}</p>
+              <p>活动:<strong style="color:red">{{msg.name}}</strong></p>
+              <p>结果:<strong style="color:yellowgreen">{{msg.opt>0? '审批通过':'审批未通过'}}</strong></p>
             </div>
           </ng-template>
         </p-dataScroller>

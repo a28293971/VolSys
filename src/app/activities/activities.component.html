@@ -37,10 +37,10 @@
                     </div>
                     <div class="col-md-1" *ngIf="!isAdmin">
                       <button type="button" class="btn btn-primary" style="margin-top: 0.125em;margin-bottom: 0.125em;"
-                      (click)="joinAct(act)" *ngIf="act.hadApl != true">
+                      (click)="joinAct(act)" [disabled]="act.hadApl">
                         申请活动
                       </button>
-<!--                       <button type="button" class="btn btn-primary" style="margin-top: 2px;margin-bottom: 2px;"
+<!--                       <button type="button" class="btn btn-danger" style="margin-top: 0.125em;margin-bottom: 0.125em;"
                       (click)="cancelJoinAct(act)" *ngIf="act.hadApl == true">
                         取消申请
                       </button> -->

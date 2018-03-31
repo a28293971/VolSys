@@ -28,6 +28,8 @@ export class WelcomeComponent implements OnInit {
     this.currentUser = this.welcomeService.currentUser;
     this.welcomeService.getMsg()
     .subscribe(data => this.msgs = data.json().data.msgs);
+    this.welcomeService.getSchdule()
+    .subscribe(data => this.events = data);
     this.dataLine = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -57,11 +59,24 @@ export class WelcomeComponent implements OnInit {
           }
       ]
     };
+    // -----schedule----
     this.header = {
       left: 'prev,next today',
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
     };
+/*     this.events = [
+      {
+        "title": "微软编程之美宣讲会",
+        "start": "2018-03-29",
+        "end": "2018-04-04"
+      },
+      {
+        "title": "邂逅文成公主",
+        "start": "2018-03-28",
+        "end": "2018-03-30"
+      }
+    ]; */
   }
 
   trackById(idx, stu) {
