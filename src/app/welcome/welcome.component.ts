@@ -28,7 +28,7 @@ export class WelcomeComponent implements OnInit {
     this.currentUser = this.welcomeService.currentUser;
     this.welcomeService.getMsg()
     .subscribe(data => this.msgs = data.json().data.msgs);
-    this.welcomeService.getSchdule()
+    this.welcomeService.getSchdule(-1)
     .subscribe(data => this.events = data);
     this.dataLine = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],

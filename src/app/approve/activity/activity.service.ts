@@ -28,7 +28,7 @@ export class ActivityService {
     return this.http.get('/mock-data/act-' + id + '.json').map((res: Response) => res.json());
   } */
 
-  aprMembers(members: any[]) {
+  sendMembers(members: any[]) {
     const body = JSON.stringify({
       id: this.currentUser.id,
       eid: this.eInfo.id,

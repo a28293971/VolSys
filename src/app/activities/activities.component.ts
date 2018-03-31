@@ -34,10 +34,22 @@ export class ActivitiesComponent implements OnInit {
     .subscribe(
       res => {
         this.activities = res.json().data.events;
-        this.activities.forEach((value, idx, arr) => value.idx = idx);
+        if (this.isAdmin) {
+          this.activities.forEach((value, idx, arr) => value.idx = idx);
+        }
+    });
+    if (!this.isAdmin) {
+      this.activityService.getHadAplAct0(-1)
+      .subscribe(res0 => {
+        this.hadAplAct = res0.json().data.events
+        this.activityService.getHadAplAct1(-1)
+        .subscribe(res1 => {
+          this.hadAplAct.concat(res1.json().data.events);
+          this.activityService.getHadAplAct2(-1)
+          .subscribe(res2 => this.hadAplAct.concat(res2.json().data.events))
+        });
       });
-    this.activityService.getHadAplAct(-1)
-    .subscribe(res => this.hadAplAct = res.json().data.events);
+    }
     // this.content = this.activities[0];
     this.isAdmin = !!this.activityService.currentUser.isAdmin;
   }

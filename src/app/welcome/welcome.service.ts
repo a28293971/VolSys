@@ -34,18 +34,18 @@ export class WelcomeService {
   }
 
   getSchdule(count: Number = 10) {
-    /* const body = JSON.stringify({
-        id: this.currentUser.id,
-        token: this.currentUser.token,
-        listAllEvent: '1',
-        eventCount: count.toString(),
-        status: '-1'
-      });
-      const headers = new Headers({'Content-Type': 'application/json'});
+    const body = JSON.stringify({
+      id: this.currentUser.id,
+      token: this.currentUser.token,
+      listAllEvent: '1',
+      eventCount: count.toString(),
+      status: '-1'
+    });
+    const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
-    .post('http://192.168.148.6/get-event', body, {headers: headers}) */
-    return this.http
-    .get('mock-data/activities.json')
+    .post('http://192.168.148.6/get-event', body, {headers: headers})
+  /*         return this.http
+    .get('mock-data/activities.json') */
     .takeWhile((response: Response) => {
         if (response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');

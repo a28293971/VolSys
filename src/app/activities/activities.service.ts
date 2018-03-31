@@ -22,7 +22,7 @@ export class ActivityService {
     }
 
     getActivities(count: Number = 10) {
-        /* const body = JSON.stringify({
+        const body = JSON.stringify({
             id: this.currentUser.id,
             token: this.currentUser.token,
             listAllEvent: '1',
@@ -31,9 +31,9 @@ export class ActivityService {
           });
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
-        .post('http://192.168.148.6/get-event', body, {headers: headers}) */
-        return this.http
-        .get('mock-data/activities.json')
+        .post('http://192.168.148.6/get-event', body, {headers: headers})
+/*         return this.http
+        .get('mock-data/activities.json') */
         .takeWhile((response: Response) => {
             if (response.json().sysinfo.tokenUpdate) {
                 this.router.navigateByUrl('login');
@@ -52,8 +52,8 @@ export class ActivityService {
             token: this.currentUser.token
           });
         const headers = new Headers({'Content-Type': 'application/json'});
-        // return this.http.post("http://192.168.148.6/join-event", body, {headers: headers})
-        return this.http.get('mock-data/allAccept.json')
+        return this.http.post("http://192.168.148.6/join-event", body, {headers: headers})
+        // return this.http.get('mock-data/allAccept.json')
         .takeWhile((response: Response) => {
             if (response.json().sysinfo.tokenUpdate) {
                 this.router.navigateByUrl('login');
@@ -63,19 +63,62 @@ export class ActivityService {
         });
     }
 
-    getHadAplAct(count: Number = 10) {
-/*         const body = JSON.stringify({
+    getHadAplAct0(count: Number = 10) {
+        const body = JSON.stringify({
             id: this.currentUser.id,
             token: this.currentUser.token,
-            listAllEvent: '1',
+            listAllEvent: '0',
+            eventCount: count.toString(),
+            status: '0'
+          });
+          const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http
+        .post('http://192.168.148.6/get-event', body, {headers: headers})
+/*         return this.http
+        .get('mock-data/activities-hadApl.json') */
+        .takeWhile((response: Response) => {
+            if (response.json().sysinfo.tokenUpdate) {
+                this.router.navigateByUrl('login');
+                return false;
+            }
+            return true;
+        });
+    }
+    getHadAplAct1(count: Number = 10) {
+        const body = JSON.stringify({
+            id: this.currentUser.id,
+            token: this.currentUser.token,
+            listAllEvent: '0',
             eventCount: count.toString(),
             status: '1'
           });
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
-        .post('http://192.168.148.6/get-event', body, {headers: headers}) */
+        .post('http://192.168.148.6/get-event', body, {headers: headers})
+/*         return this.http
+        .get('mock-data/activities-hadApl.json') */
+        .takeWhile((response: Response) => {
+            if (response.json().sysinfo.tokenUpdate) {
+                this.router.navigateByUrl('login');
+                return false;
+            }
+            return true;
+        });
+    }
+
+    getHadAplAct2(count: Number = 10) {
+        const body = JSON.stringify({
+            id: this.currentUser.id,
+            token: this.currentUser.token,
+            listAllEvent: '0',
+            eventCount: count.toString(),
+            status: '2'
+          });
+          const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
-        .get('mock-data/activities-hadApl.json')
+        .post('http://192.168.148.6/get-event', body, {headers: headers})
+/*         return this.http
+        .get('mock-data/activities-hadApl.json') */
         .takeWhile((response: Response) => {
             if (response.json().sysinfo.tokenUpdate) {
                 this.router.navigateByUrl('login');

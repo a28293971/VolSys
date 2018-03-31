@@ -53,13 +53,13 @@
             <td>{{rowData.name}}</td>
             <td>{{rowData.timestamp | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
             <td>
-              <input #vt type="number" style="width: 5em;float: left;" value="1" min="0" max="1" step="0.1">
-              <div style="width:4em;float: left;margin: 0.3125em;">{{actVolunteerTime*vt.value}}</div>
+              <input [(ngModel)]="rowData.ratio" type="number" style="width: 5em;float: left;" value="1" min="0" max="1" step="0.1">
+              <div style="width:4em;float: left;margin: 0.3125em;">{{actVolunteerTime*rowData.ratio}}</div>
               <input type="number" style="width: 5em;float: left;" value="1" min="0" max="1" step="0.1">
               <div style="width:4em;float: left;margin: 0.3125em;">0</div>
             </td>
             <td>
-              <button type="button" class="btn btn-success" (click)="aprSingleMeb(rowData.id)">审批通过</button>
+              <button type="button" class="btn btn-success" (click)="aprSingleMeb(rowData)">审批通过</button>
               <button type="button" class="btn btn-danger">拒绝通过</button>
             </td>
           </tr>

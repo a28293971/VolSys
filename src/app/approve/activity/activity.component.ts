@@ -54,14 +54,14 @@ export class ActivityComponent implements OnInit {
     );
   } */
 
-  aprSingleMeb(id: string) {
+  aprSingleMeb(mb: Member) {
     const member = [{
-      id: id,
+      id: mb.id,
       approval: '1',
-      ratio: '',
-      time: ''
+      ratio: mb.ratio,
+      time: mb.ratio * this.actVolunteerTime
     }];
-    this.activityService.aprMembers(member)
+    this.activityService.sendMembers(member)
     .subscribe(
       data => {
         if (data.json().sysinfo.auth) {
@@ -78,11 +78,46 @@ export class ActivityComponent implements OnInit {
       members.push({
         id: val.id,
         approval: '1',
-        ratio: '',
-        time: ''
+        ratio: val.ratio,
+        time: val.ratio * this.actVolunteerTime
       }));
 
-    this.activityService.aprMembers(members)
+    this.activityService.sendMembers(members)
+    .subscribe(
+      data => {
+        if (data.json().sysinfo.auth) {
+
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  rejSingleMeb(mb: Member) {
+    const member = [{
+      id: mb.id,
+      approval: '0'
+    }];
+    this.activityService.sendMembers(member)
+    .subscribe(
+      data => {
+        if (data.json().sysinfo.auth) {
+
+        }
+      },
+      error => console.log(error)
+    );
+  }
+
+  rejMutileMeb() {
+    let members = [];
+    this.selectedMembers.forEach((val, idx, mbs) =>
+      members.push({
+        id: val.id,
+        approval: '0'
+      }));
+
+    this.activityService.sendMembers(members)
     .subscribe(
       data => {
         if (data.json().sysinfo.auth) {
