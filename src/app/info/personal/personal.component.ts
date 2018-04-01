@@ -57,6 +57,7 @@ export class PersonalComponent implements OnInit {
       .subscribe(
         data => {
           this.actCreat = data.json().data.events;
+          this.actCreat.forEach(this.trans2Date);
           this.actCreat.sort(this.sortFunc);
         }
       );
@@ -65,6 +66,7 @@ export class PersonalComponent implements OnInit {
       .subscribe(
         data => {
           this.actRejecte = data.json().data.events;
+          this.actRejecte.forEach(this.trans2Date);
           this.actRejecte.sort(this.sortFunc);
         }
       );
@@ -72,6 +74,7 @@ export class PersonalComponent implements OnInit {
       .subscribe(
         data => {
           this.actAceppted = data.json().data.events;
+          this.actAceppted.forEach(this.trans2Date);
           this.actAceppted.sort(this.sortFunc);
         }
       );
@@ -79,11 +82,16 @@ export class PersonalComponent implements OnInit {
       .subscribe(
         data => {
           this.actWaiting = data.json().data.events;
+          this.actWaiting.forEach(this.trans2Date);
           this.actWaiting.sort(this.sortFunc);
         }
       );
 
     }
+  }
+
+  trans2Date(a: Activity) {
+    a.timestamp = new Date(a.timestamp);
   }
 
   sortFunc(a: Activity, b: Activity): number {

@@ -160,7 +160,7 @@ body {
         left: 0;
         top: 0;
         color: #757575;
-        height: 70px;
+        height: 60px;
         padding: 12px 15px;
         border-bottom: solid 1px #dee4e9;
         z-index: 100;
@@ -222,7 +222,7 @@ body {
             color: #757575;
             font-size: 16px;
             text-decoration: none;
-            padding-top: 5px;
+            padding-top: 0px;
             display: block;
             float: left;
         }
@@ -263,7 +263,7 @@ body {
             display: none;
             position: absolute;
             right: 15px;
-            top: 70px;
+            top: 60px;
             width: 250px;
             list-style-type: none;
             padding: 0;
@@ -341,9 +341,9 @@ body {
     }
     .layout-menu-wrapper {
         position: fixed;
-        top: 70px;
+        top: 60px;
         height: 100%;
-        width: 240px;
+        width: 220px;
         z-index: 999999997;
         border-right: solid 1px #dee4e9;
         background-color: #ffffff;
@@ -529,7 +529,7 @@ body {
         min-height: 600px;
         padding: 15px;
         margin-right: 15px;
-        margin-top: 85px;
+        margin-top: 75px;
         margin-bottom: 15px;
         background-color: #eeeeee;
         -moz-transition: margin-left 0.3s;
@@ -568,10 +568,10 @@ body {
             left: 0;
         }
         .layout-content {
-            margin-left: 255px;
+            margin-left: 235px;
         }
         .layout-footer {
-            margin-left: 255px;
+            margin-left: 235px;
         }
     }
     .layout-menu-static-inactive {
@@ -668,11 +668,21 @@ body {
 }
 
 @media (max-width: 640px) {
+    .layout-menu-static {
+        .layout-menu-wrapper {
+            left: 0px;
+        }
+    }
+    .layout-menu-slim {
+        .layout-menu-wrapper {
+            left: -220px;
+        }
+    }
+
     .layout-wrapper {
         .layout-menu-wrapper {
-            padding-top: 15px;
-            left: -240px;
             z-index: 100;
+            padding-top: 15px;
             .mobile-search {
                 display: block;
                 padding: 10px 16px;
@@ -704,7 +714,7 @@ body {
                 margin: 0 auto;
                 font-size: 24px;
                 font-weight: bold;
-                padding-top: 15px;
+                padding-top: 0px;
             }
             .topbar-search-icon,
             .topbar-search {
@@ -714,7 +724,7 @@ body {
                 font-size: 24px;
                 float: left;
                 margin-left: 0;
-                margin-top: -36px;
+                margin-top: 0px;
             }
         }
         .layout-mask {

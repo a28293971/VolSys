@@ -17,7 +17,8 @@ export class ActivityComponent implements OnInit {
 
   actName: string;
   actVolunteerTime: number;
-  members: Member[] = [];
+  membersWaiting: Member[] = [];
+  membersDone: any[] = [];
   selectedMembers: Member[];
   public cols = [
     { field: 'id', header: 'Id' },
@@ -33,7 +34,17 @@ export class ActivityComponent implements OnInit {
   ngOnInit() {
     this.actName = this.activityService.eInfo.name;
     this.actVolunteerTime = this.activityService.eInfo.volunteer_time;
-    this.members = this.activityService.eInfo.members;
+    let a = 0, b = 0;
+    this.activityService.eInfo.members.forEach((val, idx, arr) => {
+      if (val.status === 0) {
+        val.idx = a++;
+        val.hide = false;
+        this.membersWaiting.push(val);
+      }else {
+        val.idx = b++;
+        this.membersDone.push(val);
+      }
+    })
 /*     this.activeRoute.params.subscribe(
       params => {
         const eId = params['id'];
@@ -65,7 +76,15 @@ export class ActivityComponent implements OnInit {
     .subscribe(
       data => {
         if (data.json().sysinfo.auth) {
-
+          mb.hide = true;
+          this.membersDone.push({
+            id: mb.id,
+            name: mb.name,
+            timestamp: new Date().toISOString(),
+            status: 1,
+            ratio: mb.ratio,
+            volunteer_time: mb.ratio * this.actVolunteerTime
+          });
         }
       },
       error => console.log(error)
@@ -73,6 +92,7 @@ export class ActivityComponent implements OnInit {
   }
 
   aprMutileMeb() {
+    if (!this.selectedMembers) { return; }
     let members = [];
     this.selectedMembers.forEach((val, idx, mbs) =>
       members.push({
@@ -86,7 +106,18 @@ export class ActivityComponent implements OnInit {
     .subscribe(
       data => {
         if (data.json().sysinfo.auth) {
-
+          this.selectedMembers.forEach((val, idx, mbs) => {
+            val.hide = true;
+            this.membersDone.push({
+              id: val.id,
+              name: val.name,
+              timestamp: new Date().toISOString(),
+              status: 1,
+              ratio: val.ratio,
+              volunteer_time: val.ratio * this.actVolunteerTime
+            });
+          });
+          this.selectedMembers = [];
         }
       },
       error => console.log(error)
@@ -102,7 +133,15 @@ export class ActivityComponent implements OnInit {
     .subscribe(
       data => {
         if (data.json().sysinfo.auth) {
-
+          mb.hide = true;
+          this.membersDone.push({
+            id: mb.id,
+            name: mb.name,
+            timestamp: new Date().toISOString(),
+            status: 2,
+            ratio: mb.ratio,
+            volunteer_time: mb.ratio * this.actVolunteerTime
+          });
         }
       },
       error => console.log(error)
@@ -110,6 +149,7 @@ export class ActivityComponent implements OnInit {
   }
 
   rejMutileMeb() {
+    if (!this.selectedMembers) { return; }
     let members = [];
     this.selectedMembers.forEach((val, idx, mbs) =>
       members.push({
@@ -121,7 +161,18 @@ export class ActivityComponent implements OnInit {
     .subscribe(
       data => {
         if (data.json().sysinfo.auth) {
-
+          this.selectedMembers.forEach((val, idx, mbs) => {
+            val.hide = true;
+            this.membersDone.push({
+              id: val.id,
+              name: val.name,
+              timestamp: new Date().toISOString(),
+              status: 2,
+              ratio: val.ratio,
+              volunteer_time: val.ratio * this.actVolunteerTime
+            });
+          });
+          this.selectedMembers = [];
         }
       },
       error => console.log(error)

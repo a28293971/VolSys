@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { EventBusService } from '../common/services/event-bus.service';
 import { User } from '../models/user-model';
 import { LoginService } from '../login/login.service';
+import { CurrentUser } from '../common/services/currentUser.data';
 
 
 @Component({
@@ -23,11 +24,12 @@ export class TopMenuComponent implements OnInit {
     private eventBusService: EventBusService,
     private loginService: LoginService,
     private router: Router,
-    private http: Http
+    private http: Http,
+    private CUser: CurrentUser
   ) { }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = this.CUser.user;
   }
 
   public onTogglerClick(event): void {

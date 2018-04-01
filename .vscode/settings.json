@@ -1,10 +1,17 @@
 {
     "search.exclude": {  
         "**/node_modules": true,  
-        "**/dist": true  
+        "**/dist": true,
+        "**/.git": true,
+        "**/.vscode": true
     }, 
     "files.exclude": {  
         "**/node_modules": true,
         "**/dist": true
-    } 
+    },
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/dist/**": true,
+        "**/.git/**": true
+      }
 }
