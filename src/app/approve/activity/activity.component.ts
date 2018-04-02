@@ -19,7 +19,7 @@ export class ActivityComponent implements OnInit {
   actVolunteerTime: number;
   membersWaiting: Member[] = [];
   membersDone: any[] = [];
-  selectedMembers: Member[];
+  selectedMembers: Member[] = [];
   public cols = [
     { field: 'id', header: 'Id' },
     { field: 'name', header: 'Name' },
@@ -34,17 +34,20 @@ export class ActivityComponent implements OnInit {
   ngOnInit() {
     this.actName = this.activityService.eInfo.name;
     this.actVolunteerTime = this.activityService.eInfo.volunteer_time;
-    let a = 0, b = 0;
-    this.activityService.eInfo.members.forEach((val, idx, arr) => {
-      if (val.status === 0) {
-        val.idx = a++;
-        val.hide = false;
-        this.membersWaiting.push(val);
-      }else {
-        val.idx = b++;
-        this.membersDone.push(val);
-      }
-    })
+    if (this.activityService.eInfo.members) {
+      let a = 0, b = 0;
+      this.activityService.eInfo.members.forEach((val, idx, arr) => {
+        if (val.status === 0) {
+          val.idx = a++;
+          val.hide = false;
+          this.membersWaiting.push(val);
+        }else {
+          val.idx = b++;
+          this.membersDone.push(val);
+        }
+      });
+    }
+
 /*     this.activeRoute.params.subscribe(
       params => {
         const eId = params['id'];

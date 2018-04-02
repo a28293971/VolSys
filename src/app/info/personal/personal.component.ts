@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { flyIn } from '../../animations/fly-in';
+import * as CryptoJS from 'crypto-js';
 
 import { User } from '../../models/user-model';
 import { Activity } from '../../models/activity-model';
@@ -53,14 +54,17 @@ export class PersonalComponent implements OnInit {
     this.currentUser = this.personalService.currentUser;
 
     if (this.currentUser.isAdmin) {
-      this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token, -1)
+/*       this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token, -1)
       .subscribe(
         data => {
           this.actCreat = data.json().data.events;
           this.actCreat.forEach(this.trans2Date);
           this.actCreat.sort(this.sortFunc);
         }
-      );
+      ); */
+      this.actCreat = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('orgCreateActList'), 'org').toString(CryptoJS.enc.Utf8));
+      this.actCreat.forEach(this.trans2Date);
+      this.actCreat.sort(this.sortFunc);
     }else {
       this.personalService.getRejectedActivities(this.currentUser.id, this.currentUser.token, -1)
       .subscribe(

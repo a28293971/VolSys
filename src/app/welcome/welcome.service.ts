@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import 'rxjs/add/operator/takeWhile';
 import 'rxjs/add/operator/map';
 import { CurrentUser } from '../common/services/currentUser.data';
+import * as CryptoJS from 'crypto-js';
 
 import { User } from '../models/user-model';
 
@@ -68,10 +69,53 @@ export class WelcomeService {
   getDataLine() {
   }
 
-  getDataBar() {
+
+  getRankList(count: Number = 10) {
+    const body = JSON.stringify({
+      rankCount: count.toString(),
+      token: this.currentUser.token,
+    });
+    const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http
+    .post('http://192.168.148.6/get-rank', body, {headers: headers})
+  /*         return this.http
+    .get('mock-data/activities.json') */
+    .takeWhile((response: Response) => {
+        if (response.json().sysinfo.tokenUpdate) {
+            this.router.navigateByUrl('login');
+            return false;
+        }
+        return true;
+    }).map((response: Response) => {
+      let res: any[] = [];
+      console.log(response.json().data.rank);
+      return res;
+    });
   }
 
-  getRankList() {
+  getActNum() {
+    const body = JSON.stringify({
+      id: this.currentUser.id,
+      token: this.currentUser.token,
+      listAllEvent: '0',
+      status: '-1',
+      eventCount: '-1'
+    });
+    const headers = new Headers({'Content-Type': 'application/json'});
+    return this.http
+    .post('http://192.168.148.6/get-event', body, {headers: headers})
+    .takeWhile((response: Response) => {
+        if (response.json().sysinfo.tokenUpdate) {
+            this.router.navigateByUrl('login');
+            return false;
+        }
+        return true;
+    })
+    .map((response: Response) => {
+      const ls = response.json().data.events;
+      localStorage.setItem('orgCreateActList', CryptoJS.AES.encrypt(JSON.stringify(ls), 'org').toString());
+      return ls.length;
+    });
   }
 
 }

@@ -19,6 +19,7 @@ export class WelcomeComponent implements OnInit {
   public header: any;
   public events: any[];
   public msgs: any[];
+  public ActNum: number;
 
   constructor(
     private welcomeService: WelcomeService
@@ -30,6 +31,10 @@ export class WelcomeComponent implements OnInit {
     .subscribe(data => this.msgs = data.json().data.msgs);
     this.welcomeService.getSchdule(-1)
     .subscribe(data => this.events = data);
+    if (this.currentUser.isAdmin) {
+      this.welcomeService.getActNum().subscribe(data => this.ActNum = data);
+    }
+    /* this.welcomeService.getRankList(10).subscribe(data => console.log('ok')); */
     this.dataLine = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [

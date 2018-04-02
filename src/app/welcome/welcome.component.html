@@ -1,5 +1,5 @@
 <div>
-  <div class="row">
+  <div class="row" *ngIf="!currentUser.isAdmin">
     <div class="col-md-4">
       <div class="highlight-box">
         <div class="initials" style="background-color: #20d077;color: #038d4a;">
@@ -27,6 +27,28 @@
         </div>
         <div class="card">
           <span class="count">4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="currentUser.isAdmin">
+    <div class="col-md-6">
+      <div class="highlight-box">
+        <div class="initials" style="background-color: #d2bc17;color: #7f720e;">
+          Activities
+        </div>
+        <div class="card">
+          <span class="count">{{ActNum}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="highlight-box">
+        <div class="initials" style="background-color: #007be5;color: #00448f;">
+          Message
+        </div>
+        <div class="card">
+          <span class="count">18</span>
         </div>
       </div>
     </div>
