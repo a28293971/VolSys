@@ -45,9 +45,6 @@ export class LoginService {
           if (res.sysinfo.auth) {
             let nUser: User = res.data;
             nUser.token = res.sysinfo.token;
-            if (nUser.volunteer_time) {
-              nUser.volunteer_time = nUser.volunteer_time[0];
-            }
             if (res.sysinfo.idType) {
               nUser.isAdmin = true;
               // localStorage.setItem('currentUser', JSON.stringify(nUser));

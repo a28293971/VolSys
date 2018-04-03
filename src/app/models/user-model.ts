@@ -7,7 +7,7 @@ export class User {
     gender?: string;
     major?: string;
     token?: string;
-    volunteer_time?: number;
+    volunteer_time?: number[];
     score?: number;
     description?: string;
     type?: number;

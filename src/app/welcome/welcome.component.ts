@@ -33,9 +33,12 @@ export class WelcomeComponent implements OnInit {
     .subscribe(data => this.events = data);
     if (this.currentUser.isAdmin) {
       this.welcomeService.getActNum().subscribe(data => this.ActNum = data);
+      this.welcomeService.getOrgDataLine().subscribe(data => this.dataLine = data);
+    }else {
+      this.welcomeService.getUserDataLine().subscribe(data => this.dataLine = data);
     }
-    /* this.welcomeService.getRankList(10).subscribe(data => console.log('ok')); */
-    this.dataLine = {
+    this.welcomeService.getRankList(10).subscribe(data => this.dataBar = data);
+    /* this.dataLine = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
           {
@@ -51,8 +54,8 @@ export class WelcomeComponent implements OnInit {
               borderColor: '#a83d3b'
           }
       ]
-    };
-    this.dataBar = {
+    }; */
+/*     this.dataBar = {
       labels: ['王大木', '李光光', '王太木', '呵呵哒', '六大洋', '233', '666', '张大哥', '王小星', '牛大力'],
       datasets: [
           {
@@ -63,7 +66,7 @@ export class WelcomeComponent implements OnInit {
               backgroundColor: '#2ea700'
           }
       ]
-    };
+    }; */
     // -----schedule----
     this.header = {
       left: 'prev,next today',

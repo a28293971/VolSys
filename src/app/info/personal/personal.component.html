@@ -13,7 +13,7 @@
         <ng-container *ngIf="!currentUser.isAdmin">
           <h3>志愿时间总时长：</h3>
           <div class="col-md-offset-1">
-            <h4><strong style="color:#00FF00">{{currentUser.volunteer_time}}  </strong>小时</h4>
+            <h4><strong style="color:#00FF00">{{currentUser.volunteer_time[0]}}  </strong>小时</h4>
           </div>
         </ng-container>
         <ng-container *ngIf="currentUser.isAdmin">

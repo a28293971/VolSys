@@ -3,6 +3,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/takeWhile';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
 import { CurrentUser } from '../common/services/currentUser.data';
 import * as CryptoJS from 'crypto-js';
 
@@ -66,7 +67,54 @@ export class WelcomeService {
     });
 }
 
-  getDataLine() {
+  getUserDataLine(): Observable<any> {
+    return new Observable((observer) => {
+      const tmp = this.currentUser.volunteer_time;
+      let res = {
+        labels: [],
+        datasets: [
+          {
+              label: 'VolTime',
+              data: [],
+              fill: false,
+              borderColor: '#2ea700',
+          }]
+      };
+      if ((new Date().getMonth()) < 9) {
+        res.labels = ['一月', '二月', '三月', '四月', '五月', '六月', '七月'];
+        res.datasets[0].data = this.currentUser.volunteer_time.slice(1, 8);
+      }else {
+        res.labels = ['七月', '八月', '九月', '十月', '十一月', '十二月', '一月'];
+        res.datasets[0].data = this.currentUser.volunteer_time.slice(-6, 2);
+      }
+      observer.next(res);
+      observer.complete();
+    });
+  }
+
+  getOrgDataLine(): Observable<any> {
+    return new Observable((observer) => {
+      const tmp = this.currentUser.volunteer_time;
+      let res = {
+        labels: [],
+        datasets: [
+          {
+              label: 'participants',
+              data: [],
+              fill: false,
+              borderColor: '#d2bc17',
+          }]
+      };
+      if ((new Date().getMonth()) < 9) {
+        res.labels = ['一月', '二月', '三月', '四月', '五月', '六月', '七月'];
+        res.datasets[0].data = [12, 43, 67, 47, 23, 53, 117];
+      }else {
+        res.labels = ['七月', '八月', '九月', '十月', '十一月', '十二月', '一月'];
+        res.datasets[0].data = [12, 43, 67, 47, 23, 53, 117];
+      }
+      observer.next(res);
+      observer.complete();
+    });
   }
 
 
@@ -87,9 +135,23 @@ export class WelcomeService {
         }
         return true;
     }).map((response: Response) => {
-      let res: any[] = [];
-      console.log(response.json().data.rank);
-      return res;
+      let res: any[] = response.json().data.rank;
+      let ret: any = {
+        labels: [],
+        datasets: [
+          {
+              label: 'VolTime',
+              data: [],
+              fill: false,
+              borderColor: '#2ea700',
+              backgroundColor: '#2ea700'
+          }]};
+      res.forEach((val, idx, arr) => {
+        ret.labels.push(val.name);
+        ret.datasets[0].data.push(val.volunteer_time);
+      });
+      console.log(ret);
+      return ret;
     });
   }
 

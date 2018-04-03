@@ -20,7 +20,7 @@
       { "id": "875643", "ratio": 1, "volunteer_time": 31, "status": 1, "name": "冯绍峰", "timestamp": "2016-06-08T16:00:00.000Z" },
       { "id": "456424", "ratio": 1, "volunteer_time": 15, "status": 0, "name": "人讨厌", "timestamp": "2016-03-11T16:00:00.000Z" }
     ],
-    "volunteer_time": [67],
+    "volunteer_time": [67,18,16,23,72,56,34,9,12,6,18,23,25],
     "score":43.2
   }
 }

@@ -26,13 +26,13 @@ export class ApplyActComponent implements OnInit {
     this.currentUser = this.applyActService.currentUser;
   }
 
-  apllyAct() {
+  upload() {
     let formData = new FormData();
     formData.append("enctype", "multipart/form-data");
     formData.append("id", this.currentUser.id.toString());
     formData.append("file", this.act.other);
-    formData.append("token", this.currentUser.token);
-    this.applyActService.apply(formData);
+    // formData.append("token", this.currentUser.token);
+    this.applyActService.upload(formData);
   }
 
   // fileWork(event) {
