@@ -27,6 +27,7 @@
             "./assets/js/jquery-ui-timepicker-addon.min.js",
             "./assets/js/moment.min.js",
             "./assets/js/fullcalendar.min.js",
+            "./assets/js/zh-cn.js",
             "../node_modules/chart.js/dist/Chart.min.js"
         ],
         "environmentSource": "environments/environment.ts",

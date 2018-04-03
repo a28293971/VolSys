@@ -16,13 +16,24 @@ export class ApplyActComponent implements OnInit {
 
   act: ApplyAct = new ApplyAct();
   currentUser: User;
-  aplTime: Date = new Date();
+  selectItem: string;
+  selectMenu = [
+    {
+      id: '2740',
+      name: '计算机科学与技术学院'
+    },
+    {
+      id: '2333',
+      name: '商学院'
+    }
+  ];
 
   constructor(
     private applyActService: ApplyActService
   ) { }
 
   ngOnInit() {
+    this.selectItem = "";
     this.currentUser = this.applyActService.currentUser;
   }
 
@@ -31,8 +42,31 @@ export class ApplyActComponent implements OnInit {
     formData.append("enctype", "multipart/form-data");
     formData.append("id", this.currentUser.id.toString());
     formData.append("file", this.act.other);
-    // formData.append("token", this.currentUser.token);
     this.applyActService.upload(formData);
+  }
+
+/*   apllyAct() {
+    this.act.college = this.selectItem;
+    this.applyActService.apply(this.act)
+  } */
+
+  apllyAct() {
+    let formData = new FormData();
+    formData.append("enctype", "multipart/form-data");
+    formData.append("id", this.currentUser.id.toString());
+    formData.append("file", this.act.other);
+    this.applyActService.upload(formData)
+    .subscribe(
+      data => {
+        if (data.json().sysinfo.fileAccepted) {
+          this.act.college = this.selectItem;
+          this.applyActService.apply(this.act);
+        }else {
+          alert("上传文件失败 请重试!");
+        }
+      },
+      error => console.log(error)
+    );
   }
 
   // fileWork(event) {

@@ -150,7 +150,6 @@ export class WelcomeService {
         ret.labels.push(val.name);
         ret.datasets[0].data.push(val.volunteer_time);
       });
-      console.log(ret);
       return ret;
     });
   }
