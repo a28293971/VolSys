@@ -49,6 +49,7 @@ export class ActivityService {
             name: this.currentUser.name,
             eid: act.id,
             ename: act.name,
+            start: act.start,
             token: this.currentUser.token
           });
         const headers = new Headers({'Content-Type': 'application/json'});

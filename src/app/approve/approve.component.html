@@ -24,11 +24,15 @@
             <td>{{act.name}}</td>
             <td>{{act.volunteer_time}}</td>
             <td>{{act.end}}</td>
-            <td><button type="button" class="btn btn-primary" (click)="goToApprove(act)">进入审批界面</button></td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="goToApprove(act)">进入审批界面</button>
+              <button type="button" class="btn btn-danger" (click)="deleteAct(act)">删除活动</button>
+            </td>
           </tr>
         </ng-template>
       </p-table>
     </div>
     <br/><br/>
   </div>
+  <p-confirmDialog width="37.5rem" [closable]="false"></p-confirmDialog>
 </div>

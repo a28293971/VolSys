@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 
 import { ApproveService } from './approve.service';
 import { ActivityService } from './activity/activity.service'
+import { ConfirmationService } from 'primeng/components/common/api';
 
 import { flyIn } from '../animations/fly-in';
+import { AnimationTransitionInstructionType } from '@angular/animations/browser/src/render/animation_engine_instruction';
 
 @Component({
   selector: 'approve',
@@ -20,13 +22,17 @@ export class ApproveComponent implements OnInit {
   constructor(
     private activityService: ActivityService,
     private approveService: ApproveService,
+    private confirmationService: ConfirmationService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.approveService.getNeedApproveActivities()
     .subscribe(
-      data => this.act = data.json().data.events,
+      data => {
+        this.act = data.json().data.events;
+        this.act.forEach((val, idx, arr) => val.idx = idx);
+    },
       error => console.log(error)
     );
   }
@@ -34,6 +40,25 @@ export class ApproveComponent implements OnInit {
   goToApprove(act: Activity) {
     this.activityService.eInfo = act;
     this.router.navigateByUrl('/workspace/apr/activity/' + act.id);
+  }
+
+  deleteAct(act: Activity) {
+    this.confirmationService.confirm({
+      header: '删除活动',
+      message: `<h5>请再三确认你是否要删除一下活动</h5>
+                <h2>${act.name}</h2>`,
+      accept: () => {
+        this.approveService.deleteAct(act)
+        .subscribe(
+          data => {
+            if (data.json().sysinfo.deleteEvent) {
+              this.act.splice(act.idx, 1);
+            }
+          },
+          error => console.log(error)
+        );
+      }
+    });
   }
 
 }

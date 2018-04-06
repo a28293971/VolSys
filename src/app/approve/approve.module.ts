@@ -5,16 +5,19 @@ import { RouterModule } from '@angular/router';
 import { ApproveComponent } from './approve.component';
 import { ActivityComponent } from './activity/activity.component';
 import { TableModule } from 'primeng/components/table/table';
+import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 
 import { approveRoutes } from './approve.routes';
 
 import { ApproveService } from './approve.service';
 import { ActivityService } from './activity/activity.service';
+import { ConfirmationService } from 'primeng/components/common/api';
 
 @NgModule({
   imports: [
     CommonModule,
     TableModule,
+    ConfirmDialogModule,
     FormsModule,
     RouterModule.forChild(approveRoutes),
   ],
@@ -24,7 +27,8 @@ import { ActivityService } from './activity/activity.service';
   ],
   providers: [
     ApproveService,
-    ActivityService
+    ActivityService,
+    ConfirmationService
   ]
 })
 export class ApproveModule { }

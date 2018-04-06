@@ -6,7 +6,7 @@ import { User } from '../../models/user-model';
 import { Activity } from '../../models/activity-model';
 
 import { PersonalService } from './personal.service';
-import { ConfirmationService } from 'primeng/components/common/api';
+// import { ConfirmationService } from 'primeng/components/common/api';
 
 
 @Component({
@@ -26,8 +26,8 @@ export class PersonalComponent implements OnInit {
   currentUser: User;
 
   constructor(
-    private personalService: PersonalService,
-    private confirmationService: ConfirmationService
+    private personalService: PersonalService
+    // private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -62,9 +62,23 @@ export class PersonalComponent implements OnInit {
           this.actCreat.sort(this.sortFunc);
         }
       ); */
-      this.actCreat = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('orgCreateActList'), 'org').toString(CryptoJS.enc.Utf8));
-      this.actCreat.forEach(this.trans2Date);
-      this.actCreat.sort(this.sortFunc);
+      let tmp = localStorage.getItem('orgCreateActList');
+      if (tmp) {
+        this.actCreat = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('orgCreateActList'), 'org').toString(CryptoJS.enc.Utf8));
+        localStorage.removeItem('orgCreateActList');
+        this.actCreat.forEach(this.trans2Date);
+        this.actCreat.sort(this.sortFunc);
+      }else {
+        this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token, -1)
+      .subscribe(
+        data => {
+          this.actCreat = data.json().data.events;
+          this.actCreat.forEach(this.trans2Date);
+          this.actCreat.sort(this.sortFunc);
+        }
+      );
+      }
+
     }else {
       this.personalService.getRejectedActivities(this.currentUser.id, this.currentUser.token, -1)
       .subscribe(
@@ -102,13 +116,13 @@ export class PersonalComponent implements OnInit {
     return b.timestamp.valueOf() - a.timestamp.valueOf();
   }
 
-  showDialog(obj: Activity) {
+/*   showDialog(obj: Activity) {
     this.confirmationService.confirm({
         message: 'Are you sure you want to cancel the aplly?',
         accept: () => {
           console.log('you had cancel the aplly');
         }
     });
-  }
+  } */
 
 }

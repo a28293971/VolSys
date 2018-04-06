@@ -30,6 +30,7 @@ export class ActivitiesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isAdmin = !!this.activityService.currentUser.isAdmin;
     this.activityService.getActivities(-1)
     .subscribe(
       res => {
@@ -51,7 +52,6 @@ export class ActivitiesComponent implements OnInit {
       });
     }
     // this.content = this.activities[0];
-    this.isAdmin = !!this.activityService.currentUser.isAdmin;
   }
 
 

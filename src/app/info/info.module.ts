@@ -5,7 +5,7 @@ import { PersonalComponent } from './personal/personal.component';
 import { MsgComponent } from './msg/msg.component';
 import { InfoComponent } from './info.component';
 import { infoRoutes } from './info.routes';
-import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
+// import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { TabViewModule } from 'primeng/components/tabview/tabview';
 import { DataListModule } from 'primeng/components/datalist/datalist';
 import { DataScrollerModule } from 'primeng/components/datascroller/datascroller';
@@ -23,7 +23,7 @@ import { MsgService } from './msg/msg.service';
     TabViewModule,
     DataListModule,
     MainPipe,
-    ConfirmDialogModule,
+    // ConfirmDialogModule,
     DataScrollerModule,
     RouterModule.forChild(infoRoutes)
   ],
@@ -34,8 +34,8 @@ import { MsgService } from './msg/msg.service';
   ],
   providers: [
     PersonalService,
-    MsgService,
-    ConfirmationService
+    MsgService
+    // ConfirmationService
   ]
 })
 export class InfoModule { }

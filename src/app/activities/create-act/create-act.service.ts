@@ -51,7 +51,7 @@ export class CreateActService {
       return true;
     }).subscribe(
       data => {
-        if (data.json().sysinfo.auth) {
+        if (data.json().sysinfo.createEvent) {
           alert("活动创建成功!");
           this.router.navigateByUrl('workspace/act/activities');
         }else {
