@@ -1,7 +1,7 @@
 <ul class="layout-menu">
     <li *ngFor="let menu of menus">
         <a href="javascript:void(0);" (click)="toggleMenuItem($event,menu)">
-            <i class="fa fa-fw {{menu.icon?menu.icon:'fa-bars'}}"></i>
+            <i class="fa fa-fw {{menu.icon? menu.icon:'fa-bars'}}"></i>
             <span>{{menu.name}}</span>
             <i class="fa fa-fw fa-angle-down"></i>
         </a>
