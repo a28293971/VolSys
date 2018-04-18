@@ -27,10 +27,8 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.welcomeService.currentUser;
-    this.welcomeService.getMsg()
-    .subscribe(data => this.msgs = data.json().data.msgs);
-    this.welcomeService.getSchdule(-1)
-    .subscribe(data => this.events = data);
+    this.welcomeService.getMsg().subscribe(data => this.msgs = data.json().data.msgs);
+    this.welcomeService.getSchdule(-1).subscribe(data => this.events = data);
     if (this.currentUser.isAdmin) {
       this.welcomeService.getActNum().subscribe(data => this.ActNum = data);
       this.welcomeService.getOrgDataLine().subscribe(data => this.dataLine = data);

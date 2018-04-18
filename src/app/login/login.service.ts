@@ -5,10 +5,11 @@ import { User } from '../models/user-model';
 import { AuthGuard } from '../auth/auth.guard';
 import { CurrentUser } from '../common/services/currentUser.data';
 import * as CryptoJS from 'crypto-js';
+import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 @Injectable()
 export class LoginService {
-  public userLoginURL = 'http://192.168.148.6/login';
+  private userLoginURL = 'http://192.168.148.6/login';
   // public subject: Subject<User> = new Subject<User>();
   public rMsg: Subject<number> = new Subject<number>();
 
@@ -27,8 +28,10 @@ export class LoginService {
 /*     let obj = '';
     if (user.id[0] === '1') {
       obj = 'org';
+      this.userLoginURL = 'mock-data/org-login-mock.json';
     }else {
       obj = 'user';
+      this.userLoginURL = 'mock-data/user-login-mock.json';
     } */
     const body = JSON.stringify({
       id: user.id,
@@ -36,7 +39,7 @@ export class LoginService {
       authType: 1
     });
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post(this.userLoginURL, body, {headers: headers})
+    return this.http.post('/login', body, {headers: headers})
 /*     return this.http.get('mock-data/' + obj + '-login-mock.json') */
       .subscribe((response: Response) => {
           const res = response.json();

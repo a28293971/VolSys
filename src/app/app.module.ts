@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpModule, JsonpModule, Http} from '@angular/http';
@@ -41,6 +42,7 @@ import { CurrentUser } from './common/services/currentUser.data';
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     LoginService,
     AuthGuard,
     CurrentUser

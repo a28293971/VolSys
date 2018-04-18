@@ -45,7 +45,7 @@ export class WelcomeService {
     });
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
-    .post('http://192.168.148.6/get-event', body, {headers: headers})
+    .post('/get-event', body, {headers: headers})
   /*         return this.http
     .get('mock-data/activities.json') */
     .takeWhile((response: Response) => {
@@ -125,7 +125,7 @@ export class WelcomeService {
     });
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
-    .post('http://192.168.148.6/get-rank', body, {headers: headers})
+    .post('/get-rank', body, {headers: headers})
   /*         return this.http
     .get('mock-data/activities.json') */
     .takeWhile((response: Response) => {
@@ -164,7 +164,7 @@ export class WelcomeService {
     });
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
-    .post('http://192.168.148.6/get-event', body, {headers: headers})
+    .post('/get-event', body, {headers: headers})
     .takeWhile((response: Response) => {
         if (response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
