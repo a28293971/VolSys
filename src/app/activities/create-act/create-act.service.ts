@@ -40,7 +40,7 @@ export class CreateActService {
     console.log(body);
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
-    .post('http://192.168.148.6/create-event', body, {headers: headers})
+    .post('/create-event', body, {headers: headers})
 /*     return this.http
     .get('/mock-data/create-event.json') */
     .takeWhile((response: Response) => {

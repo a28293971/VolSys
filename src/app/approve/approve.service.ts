@@ -30,7 +30,7 @@ export class ApproveService {
     });
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
-    .post('http://192.168.148.6/get-event', body, {headers: headers})
+    .post('/get-event', body, {headers: headers})
   /*   return this.http
     .get("mock-data/act-waitingApr.json") */
     .takeWhile((response: Response) => {

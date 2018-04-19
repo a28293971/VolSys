@@ -22,8 +22,8 @@ export class ApplyActService {
   }
 
   upload(value: FormData) {
-    let headers = new Headers({'Content-Type': undefined});
-    return this.http.post("http://192.168.148.6/upload", value);
+    // let headers = new Headers({'Content-Type': 'multipart/form-data'});
+    return this.http.post("/upload", value);
   }
 
   apply(act: ApplyAct) {
@@ -41,7 +41,7 @@ export class ApplyActService {
     console.log(body);
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
-    .post('http://192.168.148.6/create-personal-event', body, {headers: headers})
+    .post('/create-personal-event', body, {headers: headers})
 /*     return this.http
     .get('/mock-data/create-event.json') */
     .takeWhile((response: Response) => {

@@ -53,7 +53,7 @@ export class ActivityService {
             token: this.currentUser.token
           });
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post("http://192.168.148.6/join-event", body, {headers: headers})
+        return this.http.post("/join-event", body, {headers: headers})
         // return this.http.get('mock-data/allAccept.json')
         .takeWhile((response: Response) => {
             if (response.json().sysinfo.tokenUpdate) {

@@ -14,10 +14,11 @@ import { ApplyActService } from './apply-act.service';
 })
 export class ApplyActComponent implements OnInit {
 
-  act: ApplyAct = new ApplyAct();
-  currentUser: User;
-  selectItem: string;
-  selectMenu = [
+  public act: ApplyAct = new ApplyAct();
+  public currentUser: User;
+  public tmp: File;
+  public selectItem: string;
+  public selectMenu = [
     {
       id: '2740',
       name: '计算机科学与技术学院'
@@ -37,13 +38,17 @@ export class ApplyActComponent implements OnInit {
     this.currentUser = this.applyActService.currentUser;
   }
 
-  upload() {
+  fuck(event) {
+    this.tmp = event.target.files[0];
+  }
+
+/*   upload() {
     let formData = new FormData();
     formData.append("enctype", "multipart/form-data");
     formData.append("id", this.currentUser.id.toString());
     formData.append("file", this.act.other);
     this.applyActService.upload(formData);
-  }
+  } */
 
 /*   apllyAct() {
     this.act.college = this.selectItem;
@@ -52,9 +57,9 @@ export class ApplyActComponent implements OnInit {
 
   apllyAct() {
     let formData = new FormData();
-    formData.append("enctype", "multipart/form-data");
+    // formData.append("enctype", "multipart/form-data");
     formData.append("id", this.currentUser.id.toString());
-    formData.append("file", this.act.other);
+    formData.append("file", this.tmp);
     this.applyActService.upload(formData)
     .subscribe(
       data => {
