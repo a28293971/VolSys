@@ -52,7 +52,8 @@ export class ApproveComponent implements OnInit {
         .subscribe(
           data => {
             if (data.json().sysinfo.deleteEvent) {
-              this.act.splice(act.idx, 1);
+              // this.act.splice(act.idx, 1);
+              act.hide = true;
             }
           },
           error => console.log(error)

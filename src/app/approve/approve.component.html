@@ -20,7 +20,7 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-act>
-          <tr>
+          <tr *ngIf="!act.hide">
             <td>{{act.name}}</td>
             <td>{{act.volunteer_time}}</td>
             <td>{{act.end}}</td>
