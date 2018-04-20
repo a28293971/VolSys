@@ -1,6 +1,6 @@
 <div>
   <div class="row" *ngIf="!currentUser.isAdmin">
-    <div class="col-md-4">
+    <div class="col-xs-12 col-md-4">
       <div class="highlight-box">
         <div class="initials" style="background-color: #20d077;color: #038d4a;">
           VTime
@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-xs-12 col-md-4">
       <div class="highlight-box">
         <div class="initials" style="background-color: #ef6262;color: #a83d3b;">
           Score
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-xs-12 col-md-4">
       <div class="highlight-box">
         <div class="initials" style="background-color: #007be5;color: #00448f;">
           Message
@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="row" *ngIf="currentUser.isAdmin">
-    <div class="col-md-6">
+    <div class="col-xs-12 col-md-6">
       <div class="highlight-box">
         <div class="initials" style="background-color: #d2bc17;color: #7f720e;">
           Activities
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-xs-12 col-md-6">
       <div class="highlight-box">
         <div class="initials" style="background-color: #007be5;color: #00448f;">
           Message
@@ -56,12 +56,12 @@
 
   <br/>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-xs-12 col-md-6">
       <div class="card">
         <p-chart type="line" [data]="dataLine"></p-chart>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-xs-12 col-md-6">
       <div class="card">
         <p-chart type="bar" [data]="dataBar"></p-chart>
       </div>
@@ -83,12 +83,12 @@
   </div>
   <br/>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-xs-12 col-md-8">
       <div class="card">
         <p-schedule [events]="events" [header]="header" locale="zh-cn" [height]="730" [eventLimit]="4"></p-schedule>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-xs-12 col-md-4">
       <div class="card" style="height: 100%;">
         <p-dataScroller [value]="msgs" [rows]="10" [inline]="true" scrollHeight="695px">
           <p-header>Message List</p-header>

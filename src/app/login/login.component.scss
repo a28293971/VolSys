@@ -16,3 +16,13 @@
     background: #333;
     color: #fff;
 }
+
+.label-mobile {
+    display: inline-block;
+}
+
+@media(max-width: 768px) {
+    .label-mobile {
+        display: none;
+    }
+}

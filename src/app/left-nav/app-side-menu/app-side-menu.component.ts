@@ -68,12 +68,24 @@ export class AppSideMenuComponent implements OnInit {
         }
     }
 
+    public mobileClick() {
+        if (document.body.clientWidth <= 768) {
+            this.eventBusService.topToggleBtn.next(true);
+        }
+    }
+
     @HostListener('body:click', ['$event'])
     public onBodyClick(event): void {
-        if (this.isCollapse && (event.clientX > 65)) {
-            this.menus.forEach(item => {
-                item.isOpen = false;
-            });
+        // console.log('click!----' + event.clientX);
+        // console.log(this.isCollapse);
+        // if (this.isCollapse && (event.clientX > 75)) {
+        //     this.menus.forEach(item => {
+        //         item.isOpen = false;
+        //     });
+        // }
+        if (!this.isCollapse && (document.body.clientWidth <= 768) && (event.clientY > 60) && (event.clientX > 220)) {
+            // console.log(document.body.clientWidth);
+            this.eventBusService.topToggleBtn.next(true);
         }
     }
 

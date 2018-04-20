@@ -1,5 +1,5 @@
 <div class="topbar topbar-dark">
-    <a class="topbar-logo" routerLink="welcome">
+    <a class="topbar-logo" routerLink="welcome" (click)="mobileClick()">
         志愿系统
     </a>
     <a href="javascript:void(0);" class="menu-button" (click)="onTogglerClick($event)">
@@ -28,8 +28,8 @@
             <a href="javascript:void(0);" (click)="goMsg()">
                 <i class="topbar-icon material-icons animated swing fa fa-fw fa-envelope-o"></i>
                 <span class="topbar-item-name">消息</span>
-                <i class="fa fa-spinner fa-pulse" style="float: right;" *ngIf="isLoading"></i>
-                <span class="topbar-badge animated rubberBand" *ngIf="!isLoading&&fuck(newMsg)">{{newMsg}}</span>
+<!--                 <i class="fa fa-spinner fa-pulse" style="float: right;" *ngIf="isLoading"></i>
+                <span class="topbar-badge animated rubberBand" *ngIf="!isLoading&&number2boolean(newMsg)">{{newMsg}}</span> -->
             </a>
         </li>
         <li>

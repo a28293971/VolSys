@@ -11,7 +11,7 @@
         </div> -->
         <ul class="{{menu.isOpen?'':'hidden'}}">
             <li *ngFor="let child of menu.children">
-                <a href="javascript:void(0);" routerLink="{{child.route?child.route:'/home'}}">
+                <a href="javascript:void(0);" routerLink="{{child.route?child.route:'/home'}}" (click)="mobileClick()">
                 <i class="fa fa-fw {{child.icon?child.icon:'fa-bars'}}"></i>
                 <span>{{child.name}}</span></a>
                 <!-- <div class="layout-menu-tooltip">

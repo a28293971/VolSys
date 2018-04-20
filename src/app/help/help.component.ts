@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { QuestionBase } from '../models/questions/question-base-model';
 import { SelectorMatcher } from '@angular/compiler';
+import { User } from '../models/user-model';
 
 import { HelpService } from './help.service';
 
@@ -17,36 +18,48 @@ import { HelpService } from './help.service';
 })
 export class HelpComponent implements OnInit {
 
-  description: string;
-  helpType: any[] = [
+  public description: string;
+  public helpType: any[] = [
     { name: '意见反馈', idx: 0 },
     { name: '活动反馈', idx: 1 }
   ];
-  form: FormGroup;
-  questions: any[];
-  selectHelpType: number;
-  edata: any;
+  public form: FormGroup;
+  public questions: any[];
+  public selectHelpType: number = 0;
+  private edata: any;
+  public currentUser: User
 
   constructor(
     private helpService: HelpService
   ) { }
 
   ngOnInit() {
-    this.edata = JSON.parse(localStorage.getItem('feedbackAct'));
-    if (this.edata) {
-      localStorage.removeItem('feedbackAct');
-      this.selectHelpType = 1;
-    }else {
-      this.selectHelpType = 0;
-    }
+
     this.questions = this.helpService.getQuestions(this.selectHelpType);
     this.form = this.helpService.toFormGroup(this.questions);
-    if (this.edata) {
+
+    this.currentUser = this.helpService.currentUser;
+    if (!this.currentUser.isAdmin) {
+      this.edata = JSON.parse(localStorage.getItem('feedbackAct'));
+      if (this.edata) {
+        localStorage.removeItem('feedbackAct');
+        this.selectHelpType = 1;
+        this.form.patchValue({
+          actId: this.edata.eid,
+          actName: this.edata.ename
+        });
+      }else {
+        this.selectHelpType = 0;
+      }
+    }else {
+      this.helpType.splice(1, 1);
+    }
+/*     if (this.edata) {
       this.form.patchValue({
         actId: this.edata.eid,
         actName: this.edata.ename
       });
-    }
+    } */
   }
 
   changeForm(idx) {

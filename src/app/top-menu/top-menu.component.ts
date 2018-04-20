@@ -30,11 +30,12 @@ export class TopMenuComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.CUser.user;
+    this.eventBusService.topToggleBtn.subscribe(value => this.toggleBtnStatus = value);
   }
 
   public onTogglerClick(event): void {
-    this.toggleBtnStatus = !this.toggleBtnStatus;
-    this.eventBusService.topToggleBtn.next(this.toggleBtnStatus);
+    // this.toggleBtnStatus = !this.toggleBtnStatus;
+    this.eventBusService.topToggleBtn.next(!this.toggleBtnStatus);
   }
 
   public doLogout() {
@@ -73,8 +74,14 @@ export class TopMenuComponent implements OnInit {
     }
   }
 
-  fuck(n: number): boolean {
+  public number2boolean(n: number): boolean {
     return Boolean(n);
   }
+
+  public mobileClick() {
+    if (document.body.clientWidth <= 768) {
+        this.eventBusService.topToggleBtn.next(true);
+    }
+}
 
 }
