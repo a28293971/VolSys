@@ -50,9 +50,11 @@ export class AppSideMenuComponent implements OnInit {
 
     private toggleMenuAll(isCollapse: boolean): void {
         this.isCollapse = isCollapse;
-        this.menus.forEach(item => {
-            item.isOpen = false;
-        });
+        if (this.isCollapse && (document.body.clientWidth > 768)) {
+            this.menus.forEach(item => {
+                item.isOpen = false;
+            });
+        }
     }
 
     public toggleMenuItem(event, menu): void {

@@ -19,23 +19,23 @@
                 <p-accordionTab>
                   <p-header>
                     <div class="row">
-                      <div class="col-md-4"><h4>{{act.name}}</h4></div>
-                      <div class="col-md-3"><h4>{{act.org_name[0]}}</h4></div>
-                      <div class="col-md-2"><h4>志愿时间:{{act.volunteer_time}}</h4></div>
-                      <div class="col-md-3" *ngIf="act.end"><h4>结束时间:{{act.end}}</h4></div>
+                      <div class="col-xs-12 col-md-4"><h4>{{act.name}}</h4></div>
+                      <div class="col-xs-12 col-md-3"><h4>{{act.org_name[0]}}</h4></div>
+                      <div class="col-xs-12 col-md-2"><h4>志愿时间:{{act.volunteer_time}}</h4></div>
+                      <div class="col-xs-12 col-md-3" *ngIf="act.end"><h4>结束时间:{{act.end}}</h4></div>
                     </div>
                   </p-header>
                   <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-xs-5 col-md-5">
                       <label style="font-size: 1.7em">Description:</label>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-xs-7 col-md-7">
                       <label style="font-size: 1.7em">活动ID: <font style="font-size: 0.8em">{{act.id}}</font></label>
                     </div>
-                    <div class="col-md-offset-1 col-md-10 description">
+                    <div class="col-xs-12 col-md-offset-1 col-md-10 description">
                       <p class="description" [innerHtml]="act.description | showEnterHtml"></p>
                     </div>
-                    <div class="col-md-1" *ngIf="!isAdmin">
+                    <div class="col-xs-8 col-md-1" *ngIf="!isAdmin">
                       <button type="button" class="btn btn-primary" style="margin-top: 0.125em;margin-bottom: 0.125em;"
                       (click)="joinAct(act)" [disabled]="act.hadApl">
                         申请活动
