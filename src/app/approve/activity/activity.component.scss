@@ -1,0 +1,48 @@
+.muti-opt-btn {
+    padding-top: 0.2rem;
+    padding-bottom: 0.15rem;
+    margin-left: 1rem;
+}
+
+.muti-btn-box {
+    text-align:left;
+    float: left;
+}
+
+.global-box-1 {
+    text-align: right;
+    // margin-top: 0px;
+    // float: right;
+}
+
+.global-box-2 {
+    text-align: right;
+}
+
+.img-box {
+    display: none;
+    width: 3rem;
+    height: 3rem;
+}
+
+@media(max-width: 640px) {
+    .global-box-1 {
+        // text-align: left;
+        padding-top: 0.15rem;
+        // margin: 0px;
+        clear: both;
+        width: 18rem;
+        float: left;
+    }
+    .global-box-2 {
+        text-align: left;
+    }
+    .muti-btn-box {
+        // text-align:left;
+        float: left;
+    }
+    .img-box {
+        display: block;
+        margin-left: 21rem;
+    }
+}

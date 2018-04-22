@@ -7,29 +7,35 @@
       <div>
         <p>志愿时间：{{actVolunteerTime}}</p>
       </div>
-      <p-table #dt [value]="membersWaiting" [(selection)]="selectedMembers" [globalFilterFields]="['id','name','timestamp']"
+      <p-table #dt [value]="membersWaiting" [(selection)]="selectedMembers" [globalFilterFields]="['id','name']"
       [paginator]="true" [rows]="10" paginatorPosition="top" [rowsPerPageOptions]="[10,15,25,50]">
         <ng-template pTemplate="caption">
-          <div style="text-align:left;float: left;">
+          <div>
+          <div class="muti-btn-box">
             <button type="button" style="padding-top: 0.25rem;padding-bottom: 0.1875rem;float: left;" class="btn btn-info" routerLink="/workspace/apr/list">
               <i class="fa fa-angle-left"></i>
               返回
             </button>
-            <button type="button" style="padding-top: 4px;padding-bottom: 3px;margin-left: 1.5625rem;" 
-            class="btn btn-success" (click)="aprMutileMeb()">
+            <button type="button" class="btn btn-success muti-opt-btn" (click)="aprMutileMeb()">
               <i class="fa fa-check"></i>
               批量审批通过
             </button>
-            <button type="button" style="padding-top: 4px;padding-bottom: 3px;margin-left: 1.5625rem;" 
-            class="btn btn-danger" (click)="rejMutileMeb()">
+            <button type="button" class="btn btn-danger muti-opt-btn" (click)="rejMutileMeb()">
               <i class="fa fa-close"></i>
               批量拒绝通过
             </button>
           </div>
-          <div style="text-align:right;">
-            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-            <input type="text" size="50" placeholder="Global Filter" 
-            (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+ 
+          <div class="global-box-1">
+            <!-- <i class="fa fa-search" style="margin:4px 4px 0 0"></i> -->
+            <label>条目搜索</label>
+            <input type="text" placeholder="Global Filter" style="width: 14.36rem;margin-left: 0.6rem;"
+            (input)="dt.filterGlobal($event.target.value, 'contains')">
+          </div>
+          
+          <div class="img-box">
+            <img src="assets/imgs/volunteersLogo-alpha.png" style="width: 3rem;height: 3rem;">
+          </div>
           </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -78,7 +84,16 @@
     </div>
     <br/>
     <div class="content-section implementation" style="padding-left: 1.25rem;padding-right: 1.25rem;">
-      <p-table [value]="membersDone" [paginator]="true" [rows]="10" paginatorPosition="top" [rowsPerPageOptions]="[10,15,25,50]">
+      <p-table #dt1 [value]="membersDone" [paginator]="true" [rows]="10" paginatorPosition="top" [rowsPerPageOptions]="[10,15,25,50]"
+      [globalFilterFields]="['id','name']">
+        <ng-template pTemplate="caption">
+            <div class="global-box-2">
+              <!-- <i class="fa fa-search" style="margin:4px 4px 0 0"></i> -->
+              <label>条目搜索</label>
+              <input type="text" placeholder="Global Filter" style="width: 14.36rem;margin-left: 0.6rem;"
+              (input)="dt1.filterGlobal($event.target.value, 'contains')">
+            </div>
+          </ng-template>
         <ng-template pTemplate="header"> 
           <tr>
             <th>Id</th>

@@ -1,15 +1,31 @@
-div label.name {
+/* div label.name {
     text-align: left;
-    font-size: 20px;
-    padding-left: 10px;
+    font-size: 1rem;
+    padding-left: 0.5rem;
 }
 
 div label.v-time {
     text-align: left;
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 div label.end-time {
     text-align: left;
-    font-size: 20px;
+    font-size: 1rem;
+} */
+
+div label{
+    .name {
+        text-align: left;
+        font-size: 1rem;
+        padding-left: 0.5rem;
+    }
+    .v-time {
+        text-align: left;
+        font-size: 1rem;
+    }
+    .end-time {
+        text-align: left;
+        font-size: 1rem;
+    }
 }
