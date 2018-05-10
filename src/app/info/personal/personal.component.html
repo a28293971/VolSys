@@ -30,11 +30,11 @@
               <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
                 <div class="ui-sm-10 ui-md-9 car-details">
                   <div class="ui-g">
-                    <div class="ui-sm-2 ui-g-2">Name:</div>
+                    <div class="ui-sm-2 ui-g-2">活动名字:</div>
                     <div class="ui-sm-10 ui-g-10">{{act.name}}</div>
-                    <div class="ui-sm-2 ui-g-2">Time:</div>
+                    <div class="ui-sm-2 ui-g-2">志愿时间:</div>
                     <div class="ui-sm-10 ui-g-10">{{act.volunteer_time}}</div>
-                    <div class="ui-sm-2 ui-g-2">PassTime:</div>
+                    <div class="ui-sm-2 ui-g-2">通过时间:</div>
                     <div class="ui-sm-10 ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                   </div>
                 </div>
@@ -53,16 +53,16 @@
               <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
                 <div class="ui-sm-10 ui-md-9 car-details">
                   <div class="ui-g">
-                    <div class="ui-sm-2 ui-g-2">Name:</div>
+                    <div class="ui-sm-2 ui-g-2">活动名字:</div>
                     <div class="ui-sm-10 ui-g-10">{{act.name}}</div>
-                    <div class="ui-sm-2 ui-g-2">Time:</div>
+                    <div class="ui-sm-2 ui-g-2">志愿时间:</div>
                     <div class="ui-sm-10 ui-g-10">{{act.volunteer_time}}</div>
-                    <div class="ui-sm-2 ui-g-2">AplTime:</div>
+                    <div class="ui-sm-2 ui-g-2">申请时间:</div>
                     <div class="ui-sm-10 ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                   </div>
                 </div>
                 <div class="ui-sm-2 ui-md-3">
-                  <button type="button" class="btn btn-warning">待审批中</button>
+                  <button type="button" class="btn btn-warning" [disabled]="true">待审批中</button>
                   <!-- <button type="button" class="btn btn-warning" (click)="showDialog()">取消申请</button> -->
                 </div>
               </div>
@@ -77,9 +77,9 @@
               <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
                 <div class="ui-sm-12 ui-md-9 car-details">
                   <div class="ui-g">
-                    <div class="ui-sm-2 ui-g-2">Name:</div>
+                    <div class="ui-sm-2 ui-g-2">活动时间:</div>
                     <div class="ui-sm-10 ui-g-10">{{act.name}}</div>
-                    <div class="ui-sm-2 ui-g-2">RefuseTime:</div>
+                    <div class="ui-sm-2 ui-g-2">拒绝时间:</div>
                     <div class="ui-sm-10 ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                   </div>
                 </div>
@@ -95,15 +95,15 @@
               <div class="ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
                 <div class="ui-g ui-gcar-details">
                   <div class="ui-g-5">
-                    <h4 class="ui-g-3">Name:</h4>
+                    <h4 class="ui-g-3">活动名称:</h4>
                     <h4 class="ui-g-9">{{act.name}}</h4>
                   </div>
                   <div class="ui-g-3">
-                    <h4 class="ui-g-3">Time:</h4>
+                    <h4 class="ui-g-3">志愿时间:</h4>
                     <h4 class="ui-g-9">{{act.volunteer_time}}</h4>
                   </div>
                   <div class="ui-g-4">
-                    <h4 class="ui-g-3">EndTime:</h4>
+                    <h4 class="ui-g-3">结束时间:</h4>
                     <h4 class="ui-g-9">{{act.timestamp | date: 'yyyy-MM-dd'}}</h4>
                   </div>
                 </div>

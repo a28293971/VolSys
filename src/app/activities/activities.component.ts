@@ -89,7 +89,7 @@ export class ActivitiesComponent implements OnInit {
     this.confirmationService.confirm({
         header: "确认窗口",
         message: `
-        <h4>Are you sure you want to report this activity:</h4>
+        <h4>确定要对一下活动进行反馈吗？:</h4>
         <h2>${this.content.name}</h2>
         `,
         accept: () => {

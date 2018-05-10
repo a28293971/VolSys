@@ -23,6 +23,11 @@ p.description {
     text-align: left;
 }
 
+div.header-box {
+    font-size: 0.8rem;
+    padding: 0.25rem 0px;
+}
+
 @media(max-width: 640px) {
     .actId1 {
         display: block;

@@ -15,14 +15,13 @@
           <ng-template let-act pTemplate="item">
             <div class="ui-datascroller-content">
               <!-- <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px;border-bottom:1px solid #D5D5D5"> -->
-              <div>
                 <p-accordionTab>
                   <p-header>
-                    <div class="row">
-                      <div class="col-xs-12 col-sm-4"><h4>{{act.name}}</h4></div>
-                      <div class="col-xs-12 col-sm-3"><h4>{{act.org_name[0]}}</h4></div>
-                      <div class="col-xs-12 col-sm-2"><h4>志愿时间:{{act.volunteer_time}}</h4></div>
-                      <div class="col-xs-12 col-sm-3" *ngIf="act.end"><h4>结束时间:{{act.end}}</h4></div>
+                    <div class="row header-box" >
+                      <div class="col-xs-12 col-sm-4">{{act.name}}</div>
+                      <div class="col-xs-12 col-sm-3">{{act.org_name[0]}}</div>
+                      <div class="col-xs-12 col-sm-2">志愿时间:{{act.volunteer_time}}</div>
+                      <div class="col-xs-12 col-sm-3" *ngIf="act.end">结束时间:{{act.end}}</div>
                     </div>
                   </p-header>
                   <div class="row">
@@ -30,9 +29,9 @@
                       <label style="font-size: 1rem">活动ID: <font style="font-size: 1rem">{{act.id}}</font></label>
                     </div>
                     <div class="col-xs-12 col-sm-5">
-                      <label style="font-size: 1.2rem">Description:</label>
+                      <label style="font-size: 1.2rem">活动描述:</label>
                     </div>
-                    <div class="col-sm-7 actId2">
+                    <div class="col-sm-5 actId2">
                       <label style="font-size: 1.2rem">活动ID: <font style="font-size: 1rem">{{act.id}}</font></label>
                     </div>
                     <div class="col-xs-12 col-sm-10">
@@ -60,7 +59,6 @@
                     </div>
                   </div>
                 </p-accordionTab>
-              </div>
             </div>
           </ng-template>
         </p-dataScroller>
