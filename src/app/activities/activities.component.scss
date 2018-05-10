@@ -1,10 +1,38 @@
 div.description {
     background-color:rgb(246, 247, 249);
     border: 1px solid #d6d6d6;
+    border-radius: 0.35rem
 }
 
 p.description {
     word-break:break-all;
     word-wrap:break-word;
-    margin-top: 12px;
+    // margin-top: 12px;
+    margin: 0.35rem;
+}
+
+.actId1 {
+    display: none;
+}
+
+.actId2 {
+    display: block;
+}
+
+.btn-box {
+    text-align: left;
+}
+
+@media(max-width: 640px) {
+    .actId1 {
+        display: block;
+    }
+
+    .actId2 {
+        display: none;
+    }
+
+    .btn-box {
+        text-align: center;
+    }
 }

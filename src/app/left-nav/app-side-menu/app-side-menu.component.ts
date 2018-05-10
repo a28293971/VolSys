@@ -78,7 +78,8 @@ export class AppSideMenuComponent implements OnInit {
 
     @HostListener('body:click', ['$event'])
     public onBodyClick(event): void {
-        // console.log('click!----' + event.clientX);
+        // console.log('click!----X' + event.clientX);
+        // console.log('click!----Y' + event.clientY);
         // console.log(this.isCollapse);
         // if (this.isCollapse && (event.clientX > 75)) {
         //     this.menus.forEach(item => {
