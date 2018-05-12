@@ -3,22 +3,22 @@
     <p-tabView>
       <p-tabPanel header="基本信息">
         <h3>名字：</h3>
-        <div class="col-md-offset-1">
+        <div class="col-sm-offset-1">
           <h4>{{currentUser.name}}</h4>
         </div>
         <h3>所属学院：</h3>
-        <div class="col-md-offset-1">
+        <div class="col-sm-offset-1">
           <h4>{{currentUser.college | toCollege}}</h4>
         </div>
         <ng-container *ngIf="!currentUser.isAdmin">
           <h3>志愿时间总时长：</h3>
-          <div class="col-md-offset-1">
+          <div class="col-sm-offset-1">
             <h4><strong style="color:#00FF00">{{currentUser.volunteer_time[0]}}  </strong>小时</h4>
           </div>
         </ng-container>
         <ng-container *ngIf="currentUser.isAdmin">
           <h3>组织描述：</h3>
-          <div class="col-md-offset-1">
+          <div class="col-sm-offset-1">
             <h4>{{currentUser.description}}</h4>
           </div>
         </ng-container>
@@ -28,17 +28,17 @@
           <p-dataList [value]="actAceppted" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
             <ng-template let-act pTemplate="item">
               <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
-                <div class="ui-sm-10 ui-md-9 car-details">
+                <div class="ui-sm-12 ui-md-9 car-details">
                   <div class="ui-g">
-                    <div class="ui-sm-2 ui-g-2">活动名字:</div>
-                    <div class="ui-sm-10 ui-g-10">{{act.name}}</div>
-                    <div class="ui-sm-2 ui-g-2">志愿时间:</div>
-                    <div class="ui-sm-10 ui-g-10">{{act.volunteer_time}}</div>
-                    <div class="ui-sm-2 ui-g-2">通过时间:</div>
-                    <div class="ui-sm-10 ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                    <div class="ui-sm-12 ui-md-2">活动名字:</div>
+                    <div class="ui-sm-12 ui-md-10">{{act.name}}</div>
+                    <div class="ui-sm-4 ui-md-2">志愿时间:</div>
+                    <div class="ui-sm-8 ui-md-10">{{act.volunteer_time}}</div>
+                    <div class="ui-sm-4 ui-md-2">通过时间:</div>
+                    <div class="ui-sm-8 ui-md-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                   </div>
                 </div>
-                <div class="ui-sm-2 ui-md-3">
+                <div class="ui-sm-12 ui-md-3">
                   <button type="button" class="btn btn-success" [disabled]="true">审批完成</button>
                 </div>
               </div>
@@ -51,17 +51,17 @@
           <p-dataList [value]="actWaiting" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
             <ng-template let-act pTemplate="item">
               <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
-                <div class="ui-sm-10 ui-md-9 car-details">
+                <div class="ui-sm-12 ui-md-9 car-details">
                   <div class="ui-g">
-                    <div class="ui-sm-2 ui-g-2">活动名字:</div>
-                    <div class="ui-sm-10 ui-g-10">{{act.name}}</div>
-                    <div class="ui-sm-2 ui-g-2">志愿时间:</div>
-                    <div class="ui-sm-10 ui-g-10">{{act.volunteer_time}}</div>
-                    <div class="ui-sm-2 ui-g-2">申请时间:</div>
-                    <div class="ui-sm-10 ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                    <div class="ui-sm-12 ui-md-2">活动名字:</div>
+                    <div class="ui-sm-12 ui-md-10">{{act.name}}</div>
+                    <div class="ui-sm-4 ui-md-2">志愿时间:</div>
+                    <div class="ui-sm-8 ui-md-10">{{act.volunteer_time}}</div>
+                    <div class="ui-sm-4 ui-md-2">申请时间:</div>
+                    <div class="ui-sm-8 ui-md-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                   </div>
                 </div>
-                <div class="ui-sm-2 ui-md-3">
+                <div class="ui-sm-12 ui-md-3">
                   <button type="button" class="btn btn-warning" [disabled]="true">待审批中</button>
                   <!-- <button type="button" class="btn btn-warning" (click)="showDialog()">取消申请</button> -->
                 </div>
@@ -77,10 +77,10 @@
               <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
                 <div class="ui-sm-12 ui-md-9 car-details">
                   <div class="ui-g">
-                    <div class="ui-sm-2 ui-g-2">活动时间:</div>
-                    <div class="ui-sm-10 ui-g-10">{{act.name}}</div>
-                    <div class="ui-sm-2 ui-g-2">拒绝时间:</div>
-                    <div class="ui-sm-10 ui-g-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                    <div class="ui-sm-12 ui-md-2">活动名字:</div>
+                    <div class="ui-sm-12 ui-md-10">{{act.name}}</div>
+                    <div class="ui-sm-4 ui-md-2">拒绝时间:</div>
+                    <div class="ui-sm-8 ui-md-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                   </div>
                 </div>
               </div>
@@ -92,22 +92,32 @@
         <div class="content-section implementation">
           <p-dataList [value]="actCreat" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
             <ng-template let-act pTemplate="item">
-              <div class="ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
-                <div class="ui-g ui-gcar-details">
-                  <div class="ui-g-5">
-                    <h4 class="ui-g-3">活动名称:</h4>
-                    <h4 class="ui-g-9">{{act.name}}</h4>
-                  </div>
-                  <div class="ui-g-3">
-                    <h4 class="ui-g-3">志愿时间:</h4>
-                    <h4 class="ui-g-9">{{act.volunteer_time}}</h4>
-                  </div>
-                  <div class="ui-g-4">
-                    <h4 class="ui-g-3">结束时间:</h4>
-                    <h4 class="ui-g-9">{{act.timestamp | date: 'yyyy-MM-dd'}}</h4>
+              <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
+                <div class="ui-sm-12 ui-md-9 car-details">
+                  <div class="ui-g">
+                    <div class="ui-sm-12 ui-md-2">活动名字:</div>
+                    <div class="ui-sm-12 ui-md-10">{{act.name}}</div>
+                    <div class="ui-sm-4 ui-md-2">志愿时间:</div>
+                    <div class="ui-sm-8 ui-md-3">{{act.volunteer_time}}</div>
+                    <div class="ui-sm-4 ui-md-2">结束时间:</div>
+                    <div class="ui-sm-8 ui-md-5">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                   </div>
                 </div>
               </div>
+              <!-- <div class="ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
+                <div class="ui-gcar-details ui-g">
+                  <div class="ui-md-12">
+                    <div class="ui-md-3">活动名称:</div>
+                    <div class="ui-md-9">{{act.name}}</div>
+                  </div>
+                  <div class="ui-md-12">
+                    <div class="ui-md-3">志愿时间:</div>
+                    <div class="ui-md-1">{{act.volunteer_time}}</div>
+                    <div class="ui-md-3">结束时间:</div>
+                    <div class="ui-md-5">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                  </div>
+                </div>
+              </div> -->
             </ng-template>
           </p-dataList>
         </div>

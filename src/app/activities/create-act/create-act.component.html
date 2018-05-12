@@ -4,19 +4,19 @@
     <h3 class="center-block sys-title">活动创建</h3>
     <form #form="ngForm" (ngSubmit)="form.form.valid && createAct()" novalidate class="form-inline form-horizontal" role="form">
       <div class="form-group">
-        <div class="col-xs-12 col-sm-12 form-group" style="padding: 0px;">
-            <label class="col-xs-3 col-sm-4 control-label" style="margin-top: 7px;">活动创建人:</label>
-            <label class="col-xs-9 col-sm-5 form-control-static" style="text-align:left;">{{currentUser.college | toCollege}}{{' '+currentUser.name}}</label>
+        <div class="col-xs-12 col-sm-12 form-group">
+            <label class="col-xs-12 col-sm-4 control-label">活动创建人:</label>
+            <label class="col-xs-12 col-sm-5 form-control-static" style="text-align:left;padding-bottom: 0px;">{{currentUser.college | toCollege}}{{' '+currentUser.name}}</label>
         </div>
         <div class="col-xs-12 col-sm-12 form-group" [ngClass]="{ 'has-error': form.submitted && !actName.valid }">
-          <label class="col-xs-3 col-sm-4 control-label">活动名称：</label>
+          <label class="col-xs-12 col-sm-4 control-label">活动名称：</label>
           <div class="col-xs-12 col-sm-5">
             <input required name="actName" [(ngModel)]="act.name" #actName="ngModel" type="text" class="form-control" 
             placeholder="这里输入你的活动名称" style="width: 100%">
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 form-group" [ngClass]="{ 'has-error': form.submitted && !volTime.valid }">
-          <label class="col-xs-3 col-sm-7 control-label">志愿时间：</label>
+          <label class="col-xs-12 col-sm-7 control-label">志愿时间：</label>
           <div class="col-xs-12 col-sm-4">
             <div class="input-group">
               <input required name="volTime" [(ngModel)]="act.volunteer_time" #volTime="ngModel" type="text" style="text-align:right;" maxlength="5"
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 form-group" [ngClass]="{ 'has-error': form.submitted }">
-          <label class="col-xs-3 col-sm-3 control-label">第二成绩：</label>
+          <label class="col-xs-12 col-sm-3 control-label">第二成绩：</label>
           <div class="col-xs-12 col-sm-4">
             <div class="input-group">
               <input style="text-align:right;" maxlength="5"
@@ -44,14 +44,14 @@
           </div>
         </div> -->
         <div class="col-xs-12 col-sm-6 form-group" [ngClass]="{ 'has-error': form.submitted && !dateS.valid }">
-          <label class="col-xs-3 col-sm-7 control-label">起始时间：</label>
+          <label class="col-xs-12 col-sm-7 control-label">起始时间：</label>
           <div class="col-xs-12 col-sm-4">
             <input required name="dateS" type="date" [(ngModel)]="act.start" #dateS="ngModel" 
             class="form-control" [max]="act.end">
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 form-group" [ngClass]="{ 'has-error': form.submitted && !dateE.valid }">
-          <label class="col-xs-3 col-sm-3 control-label">结束时间：</label>
+          <label class="col-xs-12 col-sm-3 control-label">结束时间：</label>
           <div class="col-xs-12 col-sm-4">
             <input required name="dateE" [(ngModel)]="act.end" #dateE="ngModel" type="date" 
             class="form-control" [min]="act.start">
@@ -65,13 +65,13 @@
         </div>
         <br/>
         <div class="col-xs-12 col-sm-12 form-group">
-          <div class="col-xs-3 col-md-offset-5 col-sm-1">
+          <div class="col-xs-6 col-sm-offset-4 col-sm-2" style="text-align:center;margin-top: 0.2rem;">
             <button type="submit" class="btn btn-success">
               <i class="fa fa-fw fa-check"></i>
               确认创建
             </button>
           </div>
-          <div class="col-xs-3 col-sm-1">
+          <div class="col-xs-6 col-sm-2" style="text-align:center;margin-top: 0.2rem;">
             <button type="button" class="btn btn-danger" routerLink="/workspace/act/activities">
               <i class="fa fa-fw fa-trash"></i>
               取消创建
