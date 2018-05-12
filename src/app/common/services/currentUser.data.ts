@@ -7,6 +7,7 @@ import * as CryptoJS from 'crypto-js';
 @Injectable()
 export class CurrentUser {
 
+  public mobileAccess: boolean = false;
   public user: User;
   public subject: Subject<User> = new Subject<User>();
 
@@ -14,6 +15,9 @@ export class CurrentUser {
 
   ) {
       // this.user = JSON.parse(localStorage.getItem('currentUser'));
+      if (document.body.clientWidth <= 768) {
+        this.mobileAccess = true;
+      }
   }
 
   public get currentUser(): Observable<User> {

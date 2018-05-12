@@ -24,6 +24,7 @@ export class AppSideMenuComponent implements OnInit {
 
     public isCollapse: boolean = false;
     public currentUser: User;
+    private mobileAccess: boolean;
 
     constructor(
         // private elementRef: ElementRef,
@@ -46,6 +47,8 @@ export class AppSideMenuComponent implements OnInit {
 /*         this.menus[0].children.push({ name: "活动创建", icon: 'fa-podcast', route: 'act/createact' });
         this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr/list' }); */
         /* this.menus[0].children.unshift({ name: "活动自主申请", icon: 'fa-plus-circle', route: 'act/apllyact' }); */
+
+        this.mobileAccess = this.CUser.mobileAccess;
     }
 
     private toggleMenuAll(isCollapse: boolean): void {
@@ -86,7 +89,7 @@ export class AppSideMenuComponent implements OnInit {
         //         item.isOpen = false;
         //     });
         // }
-        if (!this.isCollapse && (document.body.clientWidth <= 768) && (event.clientY > 60) && (event.clientX > 220)) {
+        if (!this.isCollapse && this.mobileAccess && (event.clientY > 60) && (event.clientX > 220)) {
             // console.log(document.body.clientWidth);
             this.eventBusService.topToggleBtn.next(true);
         }

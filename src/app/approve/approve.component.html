@@ -25,8 +25,18 @@
             <td>{{act.volunteer_time}}</td>
             <td>{{act.end}}</td>
             <td>
-              <button type="button" class="btn btn-primary" (click)="goToApprove(act)">进入审批界面</button>
-              <button type="button" class="btn btn-danger" (click)="deleteAct(act)" style="width: 110px;">删除活动</button>
+              <ng-container *ngIf="!mobileAccess">
+                <button type="button" class="btn btn-primary" (click)="goToApprove(act)">进入审批界面</button>
+                <button type="button" class="btn btn-danger" (click)="deleteAct(act)" style="width: 5.5rem;">删除活动</button>
+              </ng-container>
+              <ng-container *ngIf="mobileAccess">
+                <button type="button" class="btn btn-primary" (click)="goToApprove(act)">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-danger" (click)="deleteAct(act)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </ng-container>
             </td>
           </tr>
         </ng-template>

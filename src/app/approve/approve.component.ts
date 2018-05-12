@@ -18,6 +18,7 @@ import { AnimationTransitionInstructionType } from '@angular/animations/browser/
 export class ApproveComponent implements OnInit {
 
   public act: Activity[] = [];
+  public mobileAccess: boolean = false;
 
   constructor(
     private activityService: ActivityService,
@@ -35,6 +36,8 @@ export class ApproveComponent implements OnInit {
     },
       error => console.log(error)
     );
+
+    this.mobileAccess = this.approveService.CUser.mobileAccess;
   }
 
   goToApprove(act: Activity) {

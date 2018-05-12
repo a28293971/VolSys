@@ -39,7 +39,7 @@
           </div>
         </ng-template>
         <ng-template pTemplate="header">
-          <tr>
+          <tr style="word-wrap:break-word;">
             <th style="width: 2.25em">
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
@@ -51,7 +51,7 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
-          <tr *ngIf="!rowData.hide" [pSelectableRow]="rowData">
+          <tr *ngIf="!rowData.hide" [pSelectableRow]="rowData" style="word-wrap:break-word;">
             <ng-container >
               <td>
                 <p-tableCheckbox [value]="rowData" *ngIf="rowData.status==0"></p-tableCheckbox>
@@ -95,7 +95,7 @@
             </div>
           </ng-template>
         <ng-template pTemplate="header"> 
-          <tr>
+          <tr style="word-wrap:break-word;">
             <th>Id</th>
             <th>Name</th>
             <th>OptTime</th>
@@ -104,7 +104,7 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
-          <tr [pSelectableRow]="rowData">
+          <tr [pSelectableRow]="rowData" style="word-wrap:break-word;">
             <td>{{rowData.id}}</td>
             <td>{{rowData.name}}</td>
             <td>{{rowData.timestamp | date: 'yyyy-MM-dd hh:mm a'}}</td>

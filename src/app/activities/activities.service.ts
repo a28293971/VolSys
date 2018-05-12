@@ -15,7 +15,7 @@ export class ActivityService {
     constructor(
         private http: Http,
         private router: Router,
-        private CUser: CurrentUser
+        public CUser: CurrentUser
     ) {
         this.currentUser = this.CUser.user;
         this.CUser.currentUser.subscribe(data => this.currentUser = data);
