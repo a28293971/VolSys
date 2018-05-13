@@ -15,6 +15,7 @@ import { flyIn } from '../../animations/fly-in';
 })
 export class ActivityComponent implements OnInit {
 
+  mobileAccess: boolean = false;
   actName: string;
   actVolunteerTime: number;
   membersWaiting: Member[] = [];
@@ -55,6 +56,7 @@ export class ActivityComponent implements OnInit {
         this.getActivityById(eId);
       }
     ); */
+    this.mobileAccess = this.activityService.CUser.mobileAccess;
   }
 
 /*   getActivityById(id: number) {
@@ -142,8 +144,8 @@ export class ActivityComponent implements OnInit {
             name: mb.name,
             timestamp: new Date().toISOString(),
             status: 2,
-            ratio: mb.ratio,
-            volunteer_time: mb.ratio * this.actVolunteerTime
+            ratio: 0,
+            volunteer_time: 0
           });
         }
       },
@@ -171,8 +173,8 @@ export class ActivityComponent implements OnInit {
               name: val.name,
               timestamp: new Date().toISOString(),
               status: 2,
-              ratio: val.ratio,
-              volunteer_time: val.ratio * this.actVolunteerTime
+              ratio: 0,
+              volunteer_time: 0
             });
           });
           this.selectedMembers = [];

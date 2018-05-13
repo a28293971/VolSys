@@ -93,14 +93,14 @@
           <p-dataList [value]="actCreat" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
             <ng-template let-act pTemplate="item">
               <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
-                <div class="ui-sm-12 ui-md-9 car-details">
+                <div class="ui-sm-12 ui-md-12 car-details">
                   <div class="ui-g">
                     <div class="ui-sm-12 ui-md-2">活动名字:</div>
                     <div class="ui-sm-12 ui-md-10">{{act.name}}</div>
                     <div class="ui-sm-4 ui-md-2">志愿时间:</div>
-                    <div class="ui-sm-8 ui-md-3">{{act.volunteer_time}}</div>
+                    <div class="ui-sm-8 ui-md-4">{{act.volunteer_time}}</div>
                     <div class="ui-sm-4 ui-md-2">结束时间:</div>
-                    <div class="ui-sm-8 ui-md-5">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                    <div class="ui-sm-8 ui-md-4">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                   </div>
                 </div>
               </div>

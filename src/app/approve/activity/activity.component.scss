@@ -25,6 +25,19 @@
     height: 3rem;
 }
 
+.input-box {
+    width: 3.5rem;
+    float: left;
+    color: #000;
+}
+
+.input-val-box {
+    width: 2.8rem;
+    float: left;
+    margin: 0.21875rem;
+    color: #000;
+}
+
 @media(max-width: 640px) {
     .global-box-1 {
         // text-align: left;

@@ -52,25 +52,33 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
           <tr *ngIf="!rowData.hide" [pSelectableRow]="rowData" style="word-wrap:break-word;">
-            <ng-container >
-              <td>
-                <p-tableCheckbox [value]="rowData" *ngIf="rowData.status==0"></p-tableCheckbox>
-              </td>
-              <td>{{rowData.id}}</td>
-              <td>{{rowData.name}}</td>
-              <td>{{rowData.timestamp | date: 'yyyy-MM-dd hh:mm a'}}</td>
-              <td>
-                <input required name="vt" [(ngModel)]="rowData.ratio" #vt="ngModel" type="number" style="width: 5em;float: left;color: #000;"
-                value="1" min="0" max="1" step="0.1" [disabled]="rowData.status!=0">
-                <div style="width:4em;float: left;margin: 0.3125em;color: #000;" >{{actVolunteerTime*rowData.ratio | number: '1.0-2'}}</div>
-                <input type="number" style="width: 5em;float: left;" value="1" min="0" max="1" step="0.1" [disabled]="rowData.status!=0">
-                <div style="width:4em;float: left;margin: 0.3125em;">0</div>
-              </td>
-              <td>
-                <button type="button" class="btn btn-success" (click)="vt.valid&&aprSingleMeb(rowData)" [disabled]="rowData.status!=0">审批通过</button>
-                <button type="button" class="btn btn-danger" (click)="rejSingleMeb(rowData)" [disabled]="rowData.status!=0">拒绝通过</button>
-              </td>
-            </ng-container>
+            <td>
+              <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+            </td>
+            <td>{{rowData.id}}</td>
+            <td>{{rowData.name}}</td>
+            <td>{{rowData.timestamp | date: 'yyyy-MM-dd hh:mm a'}}</td>
+            <td>
+              <input required name="vt" [(ngModel)]="rowData.ratio" #vt="ngModel" type="number" class="input-box"
+              value="1" min="0" max="1" step="0.1">
+              <div class="input-val-box" >{{actVolunteerTime*rowData.ratio | number: '1.0-2'}}</div>
+              <input type="number" class="input-box" value="1" min="0" max="1" step="0.1">
+              <div class="input-val-box">0</div>
+            </td>
+            <td>
+              <ng-container *ngIf="!mobileAccess">
+                <button type="button" class="btn btn-success" (click)="vt.valid&&aprSingleMeb(rowData)">审批通过</button>
+                <button type="button" class="btn btn-danger" (click)="rejSingleMeb(rowData)">拒绝通过</button>
+              </ng-container>
+              <ng-container *ngIf="mobileAccess">
+                <button type="button" class="btn btn-success" (click)="vt.valid&&aprSingleMeb(rowData)">
+                  <i class="fa fa-check fa-fw"></i>
+                </button>
+                <button type="button" class="btn btn-danger" (click)="rejSingleMeb(rowData)">
+                  <i class="fa fa-close fa-fw"></i>
+                </button>
+              </ng-container>
+            </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">
@@ -115,8 +123,18 @@
               <div style="width:4em;float: left;margin: 0.3125em;">0</div>
             </td>
             <td>
-              <button *ngIf="rowData.status==1" type="button" class="btn btn-success" disabled="true">审批已通过</button>
-              <button *ngIf="rowData.status==2" type="button" class="btn btn-danger" disabled="true">审批未通过</button>
+              <ng-container *ngIf="!mobileAccess">
+                <button *ngIf="rowData.status==1" type="button" class="btn btn-success" disabled="true">审批已通过</button>
+                <button *ngIf="rowData.status==2" type="button" class="btn btn-danger" disabled="true">审批未通过</button>
+              </ng-container>
+              <ng-container *ngIf="mobileAccess">
+                <button *ngIf="rowData.status==1" type="button" class="btn btn-success" disabled="true">
+                  <i class="fa fa-check fa-fw"></i>
+                </button>
+                <button *ngIf="rowData.status==2" type="button" class="btn btn-danger" disabled="true">
+                  <i class="fa fa-close fa-fw"></i>
+                </button>
+              </ng-container>
             </td>
           </tr>
         </ng-template>
