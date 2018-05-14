@@ -9,7 +9,7 @@
     </div>
     <br/>
     
-    <div class="content-section implementation" style="padding-left: 20px;padding-right: 20px;">
+    <div class="content-section implementation compoment-box">
       <p-table [value]="act" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
         <ng-template let-act pTemplate="header">
           <tr>
@@ -24,7 +24,7 @@
             <td>{{act.name}}</td>
             <td>{{act.volunteer_time}}</td>
             <td>{{act.end}}</td>
-            <td>
+            <td class="opt-btn-box">
               <ng-container *ngIf="!mobileAccess">
                 <button type="button" class="btn btn-primary" (click)="goToApprove(act)">进入审批界面</button>
                 <button type="button" class="btn btn-danger" (click)="deleteAct(act)" style="width: 5.5rem;">删除活动</button>

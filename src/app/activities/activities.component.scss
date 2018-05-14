@@ -1,3 +1,7 @@
+.compoment-box {
+    padding: 0px 1rem;
+}
+
 div.description {
     background-color:rgb(246, 247, 249);
     border: 1px solid #d6d6d6;
@@ -29,6 +33,9 @@ div.header-box {
 }
 
 @media(max-width: 640px) {
+    .compoment-box {
+        padding: 0px 0.5rem;
+    }
     .actId1 {
         display: block;
     }

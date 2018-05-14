@@ -1,61 +1,91 @@
+.compoment-box {
+    padding: 0px 1.25rem;
+    // padding-right: 1.25rem;
+}
 .muti-opt-btn {
     padding-top: 0.2rem;
     padding-bottom: 0.15rem;
     margin-left: 1rem;
 }
-
 .muti-btn-box {
     text-align:left;
     float: left;
+    overflow: hidden;
 }
-
-.global-box-1 {
+.muti-box-2 {
+    float: left;
+}
+.global-box {
     text-align: right;
     // margin-top: 0px;
     // float: right;
+    input {
+        width: 14.36rem;
+        margin-left: 0.6rem;
+    }
 }
-
-.global-box-2 {
-    text-align: right;
-}
-
 .img-box {
     display: none;
     width: 3rem;
     height: 3rem;
 }
-
 .input-box {
     width: 3.5rem;
     float: left;
     color: #000;
 }
-
 .input-val-box {
     width: 2.8rem;
     float: left;
     margin: 0.21875rem;
     color: #000;
 }
+td.opt-btn-box {
+    padding: 0px;
+    text-align: center;
+}
 
 @media(max-width: 640px) {
-    .global-box-1 {
-        // text-align: left;
-        padding-top: 0.15rem;
-        // margin: 0px;
-        clear: both;
-        width: 18rem;
-        float: left;
+    .compoment-box {
+        padding: 0px 0.5rem;
     }
-    .global-box-2 {
-        text-align: left;
+    .global-box {
+        // text-align: left;
+        padding-top: 0.25rem;
+        // margin: 0px;
+        // clear: both;
+        // width: 18rem;
+        float: none;
+        input {
+            width: 11.8rem;
+        }
     }
     .muti-btn-box {
         // text-align:left;
-        float: left;
+        float: none;
+    }
+    .muti-box-2 {
+        width: 6.6rem;
+        text-align: right;
+        float: right;
+    }
+    .muti-opt-btn {
+        margin: 0px;
     }
     .img-box {
         display: block;
-        margin-left: 21rem;
+        float: left;
+        width: 5.727rem;
+        text-align: center;
+        // margin-left: 21rem;
+    }
+    .input-box {
+        width: 2rem;
+        float: none;
+    }
+    .input-val-box {
+        width: 2rem;
+        float: none;
+        margin: 0px 0px 0px 0.15rem;
     }
 }

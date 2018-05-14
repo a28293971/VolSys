@@ -13,6 +13,10 @@ div label.end-time {
     text-align: left;
     font-size: 1rem;
 } */
+.compoment-box {
+    padding: 0px 1.25rem;
+    // padding-right: 1.25rem;
+}
 
 div label{
     .name {
@@ -27,5 +31,15 @@ div label{
     .end-time {
         text-align: left;
         font-size: 1rem;
+    }
+}
+td.opt-btn-box {
+    padding: 0px;
+    text-align: center;
+}
+
+@media(max-width: 640px) {
+    .compoment-box {
+        padding: 0px 0.5rem;
     }
 }
