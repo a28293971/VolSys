@@ -56,6 +56,10 @@ export class ApplyActComponent implements OnInit {
   } */
 
   apllyAct() {
+    if (new Date(this.act.start) > new Date(this.act.end)) {
+      alert('起始时间必须大于结束时间！');
+      return;
+    }
     let formData = new FormData();
     // formData.append("enctype", "multipart/form-data");
     formData.append("id", this.currentUser.id.toString());

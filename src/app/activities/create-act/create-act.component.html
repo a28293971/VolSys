@@ -25,11 +25,11 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-6 form-group" [ngClass]="{ 'has-error': form.submitted }">
+        <div class="col-xs-12 col-sm-6 form-group">
           <label class="col-xs-12 col-sm-3 control-label">第二成绩：</label>
           <div class="col-xs-12 col-sm-4">
             <div class="input-group">
-              <input style="text-align:right;" maxlength="5"
+              <input style="text-align:right;" maxlength="5" 
               oninput="value=value.replace(/[^\d.]/g,'')" class="form-control" >
               <div class="input-group-addon">分</div>
             </div>

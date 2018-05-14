@@ -33,6 +33,10 @@ export class CreateActComponent implements OnInit {
   }
 
   createAct() {
+    if (new Date(this.act.start) > new Date(this.act.end)) {
+      alert('起始时间必须大于结束时间！');
+      return;
+    }
     this.act.org_name = [this.currentUser.name];
     this.act.org_id = [this.currentUser.id];
     // this.act.token = this.currentUser.token;
