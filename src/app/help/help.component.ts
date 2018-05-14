@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { flyIn } from '../animations/fly-in';
 import { Subscription } from 'rxjs/Subscription';
@@ -16,7 +16,7 @@ import { HelpService } from './help.service';
   styleUrls: ['./help.component.scss'],
   animations: [flyIn]
 })
-export class HelpComponent implements OnInit {
+export class HelpComponent implements OnInit, AfterViewInit {
 
   public description: string;
   public helpType: any[] = [
@@ -41,9 +41,11 @@ export class HelpComponent implements OnInit {
     this.currentUser = this.helpService.currentUser;
     if (!this.currentUser.isAdmin) {
       this.edata = JSON.parse(localStorage.getItem('feedbackAct'));
+      // console.log(this.edata);
       if (this.edata) {
         localStorage.removeItem('feedbackAct');
         this.selectHelpType = 1;
+        this.changeForm(this.selectHelpType);
         this.form.patchValue({
           actId: this.edata.eid,
           actName: this.edata.ename
@@ -61,6 +63,9 @@ export class HelpComponent implements OnInit {
       });
     } */
   }
+  ngAfterViewInit() {
+
+  }
 
   changeForm(idx) {
     this.questions = this.helpService.getQuestions(idx);
@@ -68,7 +73,8 @@ export class HelpComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(JSON.stringify(this.form.value));
+    // console.log(JSON.stringify(this.form.value));
+    alert('该功能暂未完全实现，敬请期待');
   }
 
 }

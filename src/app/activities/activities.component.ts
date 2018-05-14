@@ -15,6 +15,7 @@ import { flyIn } from '../animations/fly-in';
 })
 export class ActivitiesComponent implements OnInit {
 
+  confirmationWidth: number = 500;
   activities: Activity[] = [];
   hadAplAct: Activity[] = [];
   c: number = 0;
@@ -50,6 +51,9 @@ export class ActivitiesComponent implements OnInit {
           .subscribe(res2 => this.hadAplAct.concat(res2.json().data.events))
         });
       });
+      if (this.activityService.CUser.mobileAccess === true) {
+        this.confirmationWidth = 300;
+      }
     }
     // this.content = this.activities[0];
   }
