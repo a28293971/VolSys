@@ -1,6 +1,6 @@
 {
     "**": {
-        "target": "http://127.0.0.1:3006",
+        "target": "http://192.168.148.6",
         "secure":false,
         "changeOrigin": true
     }

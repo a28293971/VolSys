@@ -31,7 +31,7 @@ export class ActivityService {
           });
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
-        .post('/get-event', body, {headers: headers})
+        .post('/volunteer/get-event', body, {headers: headers})
 /*         return this.http
         .get('mock-data/activities.json') */
         .takeWhile((response: Response) => {
@@ -53,7 +53,7 @@ export class ActivityService {
             token: this.currentUser.token
           });
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post("/join-event", body, {headers: headers})
+        return this.http.post("/volunteer/join-event", body, {headers: headers})
         // return this.http.get('mock-data/allAccept.json')
         .takeWhile((response: Response) => {
             if (response.json().sysinfo.tokenUpdate) {
@@ -74,7 +74,7 @@ export class ActivityService {
           });
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
-        .post('/get-event', body, {headers: headers})
+        .post('/volunteer/get-event', body, {headers: headers})
 /*         return this.http
         .get('mock-data/activities-hadApl.json') */
         .takeWhile((response: Response) => {
@@ -95,7 +95,7 @@ export class ActivityService {
           });
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
-        .post('/get-event', body, {headers: headers})
+        .post('/volunteer/get-event', body, {headers: headers})
 /*         return this.http
         .get('mock-data/activities-hadApl.json') */
         .takeWhile((response: Response) => {
@@ -117,7 +117,7 @@ export class ActivityService {
           });
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
-        .post('/get-event', body, {headers: headers})
+        .post('/volunteer/get-event', body, {headers: headers})
 /*         return this.http
         .get('mock-data/activities-hadApl.json') */
         .takeWhile((response: Response) => {

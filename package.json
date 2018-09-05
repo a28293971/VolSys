@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 127.0.0.1 --port 3008 --proxy-config proxy.conf.json",
-    "build": "ng build",
+    "build": "ng build -bh /volunteer/ -aot -prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -33,7 +33,7 @@
     "moment": "^2.21.0",
     "ng2-translate": "^5.0.0",
     "npm": "^5.8.0",
-    "primeng": "^5.2.0",
+    "primeng": "^5.2.7",
     "rxjs": "^5.5.3",
     "tinymce": "^4.7.3",
     "zone.js": "^0.8.14"

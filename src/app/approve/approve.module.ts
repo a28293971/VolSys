@@ -6,6 +6,7 @@ import { ApproveComponent } from './approve.component';
 import { ActivityComponent } from './activity/activity.component';
 import { TableModule } from 'primeng/components/table/table';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
+import { OverlayPanelModule } from 'primeng/components/overlaypanel/overlaypanel';
 
 import { approveRoutes } from './approve.routes';
 
@@ -18,6 +19,7 @@ import { ConfirmationService } from 'primeng/components/common/api';
     CommonModule,
     TableModule,
     ConfirmDialogModule,
+    OverlayPanelModule,
     FormsModule,
     RouterModule.forChild(approveRoutes),
   ],

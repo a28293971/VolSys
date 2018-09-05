@@ -39,7 +39,7 @@ export class LoginService {
       authType: 1
     });
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('/login', body, {headers: headers})
+    return this.http.post('/volunteer/login', body, {headers: headers})
 /*     return this.http.get('mock-data/' + obj + '-login-mock.json') */
       .subscribe((response: Response) => {
           const res = response.json();

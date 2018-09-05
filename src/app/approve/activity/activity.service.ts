@@ -37,7 +37,7 @@ export class ActivityService {
     });
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
-    .post('/approve-event', body, {headers: headers})
+    .post('/volunteer/approve-event', body, {headers: headers})
     // .get('mock-data/activities.json')
     .takeWhile((response: Response) => {
         if (response.json().sysinfo.tokenUpdate) {

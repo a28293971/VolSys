@@ -58,7 +58,8 @@
           <div class="col-xs-12 col-sm-6 form-group" [ngClass]="{ 'has-error': form.submitted && !F.valid }">
             <label class="col-xs-3 col-sm-3 control-label">附件:</label>
             <div class="col-xs-12 col-sm-4" [ngClass]="{'text-danger': form.submitted && !F.valid}">
-              <input type="file" required name="F" (change)="fuck($event)" [(ngModel)]="act.other" #F="ngModel" style="font-size: 0.9rem">
+              <input type="file" required name="F" (change)="fuck($event)" [(ngModel)]="act.other" #F="ngModel" style="font-size: 0.9rem"
+              accept="image/x-png,image/gif,image/jpeg,image/bmp">
               <!-- <input type="file" required #F (change)="fuck($event)"  style="height:3.4rem" [ngClass]="{'text-danger': form.submitted && !F.target.files}"> -->
               <!-- <input type="file" required name="F" #F="ngModel" [(ngModel)]="act.other" style="height:34px" (change)="fileWork($event)"> -->
             </div>

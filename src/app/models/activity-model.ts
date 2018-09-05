@@ -15,4 +15,5 @@ export class Activity {
     hadApl?: boolean;
     idx?: number;
     hide?: boolean;
+    files?: any[];
 }

@@ -26,6 +26,8 @@ export class ActivityComponent implements OnInit {
     { field: 'name', header: 'Name' },
     { field: 'timestamp', header: 'AplTime' }
     ];
+  public imgAdr: string;
+  public imgWid: number;
 
   constructor(
 /*     private activeRoute: ActivatedRoute, */
@@ -57,6 +59,8 @@ export class ActivityComponent implements OnInit {
       }
     ); */
     this.mobileAccess = this.activityService.CUser.mobileAccess;
+    this.imgAdr = 'uploads/' + this.activityService.eInfo.files[0].name;
+    this.imgWid = document.body.clientWidth * 0.7;
   }
 
 /*   getActivityById(id: number) {

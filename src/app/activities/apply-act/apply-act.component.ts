@@ -55,7 +55,7 @@ export class ApplyActComponent implements OnInit {
     this.applyActService.apply(this.act)
   } */
 
-  apllyAct() {
+  /* apllyAct() {
     if (new Date(this.act.start) > new Date(this.act.end)) {
       alert('起始时间必须大于结束时间！');
       return;
@@ -64,6 +64,7 @@ export class ApplyActComponent implements OnInit {
     // formData.append("enctype", "multipart/form-data");
     formData.append("id", this.currentUser.id.toString());
     formData.append("file", this.tmp);
+    formData.append('eid', )
     this.applyActService.upload(formData)
     .subscribe(
       data => {
@@ -72,6 +73,30 @@ export class ApplyActComponent implements OnInit {
           this.applyActService.apply(this.act);
         }else {
           alert("上传文件失败 请重试!");
+        }
+      },
+      error => console.log(error)
+    );
+  } */
+
+  apllyAct() {
+    if (new Date(this.act.start) > new Date(this.act.end)) {
+      alert('起始时间必须大于结束时间！');
+      return;
+    }
+    this.act.college = this.selectItem;
+    this.applyActService.apply(this.act)
+    .subscribe(
+      data => {
+        let res = data.json();
+        if (res.sysinfo.auth) {
+          let formData = new FormData();
+          formData.append("id", this.currentUser.id.toString());
+          formData.append("file", this.tmp);
+          formData.append('eid', res.data.eid);
+          this.applyActService.upload(formData);
+        }else {
+          alert('活动创建失败 请重试');
         }
       },
       error => console.log(error)

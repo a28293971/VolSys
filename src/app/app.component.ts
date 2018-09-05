@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
                 authType: 0
             });
             const headers = new Headers({'Content-Type': 'application/json'});
-            this.http.post("/login", body,
+            this.http.post("/volunteer/login", body,
             {headers: new Headers({'Content-Type': 'application/json'})} )
             // this.http.get('mock-data/login-token.json')
             .subscribe(
