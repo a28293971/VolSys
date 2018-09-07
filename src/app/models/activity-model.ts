@@ -1,3 +1,4 @@
+
 export class Activity {
     id?: string;
     name: string;
@@ -5,6 +6,7 @@ export class Activity {
     org_id?: string[];
     start?: string;
     end?: string;
+    created?: Date;
     volunteer_time: number;
     description: string;
     members?: any[];

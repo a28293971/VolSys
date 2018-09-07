@@ -59,7 +59,7 @@ export class ActivityComponent implements OnInit {
       }
     ); */
     this.mobileAccess = this.activityService.CUser.mobileAccess;
-    this.imgAdr = 'uploads/' + this.activityService.eInfo.files[0].name;
+    this.imgAdr = 'volunteer/' + 'uploads/' + this.activityService.eInfo.files[0].name;
     this.imgWid = document.body.clientWidth * 0.7;
   }
 

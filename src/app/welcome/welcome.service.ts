@@ -80,12 +80,18 @@ export class WelcomeService {
               borderColor: '#2ea700',
           }]
       };
-      if ((new Date().getMonth()) < 9) {
+      let nowMonth = new Date().getMonth() + 1; // 当前月份
+      if (nowMonth >= 2 && nowMonth <= 8) {
         res.labels = ['一月', '二月', '三月', '四月', '五月', '六月', '七月'];
         res.datasets[0].data = this.currentUser.volunteer_time.slice(1, 8);
       }else {
         res.labels = ['七月', '八月', '九月', '十月', '十一月', '十二月', '一月'];
-        res.datasets[0].data = this.currentUser.volunteer_time.slice(-6, 2);
+        // res.datasets[0].data = this.currentUser.volunteer_time.slice(-6, 2);
+        let vTime = this.currentUser.volunteer_time
+        res.datasets[0].data = vTime.slice(20, 22);
+        res.datasets[0].data = res.datasets[0].data.concat(vTime.slice(9, 13));
+        res.datasets[0].data.push(vTime[1]);
+        // console.log(res.datasets[0].data);
       }
       observer.next(res);
       observer.complete();
@@ -105,7 +111,8 @@ export class WelcomeService {
               borderColor: '#d2bc17',
           }]
       };
-      if ((new Date().getMonth()) < 9) {
+      let nowMonth = new Date().getMonth() + 1;
+      if (nowMonth >= 2 && nowMonth <= 8) {
         res.labels = ['一月', '二月', '三月', '四月', '五月', '六月', '七月'];
         res.datasets[0].data = [12, 43, 67, 47, 23, 53, 117];
       }else {

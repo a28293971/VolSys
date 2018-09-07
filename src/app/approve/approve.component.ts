@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Activity } from '../models/activity-model';
 import { Router } from '@angular/router';
 
+import { Activity } from '../models/activity-model';
+
 import { ApproveService } from './approve.service';
-import { ActivityService } from './activity/activity.service'
+import { ActivityService } from './public-activity/activity.service'
 import { ConfirmationService } from 'primeng/components/common/api';
 
 import { flyIn } from '../animations/fly-in';
@@ -31,8 +32,15 @@ export class ApproveComponent implements OnInit {
     this.approveService.getNeedApproveActivities()
     .subscribe(
       data => {
-        this.act = data.json().data.events;
-        this.act.forEach((val, idx, arr) => val.idx = idx);
+        let events = data.json().data.events;
+        // this.act = data.json().data.events;
+        // this.act.forEach((val, idx, arr) => val.idx = idx);
+        events.forEach((val) => {
+          if (val.type === 1) {
+            this.act.push(val);
+          }
+        });
+        this.act.forEach((val, idx) => val.idx = idx);
     },
       error => console.log(error)
     );

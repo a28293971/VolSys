@@ -1,0 +1,78 @@
+<div class="user-table-container" [@flyIn]="'active'">
+  <div class="compoment-backgroud">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h3 class="center-block" style="text-align: center;margin-bottom: 20px;font-size: 32px;">
+          自主申请活动列表
+        </h3>
+      </div>
+    </div>
+    <br/>
+    
+    <div class="content-section implementation compoment-box">
+      <p-table [value]="act" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]"
+      dataKey="id">
+        <ng-template let-act pTemplate="header">
+          <tr>
+            <th style="width: 3em"></th>
+            <th>活动名称</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>申请时间</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-act let-expanded="expanded">
+          <!-- <tr *ngIf="!act.hide"> -->
+          <tr>
+            <td style="text-align: center">
+              <a href="#" [pRowToggler]="act">
+                <i [ngClass]="expanded ? 'fa fa-angle-down fa-2x' : 'fa fa-angle-right fa-2x'"></i>
+              </a>
+            </td>
+            <td>{{act.name}}</td>
+            <td>{{act.start}}</td>
+            <td>{{act.end}}</td>
+            <td>{{act.created | date: 'yyyy-MM-dd'}}</td>
+<!--             <td class="opt-btn-box">
+              <ng-container *ngIf="!mobileAccess">
+                <button type="button" class="btn btn-primary" (click)="goToApprove(act)">B1</button>
+                <button type="button" class="btn btn-danger" (click)="deleteAct(act)" style="width: 5.5rem;">B2</button>
+              </ng-container> -->
+<!--               <ng-container *ngIf="mobileAccess">
+                <button type="button" class="btn btn-primary" (click)="goToApprove(act)">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-danger" (click)="deleteAct(act)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </ng-container> -->
+            <!-- </td> -->
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-act>
+          <tr>
+            <td [attr.colspan]="5">
+              <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
+                <div class="ui-g-12 ui-md-3" style="text-align:center">
+                  <img alt="file" src="assets/imgs/volunteersLogo-alpha.png" width="500">
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                  <div class="ui-g">
+                    <div class="ui-g-12">
+                      <b>志愿时间</b> {{act.volunteer_time}}
+                    </div>
+                    <div class="ui-g-12 opt-btn-box">
+                      <button type="button" class="btn btn-primary" (click)="goToApprove(act)">B1</button>
+                      <button type="button" class="btn btn-danger" (click)="deleteAct(act)" style="width: 5.5rem;">B2</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <br/><br/>
+  </div>
+</div>
