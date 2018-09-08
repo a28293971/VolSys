@@ -2,24 +2,22 @@
     padding: 0px 1.25rem;
 }
 
-div label{
-    .name {
-        text-align: left;
-        font-size: 1rem;
-        padding-left: 0.5rem;
-    }
-    .v-time {
-        text-align: left;
-        font-size: 1rem;
-    }
-    .end-time {
-        text-align: left;
-        font-size: 1rem;
-    }
-}
 td.opt-btn-box {
     padding: 0px;
     text-align: center;
+}
+
+div.description {
+    background-color:rgb(215, 215, 215);
+    border: 1px solid #d6d6d6;
+    border-radius: 0.35rem
+}
+
+p.description {
+    word-break:break-all;
+    word-wrap:break-word;
+    // margin-top: 12px;
+    margin: 0.35rem;
 }
 
 @media(max-width: 640px) {

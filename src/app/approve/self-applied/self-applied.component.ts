@@ -29,6 +29,7 @@ export class SelfAppliedComponent implements OnInit {
       data => {
         data.json().data.events.forEach((val, idx, arr) => {
           if (val.type === 2) {
+            val.editTime = 0;
             this.act.push(val);
           }
         });
@@ -39,4 +40,7 @@ export class SelfAppliedComponent implements OnInit {
     this.mobileAccess = this.selfAppliedService.CUser.mobileAccess;
   }
 
+  public approveActivity(act) {
+    console.log(act);
+  }
 }

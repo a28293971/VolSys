@@ -6,9 +6,6 @@
     <div class="content-section implementation compoment-box">
       <div>
         <p>志愿时间：{{actVolunteerTime}}</p>
-        <button type="button" class="btn btn-info" (click)="op.toggle($event)" style="margin-bottom: 0.5rem">
-          <i class="fa-file"></i>
-        </button>
       </div>
       <p-table #dt [value]="membersWaiting" [(selection)]="selectedMembers" [globalFilterFields]="['id','name']"
       [paginator]="true" [rows]="10" paginatorPosition="both" [rowsPerPageOptions]="[10,15,25,50]">
@@ -148,7 +145,3 @@
     <br/><br/>
   </div>
 </div>
-
-<p-overlayPanel #op>
-    <img src="{{imgAdr}}" width="{{imgWid}}">
-</p-overlayPanel>

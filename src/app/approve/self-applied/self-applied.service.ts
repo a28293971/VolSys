@@ -42,24 +42,23 @@ export class SelfAppliedService {
     });
   }
 
-  deleteAct(act: any) {
-    const body = JSON.stringify({
+  sendMembers(members: any[]) {
+/*     const body = JSON.stringify({
       id: this.currentUser.id,
-      eid: act.id,
+      eid: this.eInfo.id,
       token: this.currentUser.token,
+      members: members
     });
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
-    .post('/volunteer/delete-event', body, {headers: headers})
-  /*   return this.http
-    .get("mock-data/act-waitingApr.json") */
+    .post('/volunteer/approve-event', body, {headers: headers})
+    // .get('mock-data/activities.json')
     .takeWhile((response: Response) => {
         if (response.json().sysinfo.tokenUpdate) {
             this.router.navigateByUrl('login');
             return false;
         }
         return true;
-    });
+    }); */
   }
-
 }

@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         this.loginService.rMsg.
         subscribe(
             data => {
-                console.log(data);
+                // console.log(data);
                 if (data === 1) {
                     this.rMsg = 1;
                 }else {

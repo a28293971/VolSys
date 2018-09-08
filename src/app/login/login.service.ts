@@ -35,7 +35,7 @@ export class LoginService {
     } */
     const body = JSON.stringify({
       id: user.id,
-      password: user.password,
+      password: CryptoJS.MD5(user.password).toString(),
       authType: 1
     });
     const headers = new Headers({'Content-Type': 'application/json'});
@@ -43,7 +43,7 @@ export class LoginService {
 /*     return this.http.get('mock-data/' + obj + '-login-mock.json') */
       .subscribe((response: Response) => {
           const res = response.json();
-          console.log(res);
+          // console.log(res);
           // console.log('user.token = ' + res.token);
           if (res.sysinfo.auth) {
             let nUser: User = res.data;

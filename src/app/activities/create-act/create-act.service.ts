@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Router } from '@angular/router';
-import { concat } from 'rxjs/operators/concat';
-import { Route } from '@angular/router/src/config';
 import 'rxjs/add/operator/takeWhile';
 
 
@@ -34,7 +32,7 @@ export class CreateActService {
       end: act.end,
       volunteer_time: act.volunteer_time,
       description: act.description,
-      etype: '1',
+      etype: 1,
       token: this.currentUser.token
     });
     console.log(body);

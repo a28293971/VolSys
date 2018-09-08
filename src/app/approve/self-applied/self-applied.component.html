@@ -33,28 +33,14 @@
             <td>{{act.start}}</td>
             <td>{{act.end}}</td>
             <td>{{act.created | date: 'yyyy-MM-dd'}}</td>
-<!--             <td class="opt-btn-box">
-              <ng-container *ngIf="!mobileAccess">
-                <button type="button" class="btn btn-primary" (click)="goToApprove(act)">B1</button>
-                <button type="button" class="btn btn-danger" (click)="deleteAct(act)" style="width: 5.5rem;">B2</button>
-              </ng-container> -->
-<!--               <ng-container *ngIf="mobileAccess">
-                <button type="button" class="btn btn-primary" (click)="goToApprove(act)">
-                  <i class="fa fa-pencil"></i>
-                </button>
-                <button type="button" class="btn btn-danger" (click)="deleteAct(act)">
-                  <i class="fa fa-trash"></i>
-                </button>
-              </ng-container> -->
-            <!-- </td> -->
           </tr>
         </ng-template>
         <ng-template pTemplate="rowexpansion" let-act>
           <tr>
             <td [attr.colspan]="5">
               <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
-                <div class="ui-g-12 ui-md-3" style="text-align:center">
-                  <img alt="file" src="assets/imgs/volunteersLogo-alpha.png" width="500">
+<!--                 <div class="ui-g-12 ui-md-3" style="text-align:center">
+                  <img alt="file" src="volunteer/uploads/{{act.files[0].name}}" style="width:100%;">
                 </div>
                 <div class="ui-g-12 ui-md-9">
                   <div class="ui-g">
@@ -66,6 +52,35 @@
                       <button type="button" class="btn btn-danger" (click)="deleteAct(act)" style="width: 5.5rem;">B2</button>
                     </div>
                   </div>
+                </div> -->
+                <div class="ui-md-3">
+                  <div class="ui-g">
+                    <div class="ui-md-6">
+                      <label>申请时间: {{act.volunteer_time}}</label>
+                    </div>
+                    <div class="ui-md-6">
+                      <!-- <input type="text" min="0" max="{{act.volunteer_time}}" style="width: 100%;"> -->
+                      <input required name="editTime" [(ngModel)]="act.editTime" #editTime="ngModel" type="number" style="width: 100%;"
+                      min="0" max="{{act.volunteer_time}}">
+                    </div>
+                    <div>{{editTime.valid}}</div>
+                  </div>
+                  <div class="ui-g">
+                    <div class="ui-md-6">
+                      <button class="btn btn-success" style="width: 100%;" (click)="editTime.valid&&approveActivity(act)">审批通过</button>
+                    </div>
+                    <div class="ui-md-6">
+                      <button class="btn btn-danger" style="width: 100%;">拒绝通过</button>
+                    </div>
+                  </div>
+                  <div class="ui-md-12">
+                    <div class="description">
+                      <p class="description" [innerHtml]="act.description | showEnterHtml"></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="ui-md-9">
+                  <img alt="file" src="volunteer/uploads/{{act.files[0].name}}" style="width:100%;">
                 </div>
               </div>
             </td>

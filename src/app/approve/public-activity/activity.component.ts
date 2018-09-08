@@ -26,8 +26,7 @@ export class ActivityComponent implements OnInit {
     { field: 'name', header: 'Name' },
     { field: 'timestamp', header: 'AplTime' }
     ];
-  public imgAdr: string;
-  public imgWid: number;
+
 
   constructor(
 /*     private activeRoute: ActivatedRoute, */
@@ -59,8 +58,6 @@ export class ActivityComponent implements OnInit {
       }
     ); */
     this.mobileAccess = this.activityService.CUser.mobileAccess;
-    this.imgAdr = 'volunteer/' + 'uploads/' + this.activityService.eInfo.files[0].name;
-    this.imgWid = document.body.clientWidth * 0.7;
   }
 
 /*   getActivityById(id: number) {
@@ -75,6 +72,7 @@ export class ActivityComponent implements OnInit {
   } */
 
   aprSingleMeb(mb: Member) {
+    console.log('-----in-----')
     const member = [{
       id: mb.id,
       approval: '1',
