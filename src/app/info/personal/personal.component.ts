@@ -80,7 +80,7 @@ export class PersonalComponent implements OnInit {
       }
 
     }else {
-      this.personalService.getRejectedActivities(this.currentUser.id, this.currentUser.token, -1)
+      /* this.personalService.getRejectedActivities(this.currentUser.id, this.currentUser.token, -1)
       .subscribe(
         data => {
           this.actRejecte = data.json().data.events;
@@ -103,7 +103,24 @@ export class PersonalComponent implements OnInit {
           this.actWaiting.forEach(this.trans2Date);
           this.actWaiting.sort(this.sortFunc);
         }
-      );
+      ); */
+
+      this.currentUser.events.forEach((val) => {
+        if (val.status === 1) {
+          val.timestamp = new Date(val.timestamp);
+          this.actAceppted.push(val);
+        }else if (val.status === 0) {
+          val.timestamp = new Date(val.timestamp);
+          this.actWaiting.push(val);
+        }else if (val.status === 2) {
+          val.timestamp = new Date(val.timestamp);
+          this.actRejecte.push(val);
+        }
+      });
+
+      this.actAceppted.sort(this.sortFunc);
+      this.actWaiting.sort(this.sortFunc);
+      this.actRejecte.sort(this.sortFunc);
 
     }
   }

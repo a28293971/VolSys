@@ -36,13 +36,13 @@ export class ApproveComponent implements OnInit {
         // this.act = data.json().data.events;
         // this.act.forEach((val, idx, arr) => val.idx = idx);
         data.json().data.events.forEach((val) => {
-          console.log(val.type);
+          // console.log(val.type);
           if (val.type === 1) {
             this.act.push(val);
-            console.log('---in---')
+            // console.log('---in---')
           }
         });
-        console.log(this.act);
+        // console.log(this.act);
         this.act.forEach((val, idx) => val.idx = idx);
     },
       error => console.log(error)

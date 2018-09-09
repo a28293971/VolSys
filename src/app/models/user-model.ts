@@ -12,4 +12,5 @@ export class User {
     description?: string;
     type?: number;
     isAdmin?: boolean;
+    events?: any[];
 }

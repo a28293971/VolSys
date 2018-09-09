@@ -10,8 +10,8 @@ import { CurrentUser } from '../../common/services/currentUser.data';
 @Injectable()
 export class PersonalService {
 
-  private body: JSON
-  private headers: Headers
+/*   private body: JSON
+  private headers: Headers */
   public currentUser: User
 
   constructor(

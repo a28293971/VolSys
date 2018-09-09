@@ -42,13 +42,10 @@ export class SelfAppliedService {
     });
   }
 
-  sendMembers(members: any[]) {
-/*     const body = JSON.stringify({
-      id: this.currentUser.id,
-      eid: this.eInfo.id,
-      token: this.currentUser.token,
-      members: members
-    });
+  sendMembers(body: any) {
+    body.id = this.currentUser.id;
+    body.token = this.currentUser.token;
+
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
     .post('/volunteer/approve-event', body, {headers: headers})
@@ -59,6 +56,6 @@ export class SelfAppliedService {
             return false;
         }
         return true;
-    }); */
+    });
   }
 }

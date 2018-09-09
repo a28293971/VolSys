@@ -9,7 +9,8 @@ export const infoRoutes = [
         children: [
             { path: '', redirectTo: 'personal', pathMatch: 'full' },
             { path: 'personal', component: PersonalComponent },
-            { path: 'msg', component: MsgComponent }
+            { path: 'msg', component: MsgComponent },
+            { path: 'change-password', loadChildren: './change-pwd/change-pwd.module#ChangePwdModule' }
         ]
     }
 ];

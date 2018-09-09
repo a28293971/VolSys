@@ -28,8 +28,8 @@ export class SelfAppliedComponent implements OnInit {
     .subscribe(
       data => {
         data.json().data.events.forEach((val, idx, arr) => {
-          if (val.type === 2) {
-            val.editTime = 0;
+          if (val.type === 2 && !val.members[0].status) {
+            val.editTime = val.volunteer_time;
             this.act.push(val);
           }
         });
@@ -41,6 +41,45 @@ export class SelfAppliedComponent implements OnInit {
   }
 
   public approveActivity(act) {
-    console.log(act);
+    if (act.editTime == null || act.editTime < 0 || act.editTime > act.volunteer_time) {
+      return;
+    }
+    // console.log(act);
+    const member = [{
+      id: act.members[0].id,
+      approval: '1',
+      ratio: act.editTime / act.volunteer_time,
+      time: act.editTime
+    }];
+    const data = {
+      members: member,
+      eid: act.id,
+    }
+    this.selfAppliedService.sendMembers(data)
+    .subscribe(
+      response => {
+        act.hide = 1;
+      },
+      error => console.log(error)
+    );
+  }
+
+  public rejectActivity(act) {
+    // console.log(act);
+    const member = [{
+      id: act.members[0].id,
+      approval: '0'
+    }];
+    const data = {
+      members: member,
+      eid: act.id,
+    }
+    this.selfAppliedService.sendMembers(data)
+    .subscribe(
+      response => {
+        act.hide = 1;
+      },
+      error => console.log(error)
+    );
   }
 }

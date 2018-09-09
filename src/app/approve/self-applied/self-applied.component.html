@@ -11,7 +11,7 @@
     
     <div class="content-section implementation compoment-box">
       <p-table [value]="act" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]"
-      dataKey="id">
+      dataKey="id" paginatorPosition="both">
         <ng-template let-act pTemplate="header">
           <tr>
             <th style="width: 3em"></th>
@@ -23,7 +23,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-act let-expanded="expanded">
           <!-- <tr *ngIf="!act.hide"> -->
-          <tr>
+          <tr *ngIf="!act.hide">
             <td style="text-align: center">
               <a href="#" [pRowToggler]="act">
                 <i [ngClass]="expanded ? 'fa fa-angle-down fa-2x' : 'fa fa-angle-right fa-2x'"></i>
@@ -36,41 +36,25 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="rowexpansion" let-act>
-          <tr>
+          <tr *ngIf="!act.hide">
             <td [attr.colspan]="5">
               <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
-<!--                 <div class="ui-g-12 ui-md-3" style="text-align:center">
-                  <img alt="file" src="volunteer/uploads/{{act.files[0].name}}" style="width:100%;">
-                </div>
-                <div class="ui-g-12 ui-md-9">
-                  <div class="ui-g">
-                    <div class="ui-g-12">
-                      <b>志愿时间</b> {{act.volunteer_time}}
-                    </div>
-                    <div class="ui-g-12 opt-btn-box">
-                      <button type="button" class="btn btn-primary" (click)="goToApprove(act)">B1</button>
-                      <button type="button" class="btn btn-danger" (click)="deleteAct(act)" style="width: 5.5rem;">B2</button>
-                    </div>
-                  </div>
-                </div> -->
                 <div class="ui-md-3">
                   <div class="ui-g">
                     <div class="ui-md-6">
                       <label>申请时间: {{act.volunteer_time}}</label>
                     </div>
                     <div class="ui-md-6">
-                      <!-- <input type="text" min="0" max="{{act.volunteer_time}}" style="width: 100%;"> -->
                       <input required name="editTime" [(ngModel)]="act.editTime" #editTime="ngModel" type="number" style="width: 100%;"
-                      min="0" max="{{act.volunteer_time}}">
+                      min="0" max="{{act.volunteer_time}}" oninput="value=value.replace(/[^\d.]/g,'')">
                     </div>
-                    <div>{{editTime.valid}}</div>
                   </div>
                   <div class="ui-g">
                     <div class="ui-md-6">
-                      <button class="btn btn-success" style="width: 100%;" (click)="editTime.valid&&approveActivity(act)">审批通过</button>
+                      <button class="btn btn-success" style="width: 100%;" (click)="approveActivity(act)">审批通过</button>
                     </div>
                     <div class="ui-md-6">
-                      <button class="btn btn-danger" style="width: 100%;">拒绝通过</button>
+                      <button class="btn btn-danger" style="width: 100%;"(click)="rejectActivity(act)" >拒绝通过</button>
                     </div>
                   </div>
                   <div class="ui-md-12">

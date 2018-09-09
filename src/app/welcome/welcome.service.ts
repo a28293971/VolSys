@@ -181,8 +181,14 @@ export class WelcomeService {
     })
     .map((response: Response) => {
       const ls = response.json().data.events;
-      localStorage.setItem('orgCreateActList', CryptoJS.AES.encrypt(JSON.stringify(ls), 'org').toString());
-      return ls.length;
+      let creatList = [];
+      ls.forEach((val) => {
+        if (val.type === 1) {
+          creatList.push(val);
+        }
+      });
+      localStorage.setItem('orgCreateActList', CryptoJS.AES.encrypt(JSON.stringify(creatList), 'org').toString());
+      return creatList.length;
     });
   }
 

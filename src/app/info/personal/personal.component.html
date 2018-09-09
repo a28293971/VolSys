@@ -15,6 +15,10 @@
           <div class="col-sm-offset-1">
             <h4><strong style="color:#00FF00">{{currentUser.volunteer_time[0]}}  </strong>小时</h4>
           </div>
+          <h3>上学年志愿时间总时长：</h3>
+          <div class="col-sm-offset-1">
+            <h4><strong style="color:rgb(255, 234, 0)">{{currentUser.volunteer_time[13]}}  </strong>小时</h4>
+          </div>
         </ng-container>
         <ng-container *ngIf="currentUser.isAdmin">
           <h3>组织描述：</h3>
@@ -22,6 +26,9 @@
             <h4>{{currentUser.description}}</h4>
           </div>
         </ng-container>
+        <div>
+          <button class="btn btn-warning" routerLink="/workspace/info/change-password">修改密码</button>  
+        </div>
       </p-tabPanel>
       <p-tabPanel header="已受审批的活动" *ngIf="!currentUser.isAdmin">
         <div class="content-section implementation">

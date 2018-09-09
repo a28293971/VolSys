@@ -48,7 +48,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>AplTime</th>
-            <th></th>
+            <th>Time</th>
             <th>Opt</th>
           </tr>
         </ng-template>
@@ -60,12 +60,12 @@
             <td>{{rowData.id}}</td>
             <td>{{rowData.name}}</td>
             <td>{{rowData.timestamp | date: 'yyyy-MM-dd hh:mm a'}}</td>
-            <td>
-              <input required name="vt" [(ngModel)]="rowData.ratio" #vt="ngModel" type="number" class="input-box"
-              value="1" min="0" max="1" step="0.1">
-              <div class="input-val-box" >{{actVolunteerTime*rowData.ratio | number: '1.0-2'}}</div>
-              <input type="number" class="input-box" value="1" min="0" max="1" step="0.1">
-              <div class="input-val-box">0</div>
+            <td style="text-align: center;">
+              <input required name="vt" [(ngModel)]="rowData.time" #vt="ngModel" type="number" class="input-box"
+              min="0" max="{{actVolunteerTime}}" oninput="value=value.replace(/[^\d.]/g,'')">
+              <!-- <div class="input-val-box" >{{actVolunteerTime*rowData.ratio | number: '1.0-2'}}</div> -->
+<!--               <input type="number" class="input-box" value="1" min="0" max="1" step="0.1">
+              <div class="input-val-box">0</div> -->
             </td>
             <td class="opt-btn-box">
               <ng-container *ngIf="!mobileAccess">
@@ -83,13 +83,13 @@
             </td>
           </tr>
         </ng-template>
-        <ng-template pTemplate="summary">
+<!--         <ng-template pTemplate="summary">
           <ul>
             <li *ngFor="let mb of selectedMembers" style="text-align: left">
               {{mb.id + ' - ' + mb.name}}
             </li>
           </ul>
-        </ng-template>
+        </ng-template> -->
       </p-table>
     </div>
     <br/>
@@ -109,7 +109,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>OptTime</th>
-            <th></th>
+            <th>Time</th>
             <th>Opt</th>
           </tr>
         </ng-template>
@@ -119,10 +119,10 @@
             <td>{{rowData.name}}</td>
             <td>{{rowData.timestamp | date: 'yyyy-MM-dd hh:mm a'}}</td>
             <td>
-              <input type="number" class="input-box" [value]="rowData.ratio" disabled="true">
-              <div class="input-val-box" >{{rowData.volunteer_time | number: '1.0-2'}}</div>
-              <input type="number" class="input-box" value="1" disabled="true">
-              <div class="input-val-box">0</div>
+              <input type="number" class="input-box" [value]="rowData.volunteer_time" disabled="true">
+<!--               <div class="input-val-box" >{{rowData.volunteer_time | number: '1.0-2'}}</div> -->
+<!--               <input type="number" class="input-box" value="1" disabled="true">
+              <div class="input-val-box">0</div> -->
             </td>
             <td class="opt-btn-box">
               <ng-container *ngIf="!mobileAccess">

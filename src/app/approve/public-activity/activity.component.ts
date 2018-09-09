@@ -42,6 +42,7 @@ export class ActivityComponent implements OnInit {
         if (val.status === 0) {
           val.idx = a++;
           val.hide = false;
+          val.time = this.actVolunteerTime;
           this.membersWaiting.push(val);
         }else {
           val.idx = b++;
@@ -72,12 +73,14 @@ export class ActivityComponent implements OnInit {
   } */
 
   aprSingleMeb(mb: Member) {
-    console.log('-----in-----')
+    // console.log('-----in-----')
+    if (mb.time == null || mb.time < 0 || mb.time > this.actVolunteerTime) {
+      return;
+    }
     const member = [{
       id: mb.id,
       approval: '1',
-      ratio: mb.ratio,
-      time: mb.ratio * this.actVolunteerTime
+      ratio: mb.time / this.actVolunteerTime
     }];
     this.activityService.sendMembers(member)
     .subscribe(
@@ -100,13 +103,19 @@ export class ActivityComponent implements OnInit {
 
   aprMutileMeb() {
     if (!this.selectedMembers) { return; }
+    for (const mb of this.selectedMembers) {
+      if (mb.time == null || mb.time < 0 || mb.time > this.actVolunteerTime) {
+        return;
+      }
+    }
+
     let members = [];
     this.selectedMembers.forEach((val, idx, mbs) =>
       members.push({
         id: val.id,
         approval: '1',
-        ratio: val.ratio,
-        time: val.ratio * this.actVolunteerTime
+        ratio: val.time / this.actVolunteerTime,
+        time: val.time
       }));
 
     this.activityService.sendMembers(members)
@@ -121,7 +130,7 @@ export class ActivityComponent implements OnInit {
               timestamp: new Date().toISOString(),
               status: 1,
               ratio: val.ratio,
-              volunteer_time: val.ratio * this.actVolunteerTime
+              volunteer_time: val.time
             });
           });
           this.selectedMembers = [];
