@@ -3,12 +3,12 @@
     <div class="col-xs-12 col-sm-4 col-sm-offset-4">
       <div class="title">修改密码</div>
       <form #form="ngForm" (ngSubmit)="form.form.valid&&changePwd()" novalidate class="form-horizontal" role="form">
-        <div class="form-group">
+        <div class="col-xs-12 col-sm-12 col-form-group">
           <label class="control-label">新的密码:</label>
           <input type="password" class="form-control" required minlength="8"
           name="password1" [(ngModel)]="pwd1" #password1="ngModel">
         </div>
-        <div class="form-group">
+        <div class="col-xs-12 col-sm-12 form-group">
           <label class="control-label">确认密码:</label>
           <input type="password" class="form-control" required minlength="8"
           name="password2" [(ngModel)]="pwd2" #password2="ngModel">
@@ -17,11 +17,13 @@
         && (!password1.valid || !password2.valid || dffrentInput)" class="text-danger" >
           请输入至少为8位的新密码，并且保证两次输入的密码一致！
         </div>
-        <div class="col-sm-offset-3 col-sm-3" style="text-align: center;">
-          <button class="btn btn-success" type="submit">确认修改</button>
-        </div>
-        <div class="col-sm-3" style="text-align: center;">
-          <button class="btn btn-danger" routerLink="/workspace/info/personal" type="button">取消修改</button>
+        <div class="col-xs-12 col-sm-12 form-group">
+          <div class="col-xs-6 col-sm-offset-3 col-sm-3" style="text-align: center;">
+            <button class="btn btn-success" type="submit">确认修改</button>
+          </div>
+          <div class="col-xs-6 col-sm-3" style="text-align: center;">
+            <button class="btn btn-danger" routerLink="/workspace/info/personal" type="button">取消修改</button>
+          </div>
         </div>
       </form>
     </div>

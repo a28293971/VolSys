@@ -80,7 +80,8 @@ export class ActivityComponent implements OnInit {
     const member = [{
       id: mb.id,
       approval: '1',
-      ratio: mb.time / this.actVolunteerTime
+      ratio: mb.time / this.actVolunteerTime,
+      time: mb.time
     }];
     this.activityService.sendMembers(member)
     .subscribe(
