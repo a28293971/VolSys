@@ -40,14 +40,12 @@ export class AppSideMenuComponent implements OnInit {
         if (this.currentUser.isAdmin) {
             this.menus[0].children.push({ name: "活动创建", icon: 'fa-podcast', route: 'act/createact' });
             this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr/list' });
-            this.menus[0].children.push({ name: "自主申请审批", icon: 'fa-user-circle', route: 'apr/self-applied-list' });
+            if (this.currentUser.type === 0) {
+                this.menus[0].children.push({ name: "自主申请审批", icon: 'fa-user-circle', route: 'apr/self-applied-list' });
+            }
         }else {
             this.menus[0].children.push({ name: "活动自主申请", icon: 'fa-plus-circle', route: 'act/apllyact' });
         }
-
-/*         this.menus[0].children.push({ name: "活动创建", icon: 'fa-podcast', route: 'act/createact' });
-        this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr/list' }); */
-        /* this.menus[0].children.unshift({ name: "活动自主申请", icon: 'fa-plus-circle', route: 'act/apllyact' }); */
 
         this.mobileAccess = this.CUser.mobileAccess;
     }

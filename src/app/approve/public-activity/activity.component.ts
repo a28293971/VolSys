@@ -94,7 +94,7 @@ export class ActivityComponent implements OnInit {
             timestamp: new Date().toISOString(),
             status: 1,
             ratio: mb.ratio,
-            volunteer_time: mb.ratio * this.actVolunteerTime
+            volunteer_time: mb.time
           });
         }
       },

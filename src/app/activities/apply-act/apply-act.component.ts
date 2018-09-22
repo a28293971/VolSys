@@ -22,11 +22,11 @@ export class ApplyActComponent implements OnInit {
     {
       id: '2740',
       name: '计算机科学与技术学院'
-    },
+    }/* ,
     {
       id: '2333',
       name: '商学院'
-    }
+    } */
   ];
 
   constructor(

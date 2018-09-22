@@ -38,33 +38,33 @@
         <ng-template pTemplate="rowexpansion" let-act>
           <tr *ngIf="!act.hide">
             <td [attr.colspan]="5">
-              <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
-                <div class="ui-md-3">
+              <div class="ui-g ui-fluid expansion-box">
+                <div class="ui-sm-12 ui-md-3">
                   <div class="ui-g">
-                    <div class="ui-md-6">
+                    <div class="ui-sm-6 ui-md-6">
                       <label>申请时间: {{act.volunteer_time}}</label>
                     </div>
-                    <div class="ui-md-6">
+                    <div class="ui-sm-6 ui-md-6">
                       <input required name="editTime" [(ngModel)]="act.editTime" #editTime="ngModel" type="number" style="width: 100%;"
                       min="0" max="{{act.volunteer_time}}" oninput="value=value.replace(/[^\d.]/g,'')">
                     </div>
                   </div>
                   <div class="ui-g">
-                    <div class="ui-md-6">
+                    <div class="ui-sm-6 ui-md-6">
                       <button class="btn btn-success" style="width: 100%;" (click)="approveActivity(act)">审批通过</button>
                     </div>
-                    <div class="ui-md-6">
+                    <div class="ui-sm-6 ui-md-6">
                       <button class="btn btn-danger" style="width: 100%;"(click)="rejectActivity(act)" >拒绝通过</button>
                     </div>
                   </div>
-                  <div class="ui-md-12">
+                  <div class="ui-sm-12 ui-md-12">
                     <div class="description">
                       <p class="description" [innerHtml]="act.description | showEnterHtml"></p>
                     </div>
                   </div>
                 </div>
-                <div class="ui-md-9">
-                  <img alt="file" src="uploads/{{act.files[0].name}}" style="width:100%;">
+                <div class="ui-sm-12 ui-md-9">
+                  <img alt="file" src="volunteer/uploads/{{act.files[0].name}}" style="width:100%;">
                 </div>
               </div>
             </td>

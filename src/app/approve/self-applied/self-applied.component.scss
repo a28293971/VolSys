@@ -13,6 +13,10 @@ div.description {
     border-radius: 0.35rem
 }
 
+.expansion-box {
+    padding: 20px;
+}
+
 p.description {
     word-break:break-all;
     word-wrap:break-word;
@@ -23,5 +27,8 @@ p.description {
 @media(max-width: 640px) {
     .compoment-box {
         padding: 0px 0.5rem;
+    }
+    .expansion-box {
+        padding: 0px;
     }
 }
