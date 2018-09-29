@@ -20,7 +20,7 @@ export class ApplyActComponent implements OnInit {
   public selectItem: string;
   public selectMenu = [
     {
-      id: '2740',
+      id: '274',
       name: '计算机科学与技术学院'
     }/* ,
     {

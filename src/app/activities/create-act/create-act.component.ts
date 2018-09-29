@@ -29,7 +29,6 @@ export class CreateActComponent implements OnInit {
     this.currentUser = this.createActService.currentUser;
     this.act.start = new Date().toISOString().substr(0, 10);
     // console.log(this.act.end);
-    // this.college = toCollege(this.currentUser.college);
   }
 
   createAct() {

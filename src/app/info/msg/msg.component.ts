@@ -7,7 +7,7 @@ import { MsgService } from './msg.service';
   styleUrls: ['./msg.component.scss']
 })
 export class MsgComponent implements OnInit {
-
+  // public totalRecords: number;
   msgList: any[] = [];
 
   constructor(

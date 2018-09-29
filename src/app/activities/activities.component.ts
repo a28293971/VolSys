@@ -4,7 +4,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Activity } from '../models/activity-model';
 import { ActivityService } from './activities.service';
 import { ConfirmationService } from 'primeng/components/common/api';
-// import { toCollege } from '../pipe/toCollege.func';
 import { flyIn } from '../animations/fly-in';
 
 @Component({
