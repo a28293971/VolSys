@@ -55,7 +55,7 @@ export class ApplyActService {
       description: act.description,
       token: this.currentUser.token
     });
-    console.log(body);
+    // console.log(body);
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
     .post('/volunteer/create-personal-event', body, {headers: headers});

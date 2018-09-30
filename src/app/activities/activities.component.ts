@@ -73,10 +73,10 @@ export class ActivitiesComponent implements OnInit {
           const value = data.json();
           if (value.sysinfo.auth) {
             act.hadApl = true;
-            console.log('succees to join the act');
+            // console.log('succees to join the act');
             alert('活动申请成功！');
           }else {
-            console.log('failed to join');
+            // console.log('failed to join');
             alert('活动申请失败！');
           }
         },
@@ -102,7 +102,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   openCheck(event) {
-    console.log(event);
+    // console.log(event);
 /*     console.log(idx);
     console.log(eid); */
 /*     if (this.hadAplAct.findIndex((value, index, arr) => value.id === eid) !== -1) {
@@ -111,7 +111,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   cancelJoinAct(act: Activity) {
-    console.log('fuck!');
+    // console.log('fuck!');
     act.hadApl = false;
   }
 

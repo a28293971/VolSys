@@ -24,7 +24,7 @@ export class LoginService {
   ) { }
 
   public login(user: User) {
-    console.log(user);
+    // console.log(user);
 /*     let obj = '';
     if (user.id[0] === '1') {
       obj = 'org';
@@ -70,7 +70,7 @@ export class LoginService {
 
 
   public logout(): void {
-    console.log('--------succees logout!-----------');
+    // console.log('--------succees logout!-----------');
     localStorage.clear();
     // this.http.get('http://192.168.148.6');
     this.authGuard.isLoggedIn = false;

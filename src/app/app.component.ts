@@ -84,7 +84,7 @@ export class AppComponent implements OnInit, OnDestroy {
                     this.authGuard.isAdmin = true;
                 } */
                 this.router.navigateByUrl('/workspace/welcome');
-                console.log('--------succees login!-----------');
+                // console.log('--------succees login!-----------');
             },
             error => console.error(error)
             );
@@ -93,7 +93,7 @@ export class AppComponent implements OnInit, OnDestroy {
         // this.translate.setDefaultLang('zh');
 
         // const browserLang = this.translate.getBrowserLang();
-        console.log('app-root初始化成功!');
+        // console.log('app-root初始化成功!');
         // console.log('检测到的浏览器语言>' + browserLang);
         // this.translate.use(browserLang.match(/zh|en/) ? browserLang : 'zh');
     }

@@ -35,7 +35,7 @@ export class CreateActService {
       etype: 1,
       token: this.currentUser.token
     });
-    console.log(body);
+    // console.log(body);
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
     .post('/volunteer/create-event', body, {headers: headers})
