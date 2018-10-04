@@ -1,6 +1,6 @@
 {
     "**": {
-        "target": "http://192.168.148.6",
+        "target": "http://cssus.suda.edu.cn/",
         "secure":false,
         "changeOrigin": true
     }

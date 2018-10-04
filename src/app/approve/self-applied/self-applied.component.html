@@ -19,6 +19,7 @@
             <th>开始时间</th>
             <th>结束时间</th>
             <th>申请时间</th>
+            <th>申请学生</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-act let-expanded="expanded">
@@ -33,11 +34,12 @@
             <td>{{act.start}}</td>
             <td>{{act.end}}</td>
             <td>{{act.created | date: 'yyyy-MM-dd'}}</td>
+            <td>{{act.members[0].id+' '+act.members[0].name}}</td>
           </tr>
         </ng-template>
         <ng-template pTemplate="rowexpansion" let-act>
           <tr *ngIf="!act.hide">
-            <td [attr.colspan]="5">
+            <td [attr.colspan]="6">
               <div class="ui-g ui-fluid expansion-box">
                 <div class="ui-sm-12 ui-md-3">
                   <div class="ui-g">
