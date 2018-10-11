@@ -1,0 +1,48 @@
+.compoment-box {
+    padding: 0px 1.25rem;
+    // padding-right: 1.25rem;
+}
+
+.global-box {
+    text-align: right;
+
+    input {
+        width: 14.36rem;
+        margin-left: 0.6rem;
+    }
+}
+
+.selectBox {
+    float: left;
+
+    select {
+        font-size: 0.8rem;
+        margin-bottom: 0px;
+    }
+}
+
+.exportBtn {
+    float: left;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    margin-top: 0.035rem;
+    margin-left: 0.25rem;
+}
+
+@media(max-width: 640px) {
+    .compoment-box {
+        padding: 0px 0.5rem;
+    }
+    .global-box {
+        // text-align: left;
+        padding-top: 0.25rem;
+        // margin: 0px;
+        // clear: both;
+        // width: 18rem;
+        float: none;
+        input {
+            width: 11.8rem;
+        }
+    }
+    
+}

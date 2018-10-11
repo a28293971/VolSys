@@ -11,7 +11,8 @@ export const workspaceRoutes = [
             { path: 'act', loadChildren: '../activities/activities.module#ActivitiesModule' },
             { path: 'info', loadChildren: '../info/info.module#InfoModule' },
             { path: 'apr', loadChildren: '../approve/approve.module#ApproveModule' },
-            { path: 'help', loadChildren: '../help/help.module#HelpModule' }
+            { path: 'help', loadChildren: '../help/help.module#HelpModule' },
+            { path: 'user-records', loadChildren: '../user-records/user-records.module#UserRecordsModule' }
         ]
     }
 ];

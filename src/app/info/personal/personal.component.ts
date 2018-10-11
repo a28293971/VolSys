@@ -22,7 +22,7 @@ export class PersonalComponent implements OnInit {
   actAceppted: Activity[] = [];
   actWaiting: Activity[] = [];
   actRejecte: Activity[] = [];
-  actCreat: Activity[];
+  actCreat: Activity[] = [];
   currentUser: User;
 
   constructor(
@@ -64,20 +64,20 @@ export class PersonalComponent implements OnInit {
       ); */
       let tmp = localStorage.getItem('orgCreateActList');
       if (tmp) {
-        this.actCreat = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('orgCreateActList'), 'org').toString(CryptoJS.enc.Utf8));
-        localStorage.removeItem('orgCreateActList');
+        this.actCreat = JSON.parse(CryptoJS.AES.decrypt(tmp, 'org').toString(CryptoJS.enc.Utf8));
+        // localStorage.removeItem('orgCreateActList');
         this.actCreat.forEach(this.trans2Date);
         this.actCreat.sort(this.sortFunc);
-      }else {
+      }/* else {
         this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token, -1)
-      .subscribe(
-        data => {
-          this.actCreat = data.json().data.events;
-          this.actCreat.forEach(this.trans2Date);
-          this.actCreat.sort(this.sortFunc);
-        }
-      );
-      }
+        .subscribe(
+          data => {
+            this.actCreat = data.json().data.events;
+            this.actCreat.forEach(this.trans2Date);
+            this.actCreat.sort(this.sortFunc);
+          }
+        );
+      } */
 
     }else {
       /* this.personalService.getRejectedActivities(this.currentUser.id, this.currentUser.token, -1)

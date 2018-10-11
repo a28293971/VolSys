@@ -103,11 +103,13 @@
                 <div class="ui-sm-12 ui-md-12 car-details">
                   <div class="ui-g">
                     <div class="ui-sm-12 ui-md-2">活动名字:</div>
-                    <div class="ui-sm-12 ui-md-10">{{act.name}}</div>
+                    <div class="ui-sm-12 ui-md-4">{{act.name}}</div>
+                    <div class="ui-sm-4 ui-md-2">开始时间:</div>
+                    <div class="ui-sm-8 ui-md-4">{{act.start | date: 'yyyy-MM-dd'}}</div>
                     <div class="ui-sm-4 ui-md-2">志愿时间:</div>
                     <div class="ui-sm-8 ui-md-4">{{act.volunteer_time}}</div>
                     <div class="ui-sm-4 ui-md-2">结束时间:</div>
-                    <div class="ui-sm-8 ui-md-4">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                    <div class="ui-sm-8 ui-md-4">{{act.end | date: 'yyyy-MM-dd'}}</div>
                   </div>
                 </div>
               </div>

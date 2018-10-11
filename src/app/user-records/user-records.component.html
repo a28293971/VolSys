@@ -1,0 +1,74 @@
+<div class="user-table-container" [@flyIn]="'active'">
+  <div class="compoment-backgroud">
+    <br/>
+    <h3 style="text-align: center">全体用户志愿时间</h3>
+    <br/>
+    <div class="content-section implementation compoment-box">
+      <p-table #dt [columns]="col" [value]="displayDaya" [globalFilterFields]="['id','name']"
+      [paginator]="true" [rows]="10" paginatorPosition="both" [rowsPerPageOptions]="[10,15,25,50]">
+        <ng-template pTemplate="caption">
+          <div>
+            <div class="selectBox">
+              <select  [(ngModel)]="selected"  (ngModelChange)="selectChanged($event)">
+                <option *ngFor="let type of selectMenu" [value]="type.val">{{type.name}}</option>
+              </select>
+            </div>
+            <button type="button" (click)="canIExport()&&dt.exportCSV()" class="btn btn-info exportBtn">
+              导出当前数据
+              <i class="fa fa-file-o"></i>
+            </button>
+
+            <div class="global-box">
+              <label>条目搜索</label>
+              <input type="text" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')">
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th rowspan="3">学号</th>
+            <th rowspan="3">姓名</th>
+            <th colspan="12">历史志愿时间(当前学年)</th>
+            <th rowspan="3">上一学年志愿时间</th>
+            <th rowspan="3">这一学年志愿时间</th>
+          </tr>
+          <tr>
+            <th>9月</th>
+            <th>10月</th>
+            <th>11月</th>
+            <th>12月</th>
+            <th>1月</th>
+            <th>2月</th>
+            <th>3月</th>
+            <th>4月</th>
+            <th>5月</th>
+            <th>6月</th>
+            <th>7月</th>
+            <th>8月</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr style="word-wrap:break-word;">
+            <td>{{rowData.id}}</td>
+            <td>{{rowData.name}}</td>
+            <td>{{rowData.volunteer_time[9]}}</td>
+            <td>{{rowData.volunteer_time[10]}}</td>
+            <td>{{rowData.volunteer_time[11]}}</td>
+            <td>{{rowData.volunteer_time[12]}}</td>
+            <td>{{rowData.volunteer_time[1]}}</td>
+            <td>{{rowData.volunteer_time[2]}}</td>
+            <td>{{rowData.volunteer_time[3]}}</td>
+            <td>{{rowData.volunteer_time[4]}}</td>
+            <td>{{rowData.volunteer_time[5]}}</td>
+            <td>{{rowData.volunteer_time[6]}}</td>
+            <td>{{rowData.volunteer_time[7]}}</td>
+            <td>{{rowData.volunteer_time[8]}}</td>
+            <td>{{rowData.volunteer_time[13]}}</td>
+            <td>{{rowData.volunteer_time[0]}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <br/><br/>
+  </div>
+</div>
