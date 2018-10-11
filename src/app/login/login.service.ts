@@ -57,7 +57,6 @@ export class LoginService {
               // localStorage.setItem('userActivities', JSON.stringify(nUser.events));
             }
             // delete nUser.events;
-            console.log(nUser);
             localStorage.setItem('currentUser', CryptoJS.AES.encrypt(JSON.stringify(nUser), 'fuck').toString());
             this.CUser.update();
             // this.subject.next(Object.assign({}, nUser));
