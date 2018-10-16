@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { ActivatedRoute } from '@angular/router';
 
 import { ActivityService } from './activity.service';
+import { ConfirmationService } from 'primeng/components/common/api';
 
 import { Member } from '../../models/member-model';
 
@@ -30,7 +31,8 @@ export class ActivityComponent implements OnInit {
 
   constructor(
 /*     private activeRoute: ActivatedRoute, */
-    private activityService: ActivityService
+    private activityService: ActivityService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -194,6 +196,45 @@ export class ActivityComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  undoOpt(mb: Member) {
+    this.confirmationService.confirm({
+      message: `请问你确定要撤销对这个同学的操作吗`,
+      accept: () => {
+        const member = [{
+          id: mb.id,
+          approval: '0',
+        }];
+        this.activityService.sendMembers(member)
+        .subscribe(
+          data => {
+            if (data.json().sysinfo.auth) {
+              let idxDone = this.membersDone.findIndex((val) => val.id === mb.id);
+              let idxWaiting = this.membersWaiting.findIndex((val) => val.id === mb.id);
+              if (idxDone !== -1) {
+                this.membersDone.splice(idxDone, 1);
+                if (idxWaiting !== -1) {
+                  this.membersWaiting[idxWaiting].hide = false;
+                }else {
+                  this.membersWaiting.push({
+                    id: mb.id,
+                    name: mb.name,
+                    timestamp: new Date().toISOString(),
+                    status: 2,
+                    ratio: 0,
+                    time: this.actVolunteerTime
+                  });
+                }
+              }else {
+                console.log('can not found the val');
+              }
+            }
+          },
+          error => console.log(error)
+        );
+      }
+    });
   }
 
 }
