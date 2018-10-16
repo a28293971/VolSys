@@ -146,7 +146,7 @@ export class ActivityComponent implements OnInit {
   rejSingleMeb(mb: Member) {
     const member = [{
       id: mb.id,
-      approval: '0'
+      approval: '2'
     }];
     this.activityService.sendMembers(member)
     .subscribe(
@@ -173,7 +173,7 @@ export class ActivityComponent implements OnInit {
     this.selectedMembers.forEach((val, idx, mbs) =>
       members.push({
         id: val.id,
-        approval: '0'
+        approval: '2'
       }));
 
     this.activityService.sendMembers(members)

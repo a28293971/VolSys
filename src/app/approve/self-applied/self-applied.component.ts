@@ -68,7 +68,7 @@ export class SelfAppliedComponent implements OnInit {
     // console.log(act);
     const member = [{
       id: act.members[0].id,
-      approval: '0'
+      approval: '2'
     }];
     const data = {
       members: member,
