@@ -112,7 +112,7 @@ export class PersonalComponent implements OnInit {
         }else if (val.status === 0) {
           val.timestamp = new Date(val.timestamp);
           this.actWaiting.push(val);
-        }else if (val.status === 2) {
+        }else if (val.status === 2 || val.status === 4) {
           val.timestamp = new Date(val.timestamp);
           this.actRejecte.push(val);
         }

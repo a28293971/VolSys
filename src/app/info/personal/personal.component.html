@@ -62,8 +62,8 @@
                   <div class="ui-g">
                     <div class="ui-sm-12 ui-md-2">活动名字:</div>
                     <div class="ui-sm-12 ui-md-10">{{act.name}}</div>
-                    <div class="ui-sm-4 ui-md-2">志愿时间:</div>
-                    <div class="ui-sm-8 ui-md-10">{{act.volunteer_time}}</div>
+                    <!-- <div class="ui-sm-4 ui-md-2">志愿时间:</div> -->
+                    <!-- <div class="ui-sm-8 ui-md-10">{{act.volunteer_time}}</div> -->
                     <div class="ui-sm-4 ui-md-2">申请时间:</div>
                     <div class="ui-sm-8 ui-md-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
                   </div>
@@ -86,9 +86,19 @@
                   <div class="ui-g">
                     <div class="ui-sm-12 ui-md-2">活动名字:</div>
                     <div class="ui-sm-12 ui-md-10">{{act.name}}</div>
-                    <div class="ui-sm-4 ui-md-2">拒绝时间:</div>
-                    <div class="ui-sm-8 ui-md-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                    <ng-container *ngIf="act.status == 2">
+                      <div class="ui-sm-4 ui-md-2">拒绝时间:</div>
+                      <div class="ui-sm-8 ui-md-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                    </ng-container>
+                    <ng-container *ngIf="act.status == 4">
+                      <div class="ui-sm-4 ui-md-2">删除时间:</div>
+                      <div class="ui-sm-8 ui-md-10">{{act.timestamp | date: 'yyyy-MM-dd'}}</div>
+                    </ng-container>
                   </div>
+                </div>
+                <div class="ui-sm-12 ui-md-3">
+                  <button type="button" class="btn btn-danger" *ngIf="act.status == 2" [disabled]="true">审批被拒绝</button>
+                  <button type="button" class="btn btn-danger" *ngIf="act.status == 4" [disabled]="true">活动已被删除</button>
                 </div>
               </div>
             </ng-template>

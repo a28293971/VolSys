@@ -161,6 +161,7 @@ export class WelcomeService {
     });
   }
 
+  // 在login的时候 events列表里没有start和end时间信息，所以要手工getEvent一次
   getActNum() {
     const body = JSON.stringify({
       id: this.currentUser.id,
