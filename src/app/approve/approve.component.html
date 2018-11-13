@@ -10,8 +10,9 @@
     <br/>
     
     <div class="content-section implementation compoment-box">
-      <p-table [value]="act">
-        <ng-template let-act pTemplate="header">
+      <p-table [value]="act" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,15,25,50]"
+      paginatorPosition="both">
+        <ng-template pTemplate="header">
           <tr>
             <th>活动名称</th>
             <th>志愿时间</th>
@@ -19,21 +20,21 @@
             <th>操作</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-act>
-          <tr *ngIf="!act.hide">
-            <td>{{act.name}}</td>
-            <td>{{act.volunteer_time}}</td>
-            <td>{{act.end}}</td>
+        <ng-template pTemplate="body" let-rowData>
+          <tr *ngIf="!rowData.hide">
+            <td>{{rowData.name}}</td>
+            <td>{{rowData.volunteer_time}}</td>
+            <td>{{rowData.end}}</td>
             <td class="opt-btn-box">
               <ng-container *ngIf="!mobileAccess">
-                <button type="button" class="btn btn-primary" (click)="goToApprove(act)">进入审批界面</button>
-                <button type="button" class="btn btn-danger" (click)="deleteAct(act)" style="width: 5.5rem;">删除活动</button>
+                <button type="button" class="btn btn-primary" (click)="goToApprove(rowData)">进入审批界面</button>
+                <button type="button" class="btn btn-danger" (click)="deleteAct(rowData)" style="width: 5.5rem;">删除活动</button>
               </ng-container>
               <ng-container *ngIf="mobileAccess">
-                <button type="button" class="btn btn-primary" (click)="goToApprove(act)">
+                <button type="button" class="btn btn-primary" (click)="goToApprove(rowData)">
                   <i class="fa fa-pencil"></i>
                 </button>
-                <button type="button" class="btn btn-danger" (click)="deleteAct(act)">
+                <button type="button" class="btn btn-danger" (click)="deleteAct(rowData)">
                   <i class="fa fa-trash"></i>
                 </button>
               </ng-container>

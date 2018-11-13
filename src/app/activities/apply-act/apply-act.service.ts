@@ -43,6 +43,20 @@ export class ApplyActService {
     );
   }
 
+/*   afterUpload(res) {
+    let data = JSON.parse(res);
+    if (data.sysinfo.tokenUpdate) {
+      this.router.navigateByUrl('login');
+    }else {
+      if (data.sysinfo.fileAccepted) {
+        alert("活动申请成功!");
+        this.router.navigateByUrl('workspace/act/activities');
+      }else {
+        alert("活动申请失败 文件上传失败 请重试!");
+      }
+    }
+  } */
+
   apply(act: ApplyAct) {
     const body = JSON.stringify({
       id: this.currentUser.id,

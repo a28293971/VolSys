@@ -7,7 +7,7 @@
     <h4 style="text-align:center; color:red; padding: 0px 30px 0px 30px;">
       注意！   请正确填好所申请的志愿时间，并且将活动主办方所颁发的证明清晰地拍下来后上传。
     </h4>
-      <form #form="ngForm" (ngSubmit)="form.form.valid && selectItem!='' && apllyAct()" novalidate class="form-inline form-horizontal" role="form">
+      <form #form="ngForm" (ngSubmit)="form.form.valid && selectItem!='' && fileHadSelected && apllyAct()" novalidate class="form-inline form-horizontal" role="form">
         <div class="form-group">
           <div class="col-xs-12 col-sm-12 form-group">
             <div class="col-xs-12 col-sm-6">
@@ -55,13 +55,12 @@
               </div>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-6 form-group" [ngClass]="{ 'has-error': form.submitted && !F.valid }">
+          <div class="col-xs-12 col-sm-6 form-group" [ngClass]="{ 'has-error': form.submitted && !fileHadSelected }">
             <label class="col-xs-3 col-sm-3 control-label">附件:</label>
-            <div class="col-xs-12 col-sm-4" [ngClass]="{'text-danger': form.submitted && !F.valid}">
-              <input type="file" required name="F" (change)="fuck($event)" [(ngModel)]="act.other" #F="ngModel" style="font-size: 0.9rem"
+            <div class="col-xs-12 col-sm-4" [ngClass]="{'text-danger': form.submitted && !fileHadSelected}">
+                <!-- <input type="file" ng2FileSelect [uploader]="uploader" required single style="font-size: 0.9rem"/> -->
+              <input type="file" (change)="fuck($event)" required style="font-size: 0.9rem"
               accept="image/x-png,image/gif,image/jpeg,image/bmp">
-              <!-- <input type="file" required #F (change)="fuck($event)"  style="height:3.4rem" [ngClass]="{'text-danger': form.submitted && !F.target.files}"> -->
-              <!-- <input type="file" required name="F" #F="ngModel" [(ngModel)]="act.other" style="height:34px" (change)="fileWork($event)"> -->
             </div>
           </div>
           <div class="col-xs-12 col-sm-12 form-group" [ngClass]="{ 'has-error': form.submitted && !describe.valid }">

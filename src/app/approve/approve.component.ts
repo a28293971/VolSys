@@ -32,17 +32,13 @@ export class ApproveComponent implements OnInit {
     this.approveService.getNeedApproveActivities()
     .subscribe(
       data => {
-        // let events = data.json().data.events;
-        // this.act = data.json().data.events;
-        // this.act.forEach((val, idx, arr) => val.idx = idx);
+        let tmp = [];
         data.json().data.events.forEach((val) => {
-          // console.log(val.type);
           if (val.type === 1) {
-            this.act.push(val);
-            // console.log('---in---')
+            tmp.push(val);
           }
         });
-        // console.log(this.act);
+        this.act = tmp;
         this.act.forEach((val, idx) => val.idx = idx);
     },
       error => console.log(error)

@@ -27,12 +27,14 @@ export class SelfAppliedComponent implements OnInit {
     this.selfAppliedService.getNeedApproveActivities()
     .subscribe(
       data => {
+        let tmp = [];
         data.json().data.events.forEach((val, idx, arr) => {
           if (val.type === 2 && !val.members[0].status) {
             val.editTime = val.volunteer_time;
-            this.act.push(val);
+            tmp.push(val);
           }
         });
+        this.act = tmp;
       },
       error => console.log(error)
     );

@@ -8,6 +8,7 @@ import { ActivitiesComponent } from './activities.component';
 import { DataScrollerModule } from 'primeng/components/datascroller/datascroller';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { AccordionModule } from 'primeng/components/accordion/accordion';
+// import { FileUploadModule } from 'ng2-file-upload';
 
 import { ActivityService } from './activities.service';
 import { ApplyActService } from './apply-act/apply-act.service';
