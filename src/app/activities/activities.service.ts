@@ -35,7 +35,25 @@ export class ActivityService {
 /*         return this.http
         .get('mock-data/activities.json') */
         .takeWhile((response: Response) => {
-            if (response.json().sysinfo.tokenUpdate) {
+            if (!!response.json().sysinfo.tokenUpdate) {
+                this.router.navigateByUrl('login');
+                return false;
+            }
+            return true;
+        });
+    }
+
+    getUserEvnetList() {
+        const body = JSON.stringify({
+            id: this.currentUser.id,
+            token: this.currentUser.token
+          });
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http
+        .post('/volunteer/get-user-events', body, {headers: headers})
+        .takeWhile((response: Response) => {
+            // console.log(response.json());
+            if (!!response.json().sysinfo.tokenUpdate) {
                 this.router.navigateByUrl('login');
                 return false;
             }
@@ -56,7 +74,8 @@ export class ActivityService {
         return this.http.post("/volunteer/join-event", body, {headers: headers})
         // return this.http.get('mock-data/allAccept.json')
         .takeWhile((response: Response) => {
-            if (response.json().sysinfo.tokenUpdate) {
+            let sysinfo = response.json().sysinfo;
+            if (!!sysinfo.tokenUpdat || !sysinfo.auth) {
                 this.router.navigateByUrl('login');
                 return false;
             }
@@ -64,7 +83,26 @@ export class ActivityService {
         });
     }
 
-    getHadAplAct0(count: Number = 10) {
+    cancelJoinEvent(act: Activity) {
+        const body = JSON.stringify({
+            id: this.currentUser.id,
+            eid: act.id,
+            token: this.currentUser.token
+          });
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.post("/volunteer/cancel-join-event", body, {headers: headers})
+        // return this.http.get('mock-data/allAccept.json')
+        .takeWhile((response: Response) => {
+            let sysinfo = response.json().sysinfo;
+            if (!sysinfo.auth) {
+                this.router.navigateByUrl('login');
+                return false;
+            }
+            return true;
+        });
+    }
+
+    /* getHadAplAct0(count: Number = 10) {
         const body = JSON.stringify({
             id: this.currentUser.id,
             token: this.currentUser.token,
@@ -75,8 +113,8 @@ export class ActivityService {
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
         .post('/volunteer/get-event', body, {headers: headers})
-/*         return this.http
-        .get('mock-data/activities-hadApl.json') */
+        return this.http
+        .get('mock-data/activities-hadApl.json')
         .takeWhile((response: Response) => {
             if (response.json().sysinfo.tokenUpdate) {
                 this.router.navigateByUrl('login');
@@ -96,8 +134,8 @@ export class ActivityService {
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
         .post('/volunteer/get-event', body, {headers: headers})
-/*         return this.http
-        .get('mock-data/activities-hadApl.json') */
+        return this.http
+        .get('mock-data/activities-hadApl.json')
         .takeWhile((response: Response) => {
             if (response.json().sysinfo.tokenUpdate) {
                 this.router.navigateByUrl('login');
@@ -118,8 +156,8 @@ export class ActivityService {
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
         .post('/volunteer/get-event', body, {headers: headers})
-/*         return this.http
-        .get('mock-data/activities-hadApl.json') */
+        return this.http
+        .get('mock-data/activities-hadApl.json')
         .takeWhile((response: Response) => {
             if (response.json().sysinfo.tokenUpdate) {
                 this.router.navigateByUrl('login');
@@ -127,7 +165,7 @@ export class ActivityService {
             }
             return true;
         });
-    }
+    } */
 
     reportAct(act: Activity) {
         const data = JSON.stringify({

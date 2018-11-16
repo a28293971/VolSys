@@ -41,15 +41,21 @@
                     </div>
                     <div class="col-xs-12 col-sm-2 btn-box" *ngIf="!isAdmin">
                       <div class="col-xs-6 col-sm-12">
-                      <button type="button" class="btn btn-primary" style="margin-top: 0.0875rem;margin-bottom: 0.0875rem;width:100%;"
-                      (click)="joinAct(act)" [disabled]="act.hadApl">
-                        申请活动
-                      </button>
+                        <button type="button" class="btn btn-primary" style="margin-top: 0.0875rem;margin-bottom: 0.0875rem;width:100%;"
+                        (click)="joinAct(act)" [disabled]="act.disabled" *ngIf="act.status === -1 || act.status === 3">
+                          申请活动
+                          <i class="fa fa-spinner fa-pulse" *ngIf="act.loading"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger" style="margin-top: 0.0875rem;margin-bottom: 0.0875rem;width:100%;"
+                        (click)="cancelJoinAct(act)" [disabled]="act.disabled" *ngIf="act.status === 0">
+                          取消申请
+                          <i class="fa fa-spinner fa-pulse" *ngIf="act.loading"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" style="margin-top: 0.0875rem;margin-bottom: 0.0875rem;width:100%;"
+                        disabled="true" *ngIf="act.status === 1 || act.status === 2">
+                          活动已被操作
+                        </button>
                       </div>
-<!--                       <button type="button" class="btn btn-danger" style="margin-top: 0.125em;margin-bottom: 0.125em;"
-                      (click)="cancelJoinAct(act)" *ngIf="act.hadApl == true">
-                        取消申请
-                      </button> -->
                       <div class="col-xs-6 col-sm-12">
                       <button type="button" class="btn btn-warning" style="margin-top: 0.0875rem;margin-bottom: 0.0875rem;width:100%;"
                       (click)="report(act)">

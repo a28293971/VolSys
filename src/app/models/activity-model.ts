@@ -14,8 +14,9 @@ export class Activity {
     status?: number;
     type?: string;
     token?: string;
-    hadApl?: boolean;
     idx?: number;
     hide?: boolean;
     files?: any[];
+    loading?: boolean;
+    disabled?: boolean;
 }
