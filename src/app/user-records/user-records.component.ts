@@ -38,6 +38,7 @@ export class UserRecordsComponent implements OnInit {
     { field: 'volunteer_time.8', header: '8月' },
     { field: 'volunteer_time.0', header: '志愿时间' },
   ];
+  public exportName = 'volTime' + new Date().toLocaleString();
 
   constructor(
     private userRecordsService: UserRecordsService

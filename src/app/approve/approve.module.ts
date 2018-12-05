@@ -7,6 +7,7 @@ import { ActivityComponent } from './public-activity/activity.component';
 import { SelfAppliedComponent } from './self-applied/self-applied.component';
 import { TableModule } from 'primeng/components/table/table';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
+import { TabViewModule } from 'primeng/components/tabview/tabview';
 import { MainPipe } from '../pipe/main-pipe.module';
 
 import { approveRoutes } from './approve.routes';
@@ -23,7 +24,8 @@ import { ConfirmationService } from 'primeng/components/common/api';
     ConfirmDialogModule,
     FormsModule,
     RouterModule.forChild(approveRoutes),
-    MainPipe
+    MainPipe,
+    TabViewModule
   ],
   declarations: [
     ApproveComponent,

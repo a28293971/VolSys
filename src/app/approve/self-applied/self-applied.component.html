@@ -1,79 +1,155 @@
 <div class="user-table-container" [@flyIn]="'active'">
-  <div class="compoment-backgroud">
-    <div class="row">
-      <div class="col-md-offset-4 col-md-4">
-        <h3 class="center-block" style="text-align: center;margin-bottom: 20px;font-size: 32px;">
-          自主申请活动列表
-        </h3>
+  <p-tabView>
+    <p-tabPanel header="待处理的申请列表">
+      <div class="compoment-backgroud">
+<!--         <div class="row">
+          <div class="col-md-offset-4 col-md-4">
+            <h3 class="center-block" style="text-align: center;margin-bottom: 20px;font-size: 32px;">
+              自主申请活动列表
+            </h3>
+          </div>
+        </div>
+        <br/> -->
+        
+        <div class="content-section implementation">
+          <p-table [columns]="cols" [value]="actWaiting" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,15,20]"
+          dataKey="id" paginatorPosition="both">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th style="width:3em;"></th>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                  {{col.header}}
+                  <p-sortIcon [field]="col.field"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+            <ng-template pTemplate="body" let-act let-expanded="expanded">
+              <!-- <tr *ngIf="!act.hide"> -->
+              <tr *ngIf="!act.hide">
+                <td style="text-align: center">
+                  <a href="#" [pRowToggler]="act">
+                    <i [ngClass]="expanded ? 'fa fa-angle-down fa-2x' : 'fa fa-angle-right fa-2x'"></i>
+                  </a>
+                </td>
+                <td>{{act.name}}</td>
+                <td>{{act.start}}</td>
+                <td>{{act.end}}</td>
+                <td>{{act.created | date: 'yyyy-MM-dd'}}</td>
+                <td>{{act.members[0].id+' '+act.members[0].name}}</td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="rowexpansion" let-act>
+              <tr *ngIf="!act.hide">
+                <td [attr.colspan]="6">
+                  <div class="ui-g ui-fluid expansion-box">
+                    <div class="ui-sm-12 ui-md-3">
+                      <div class="ui-g">
+                        <div class="ui-sm-6 ui-md-6">
+                          <label>申请时间:&emsp;{{act.volunteer_time}}</label>
+                        </div>
+                        <div class="ui-sm-6 ui-md-6">
+                          <input required name="editTime" [(ngModel)]="act.editTime" #editTime="ngModel" type="number" style="width: 100%;"
+                          min="0" max="{{act.volunteer_time}}" oninput="value=value.replace(/[^\d.]/g,'')">
+                        </div>
+                      </div>
+                      <div class="ui-g">
+                        <div class="ui-sm-6 ui-md-6">
+                          <button class="btn btn-success" style="width: 100%;" (click)="approveActivity(act)">审批通过</button>
+                        </div>
+                        <div class="ui-sm-6 ui-md-6">
+                          <button class="btn btn-danger" style="width: 100%;" (click)="rejectActivity(act)" >拒绝通过</button>
+                        </div>
+                      </div>
+                      <div class="ui-sm-12 ui-md-12">
+                        <div class="description">
+                          <p class="description" [innerHtml]="act.description | showEnterHtml"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ui-sm-12 ui-md-9">
+                      <img alt="没有上传文件成功" src="volunteer/uploads/{{act.files[0]?.name}}" style="width:100%;">
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <br/><br/>
       </div>
-    </div>
-    <br/>
-    
-    <div class="content-section implementation compoment-box">
-      <p-table [value]="act" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,15,20]"
-      dataKey="id" paginatorPosition="both">
-        <ng-template let-act pTemplate="header">
-          <tr>
-            <th style="width: 3em"></th>
-            <th>活动名称</th>
-            <th>开始时间</th>
-            <th>结束时间</th>
-            <th>申请时间</th>
-            <th>申请学生</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-act let-expanded="expanded">
-          <!-- <tr *ngIf="!act.hide"> -->
-          <tr *ngIf="!act.hide">
-            <td style="text-align: center">
-              <a href="#" [pRowToggler]="act">
-                <i [ngClass]="expanded ? 'fa fa-angle-down fa-2x' : 'fa fa-angle-right fa-2x'"></i>
-              </a>
-            </td>
-            <td>{{act.name}}</td>
-            <td>{{act.start}}</td>
-            <td>{{act.end}}</td>
-            <td>{{act.created | date: 'yyyy-MM-dd'}}</td>
-            <td>{{act.members[0].id+' '+act.members[0].name}}</td>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="rowexpansion" let-act>
-          <tr *ngIf="!act.hide">
-            <td [attr.colspan]="6">
-              <div class="ui-g ui-fluid expansion-box">
-                <div class="ui-sm-12 ui-md-3">
-                  <div class="ui-g">
-                    <div class="ui-sm-6 ui-md-6">
-                      <label>申请时间: {{act.volunteer_time}}</label>
+    </p-tabPanel>
+    <p-tabPanel header="已处理完成的申请">
+      <div class="compoment-backgroud">
+<!--         <div class="row">
+          <div class="col-md-offset-4 col-md-4">
+            <h3 class="center-block" style="text-align: center;margin-bottom: 20px;font-size: 32px;">
+              以处理请求列表
+            </h3>
+          </div>
+        </div>
+        <br/> -->
+        
+        <div class="content-section implementation">
+          <p-table [columns]="cols" [value]="actDone" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,15,20]"
+          dataKey="id" paginatorPosition="both">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th style="width:3em;"></th>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                  {{col.header}}
+                  <p-sortIcon [field]="col.field"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+            <ng-template pTemplate="body" let-act let-expanded="expanded">
+              <!-- <tr *ngIf="!act.hide"> -->
+              <tr *ngIf="!act.hide">
+                <td style="text-align: center">
+                  <a href="#" [pRowToggler]="act">
+                    <i [ngClass]="expanded ? 'fa fa-angle-down fa-2x' : 'fa fa-angle-right fa-2x'"></i>
+                  </a>
+                </td>
+                <td>{{act.name}}</td>
+                <td>{{act.start}}</td>
+                <td>{{act.end}}</td>
+                <td>{{act.created | date: 'yyyy-MM-dd'}}</td>
+                <td>{{act.members[0].id+' '+act.members[0].name}}</td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="rowexpansion" let-act>
+              <tr *ngIf="!act.hide">
+                <td [attr.colspan]="6">
+                  <div class="ui-g ui-fluid expansion-box">
+                    <div class="ui-sm-12 ui-md-3">
+                      <div class="ui-g">
+                        <div class="ui-sm-12 ui-md-12">
+                          <label>审批通过时间:&emsp;{{act.members[0].volunteer_time}}</label>
+                        </div>
+                      </div>
+                      <div class="ui-g">
+                        <div class="ui-sm-12 ui-md-12">
+                          <button [ngClass]="act.members[0].status==1? 'btn btn-success' : 'btn btn-danger'" style="width: 100%;" disabled="true">
+                            审批{{act.members[0].status==1? '通过' : '未通过'}}
+                          </button>
+                        </div>
+                      </div>
+                      <div class="ui-sm-12 ui-md-12">
+                        <div class="description">
+                          <p class="description" [innerHtml]="act.description | showEnterHtml"></p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="ui-sm-6 ui-md-6">
-                      <input required name="editTime" [(ngModel)]="act.editTime" #editTime="ngModel" type="number" style="width: 100%;"
-                      min="0" max="{{act.volunteer_time}}" oninput="value=value.replace(/[^\d.]/g,'')">
+                    <div class="ui-sm-12 ui-md-9">
+                      <img alt="没有上传文件成功" src="volunteer/uploads/{{act.files[0]?.name}}" style="width:100%;">
                     </div>
                   </div>
-                  <div class="ui-g">
-                    <div class="ui-sm-6 ui-md-6">
-                      <button class="btn btn-success" style="width: 100%;" (click)="approveActivity(act)">审批通过</button>
-                    </div>
-                    <div class="ui-sm-6 ui-md-6">
-                      <button class="btn btn-danger" style="width: 100%;"(click)="rejectActivity(act)" >拒绝通过</button>
-                    </div>
-                  </div>
-                  <div class="ui-sm-12 ui-md-12">
-                    <div class="description">
-                      <p class="description" [innerHtml]="act.description | showEnterHtml"></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="ui-sm-12 ui-md-9">
-                  <img alt="没有上传文件成功" src="volunteer/uploads/{{act.files[0]?.name}}" style="width:100%;">
-                </div>
-              </div>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-    <br/><br/>
-  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <br/><br/>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
 </div>

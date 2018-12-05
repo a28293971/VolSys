@@ -16,8 +16,10 @@ import { AnimationTransitionInstructionType } from '@angular/animations/browser/
 })
 export class SelfAppliedComponent implements OnInit {
 
-  public act: Activity[] = [];
+  public actWaiting: Activity[] = [];
+  public actDone: Activity[] = [];
   public mobileAccess: boolean = false;
+  public cols: any[] = [];
 
   constructor(
     private selfAppliedService: SelfAppliedService
@@ -27,19 +29,31 @@ export class SelfAppliedComponent implements OnInit {
     this.selfAppliedService.getNeedApproveActivities()
     .subscribe(
       data => {
-        let tmp = [];
+        let tmp = [], tmp1 = [];
         data.json().data.events.forEach((val, idx, arr) => {
-          if (val.type === 2 && !val.members[0].status) {
-            val.editTime = val.volunteer_time;
-            tmp.push(val);
+          if (val.type === 2) {
+            if (!val.members[0].status) {
+              val.editTime = val.volunteer_time;
+              tmp.push(val);
+            }else {
+              tmp1.push(val);
+            }
           }
         });
-        this.act = tmp;
+        this.actWaiting = tmp;
+        this.actDone = tmp1;
       },
       error => console.log(error)
     );
 
     this.mobileAccess = this.selfAppliedService.CUser.mobileAccess;
+    this.cols = [
+      { field: 'name', header: '活动名称' },
+      { field: 'start', header: '开始时间' },
+      { field: 'end', header: '结束时间' },
+      { field: 'created', header: '申请时间' },
+      { field: 'members.0.id', header: '申请学生' }
+    ];
   }
 
   public approveActivity(act) {
@@ -61,6 +75,8 @@ export class SelfAppliedComponent implements OnInit {
     .subscribe(
       response => {
         act.hide = 1;
+        this.actDone.push(act);
+        console.log(this.actDone);
       },
       error => console.log(error)
     );
@@ -80,6 +96,8 @@ export class SelfAppliedComponent implements OnInit {
     .subscribe(
       response => {
         act.hide = 1;
+        this.actDone.push(act);
+        console.log(this.actDone);
       },
       error => console.log(error)
     );

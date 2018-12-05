@@ -4,7 +4,7 @@
     <h3 style="text-align: center">全体用户志愿时间</h3>
     <br/>
     <div class="content-section implementation compoment-box">
-      <p-table #dt [columns]="col" [value]="displayDaya" [globalFilterFields]="['id','name']"
+      <p-table #dt [columns]="col" [value]="displayDaya" [globalFilterFields]="['id','name']" exportFilename="{{exportName}}"
       [paginator]="true" [rows]="10" paginatorPosition="both" [rowsPerPageOptions]="[10,15,25,50]">
         <ng-template pTemplate="caption">
           <div>
