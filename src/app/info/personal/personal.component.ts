@@ -19,9 +19,9 @@ import { PersonalService } from './personal.service';
 })
 export class PersonalComponent implements OnInit {
 
-  actAceppted: Activity[] = [];
+  actAccepted: Activity[] = [];
   actWaiting: Activity[] = [];
-  actRejecte: Activity[] = [];
+  actRejected: Activity[] = [];
   actCreat: Activity[] = [];
   currentUser: User;
 
@@ -40,7 +40,7 @@ export class PersonalComponent implements OnInit {
       for (const i of actTmp) {
         i.timestamp = new Date(i.timestamp);
         if (i.status === 1) {
-          this.actAceppted.push(i);
+          this.actAccepted.push(i);
         }else if (i.status === 0) {
           this.actWaiting.push(i);
         }else {
@@ -108,19 +108,19 @@ export class PersonalComponent implements OnInit {
       this.currentUser.events.forEach((val) => {
         if (val.status === 1) {
           val.timestamp = new Date(val.timestamp);
-          this.actAceppted.push(val);
+          this.actAccepted.push(val);
         }else if (val.status === 0) {
           val.timestamp = new Date(val.timestamp);
           this.actWaiting.push(val);
         }else if (val.status === 2 || val.status === 4) {
           val.timestamp = new Date(val.timestamp);
-          this.actRejecte.push(val);
+          this.actRejected.push(val);
         }
       });
 
-      this.actAceppted.sort(this.sortFunc);
+      this.actAccepted.sort(this.sortFunc);
       this.actWaiting.sort(this.sortFunc);
-      this.actRejecte.sort(this.sortFunc);
+      this.actRejected.sort(this.sortFunc);
 
     }
   }

@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 127.0.0.1 --port 3008 --proxy-config proxy.conf.json",
-    "build": "ng build -bh /volunteer/ -aot -prod",
+    "build": "ng build -bh /volunteer/ -aot -prod -buildOptimizer",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
