@@ -32,7 +32,7 @@
       </p-tabPanel>
       <p-tabPanel header="已受审批的活动" *ngIf="!currentUser.isAdmin">
         <div class="content-section implementation">
-          <p-dataList [value]="actAceppted" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
+          <p-dataList [value]="actAccepted" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
             <ng-template let-act pTemplate="item">
               <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
                 <div class="ui-sm-12 ui-md-9 car-details">
@@ -79,7 +79,7 @@
       </p-tabPanel>
       <p-tabPanel header="被拒绝的活动" *ngIf="!currentUser.isAdmin">
         <div class="content-section implementation">
-          <p-dataList [value]="actRejecte" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
+          <p-dataList [value]="actRejected" [paginator]="true" [rows]="5" paginatorPosition="top" [rowsPerPageOptions]="[5,10,15,20]">
             <ng-template let-act pTemplate="item">
               <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
                 <div class="ui-sm-12 ui-md-9 car-details">
