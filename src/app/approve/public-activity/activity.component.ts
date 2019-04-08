@@ -46,7 +46,7 @@ export class ActivityComponent implements OnInit {
           val.hide = false;
           val.time = this.actVolunteerTime;
           this.membersWaiting.push(val);
-        }else {
+        }else if (val.status !== 3) {
           val.idx = b++;
           this.membersDone.push(val);
         }
