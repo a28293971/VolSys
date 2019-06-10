@@ -68,6 +68,7 @@ export class PersonalComponent implements OnInit {
         // localStorage.removeItem('orgCreateActList');
         this.actCreat.forEach(this.trans2Date);
         this.actCreat.sort(this.sortFunc);
+        this.actCreat.forEach((val) => console.log(val.status));
       }/* else {
         this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token, -1)
         .subscribe(

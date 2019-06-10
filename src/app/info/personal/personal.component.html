@@ -112,14 +112,24 @@
               <div class="ui-g ui-fluid car-item" style="border-bottom:1px solid #D5D5D5">
                 <div class="ui-sm-12 ui-md-12 car-details">
                   <div class="ui-g">
-                    <div class="ui-sm-12 ui-md-2">活动名字:</div>
-                    <div class="ui-sm-12 ui-md-4">{{act.name}}</div>
-                    <div class="ui-sm-4 ui-md-2">开始时间:</div>
-                    <div class="ui-sm-8 ui-md-4">{{act.start | date: 'yyyy-MM-dd'}}</div>
-                    <div class="ui-sm-4 ui-md-2">志愿时间:</div>
-                    <div class="ui-sm-8 ui-md-4">{{act.volunteer_time}}</div>
-                    <div class="ui-sm-4 ui-md-2">结束时间:</div>
-                    <div class="ui-sm-8 ui-md-4">{{act.end | date: 'yyyy-MM-dd'}}</div>
+                    <div class="ui-sm-12 ui-md-10">
+                      <div class="ui-g">
+                        <div class="ui-sm-12 ui-md-2">活动名字:</div>
+                        <div class="ui-sm-12 ui-md-4">{{act.name}}</div>
+                        <div class="ui-sm-4 ui-md-2">开始时间:</div>
+                        <div class="ui-sm-8 ui-md-4">{{act.start | date: 'yyyy-MM-dd'}}</div>
+                        <div class="ui-sm-4 ui-md-2">志愿时间:</div>
+                        <div class="ui-sm-8 ui-md-4">{{act.volunteer_time}}</div>
+                        <div class="ui-sm-4 ui-md-2">结束时间:</div>
+                        <div class="ui-sm-8 ui-md-4">{{act.end | date: 'yyyy-MM-dd'}}</div>
+                      </div>
+                    </div>
+                    <div class="ui-sm-12 ui-md-2">
+                      <button type="button" disabled class="btn btn-success" *ngIf="act.status==0">活动创建完成</button>
+                      <button type="button" disabled class="btn btn-warning" *ngIf="act.status==4">活动等待审批中</button>
+                      <button type="button" disabled class="btn btn-danger" *ngIf="act.status==1">活动已被删除</button>
+                      <button type="button" disabled class="btn btn-danger" *ngIf="act.status==2">活动已被拒绝通过</button>
+                    </div>
                   </div>
                 </div>
               </div>

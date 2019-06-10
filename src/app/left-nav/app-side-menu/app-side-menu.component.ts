@@ -42,6 +42,7 @@ export class AppSideMenuComponent implements OnInit {
             this.menus[0].children.push({ name: "活动审批", icon: 'fa-check-square', route: 'apr/list' });
             if (this.currentUser.type === 0) {
                 this.menus[0].children.push({ name: "自主申请审批", icon: 'fa-user-circle', route: 'apr/self-applied-list' });
+                this.menus[0].children.push({ name: "组织活动开设审批", icon: 'fa-gavel', route: 'apr/org-activity' });
                 this.menus[0].children.push({ name: "全体用户志愿时间", icon: 'fa-sort-amount-desc', route: 'user-records' });
             }
         }else {

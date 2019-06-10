@@ -1,0 +1,9 @@
+.compoment-box {
+    padding: 0px 1.25rem;
+}
+
+@media(max-width: 640px) {
+    .compoment-box {
+        padding: 0px 0.5rem;
+    }
+}

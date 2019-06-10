@@ -55,7 +55,7 @@ export class ApproveComponent implements OnInit {
   deleteAct(act: Activity) {
     this.confirmationService.confirm({
       header: '删除活动',
-      message: `<h5>请再三确认你是否要删除一下活动</h5>
+      message: `<h5>请再三确认你是否要删除以下活动</h5>
                 <h2>${act.name}</h2>`,
       accept: () => {
         this.approveService.deleteAct(act)

@@ -1,0 +1,42 @@
+<div class="user-table-container" [@flyIn]="'active'">
+  <div class="compoment-backgroud">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h3 class="center-block" style="text-align: center;margin-bottom: 20px;font-size: 32px;">
+          组织活动开设审批
+        </h3>
+      </div>
+    </div>
+    <br/>
+
+    <div class="content-section implementation compoment-box">
+      <p-table [columns]="cols" [value]="activities" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,15,20]"
+      dataKey="id" paginatorPosition="both">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th>操作</th>
+        </tr>
+      </ng-template>
+        <ng-template pTemplate="body" let-act let-expanded="expanded">
+          <tr *ngIf="!act.hide">
+            <td>{{act.name}}</td>
+            <td>{{act.start}}</td>
+            <td>{{act.end}}</td>
+            <td>{{act.created | date: 'yyyy-MM-dd'}}</td>
+            <td>{{act.org_name[0]}}</td>
+            <td>
+              <button type="button" class="btn btn-success" (click)="aprAct(act)">允许</button>
+              <button type="button" class="btn btn-danger" (click)="rejAct(act)">拒绝</button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <br/><br/>
+  </div>
+  <p-confirmDialog width="37.5rem" [closable]="false"></p-confirmDialog>
+</div>
