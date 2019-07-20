@@ -16,10 +16,6 @@ export class ActivitiesComponent implements OnInit {
 
   public confirmationWidth: number = 500;
   public activities: Activity[] = [];
-  // hadAplAct: Activity[] = [];
-  // c: number = 0;
-  // line: number = 0;
-  // display: boolean = false;
   private content: Activity;
   private isAdmin: boolean;
 
@@ -34,16 +30,14 @@ export class ActivitiesComponent implements OnInit {
     this.activityService.getActivities(-1)
     .subscribe(
       res => {
-        if (res.json().sysinfo.auth) {
+        if (res.json().sysinfo.getEventResult) {
           this.activities = res.json().data.events;
           if (!this.isAdmin) {
-            // this.activities.forEach((value, idx, arr) => value.idx = idx);
             this.activityService.getUserEvnetList()
             .subscribe(
               data => {
-                if (data.json().sysinfo.auth) {
-                  let list = data.json().data;
-                  let idx;
+                if (data.json().sysinfo.getUserEventsResult) {
+                  let list = data.json().data, idx;
                   this.activities.forEach((val) => {
                     val.status = -1;
                     val.loading = false;
@@ -54,47 +48,26 @@ export class ActivitiesComponent implements OnInit {
                   });
                 }else {
                   alert('活动列表获取失败');
-                  // console.log('活动列表获取失败')
                 }
               },
               err => console.log(err)
             );
           }
-      }else {
-        alert('活动列表获取失败');
-        // console.log('活动列表获取失败')
-      }
-    },
-    err => console.log(err)
-  );
+        }else {
+          alert('活动列表获取失败');
+        }
+      },
+      err => console.error(err)
+    );
     if (!this.isAdmin) {
-      /* this.activityService.getHadAplAct0(-1)
-      .subscribe(res0 => {
-        this.hadAplAct = res0.json().data.events
-        this.activityService.getHadAplAct1(-1)
-        .subscribe(res1 => {
-          this.hadAplAct.concat(res1.json().data.events);
-          this.activityService.getHadAplAct2(-1)
-          .subscribe(res2 => this.hadAplAct.concat(res2.json().data.events))
-        });
-      }); */
-
       if (this.activityService.CUser.mobileAccess === true) {
         this.confirmationWidth = 300;
       }
     }
-    // this.content = this.activities[0];
   }
 
 
   joinAct(act: Activity) {
-/*     if (act.hadApl) {
-      alert('次活动在此前已申请过,请勿重复申请！');
-    }else if (this.hadAplAct.findIndex((value, index, arr) => value.id === act.id) !== -1) {
-        act.hadApl = true;
-        alert('次活动在此前已申请过,请勿重复申请！');
-    } */
-
     if (act.status !== 0) {
       act.disabled = act.loading = true;
       this.activityService.joinAct(act)
@@ -103,10 +76,8 @@ export class ActivitiesComponent implements OnInit {
           const value = data.json();
           if (value.sysinfo.joinEvent) {
             act.status = 0;
-            // console.log('succees to join the act');
             alert('活动申请成功！');
           }else {
-            // console.log('failed to join');
             if (value.sysinfo.errType === 1) {
               alert('该活动已被删除');
             }else {
@@ -123,7 +94,6 @@ export class ActivitiesComponent implements OnInit {
 
   report(obj: Activity) {
     this.content = obj;
-    // console.log('report -> ' + this.content.name);
     this.confirmationService.confirm({
         header: "确认窗口",
         message: `
@@ -136,17 +106,7 @@ export class ActivitiesComponent implements OnInit {
     });
   }
 
-/*   openCheck(event) {
-    // console.log(event);
-    console.log(idx);
-    console.log(eid);
-    if (this.hadAplAct.findIndex((value, index, arr) => value.id === eid) !== -1) {
-      this.activities[idx].hadApl = true;
-    }
-  } */
-
   cancelJoinAct(act: Activity) {
-    // console.log('fuck!');
     act.disabled = act.loading = true;
     this.confirmationService.confirm({
       header: "确认窗口",

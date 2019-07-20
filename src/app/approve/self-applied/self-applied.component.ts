@@ -29,19 +29,23 @@ export class SelfAppliedComponent implements OnInit {
     this.selfAppliedService.getNeedApproveActivities()
     .subscribe(
       data => {
-        let tmp = [], tmp1 = [];
-        data.json().data.events.forEach((val, idx, arr) => {
-          if (val.type === 2) {
-            if (!val.members[0].status) {
-              val.editTime = val.volunteer_time;
-              tmp.push(val);
-            }else {
-              tmp1.push(val);
+        if (data.json().sysinfo.getEventResult) {
+          let tmp = [], tmp1 = [];
+          data.json().data.events.forEach((val) => {
+            if (val.type === 2) {
+              if (!val.members[0].status) {
+                val.editTime = val.volunteer_time;
+                tmp.push(val);
+              }else {
+                tmp1.push(val);
+              }
             }
-          }
-        });
-        this.actWaiting = tmp;
-        this.actDone = tmp1;
+          });
+          this.actWaiting = tmp;
+          this.actDone = tmp1;
+        }else {
+          alert('获取活动列表失败');
+        }
       },
       error => console.log(error)
     );

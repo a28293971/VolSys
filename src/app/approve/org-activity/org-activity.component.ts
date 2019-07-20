@@ -33,7 +33,7 @@ export class OrgActivityComponent implements OnInit {
     ];
     this.orgActivityService.getActivities()
     .subscribe(data => {
-      if (data.json().sysinfo.auth) {
+      if (data.json().sysinfo.getOrgCreatedEvents) {
         this.activities = data.json().data.events;
       }
     });

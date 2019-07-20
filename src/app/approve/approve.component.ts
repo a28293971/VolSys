@@ -32,14 +32,18 @@ export class ApproveComponent implements OnInit {
     this.approveService.getNeedApproveActivities()
     .subscribe(
       data => {
-        let tmp = [];
-        data.json().data.events.forEach((val) => {
-          if (val.type === 1) {
-            tmp.push(val);
-          }
-        });
-        this.act = tmp;
-        this.act.forEach((val, idx) => val.idx = idx);
+        if (data.json().sysinfo.getEventResult) {
+          let tmp = [];
+          data.json().data.events.forEach((val) => {
+            if (val.type === 1) {
+              tmp.push(val);
+            }
+          });
+          this.act = tmp;
+          this.act.forEach((val, idx) => val.idx = idx);
+      }else {
+        alert('列表获取失败');
+      }
     },
       error => console.log(error)
     );

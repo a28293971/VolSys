@@ -21,7 +21,7 @@
               <input required minlength="8" [(ngModel)]="user.password" name="password" #password="ngModel" type="password" class="form-control"
                 placeholder="请输入密码...">
               <div *ngIf="rMsg" class="text-danger" >
-                <h3 style="text-align:center;">{{rMsg==1? '账号不存在，请重新核实账号后重试！':'密码错误，请重新输入！'}}</h3> 
+                <h3 style="text-align:center;">{{rMsg==1? '账号或密码错误，请重试':'系统发生错误'}}</h3> 
               </div>
             </div>
           </div>

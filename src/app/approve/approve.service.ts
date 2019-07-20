@@ -31,10 +31,8 @@ export class ApproveService {
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
     .post('/volunteer/get-event', body, {headers: headers})
-  /*   return this.http
-    .get("mock-data/act-waitingApr.json") */
     .takeWhile((response: Response) => {
-        if (response.json().sysinfo.tokenUpdate) {
+        if (!response.json().sysinfo.auth) {
             this.router.navigateByUrl('login');
             return false;
         }

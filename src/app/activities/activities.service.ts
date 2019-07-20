@@ -32,10 +32,8 @@ export class ActivityService {
           const headers = new Headers({'Content-Type': 'application/json'});
         return this.http
         .post('/volunteer/get-event', body, {headers: headers})
-/*         return this.http
-        .get('mock-data/activities.json') */
         .takeWhile((response: Response) => {
-            if (!!response.json().sysinfo.tokenUpdate) {
+            if (!response.json().sysinfo.auth) {
                 this.router.navigateByUrl('login');
                 return false;
             }
@@ -52,8 +50,7 @@ export class ActivityService {
         return this.http
         .post('/volunteer/get-user-events', body, {headers: headers})
         .takeWhile((response: Response) => {
-            // console.log(response.json());
-            if (!!response.json().sysinfo.tokenUpdate) {
+            if (!response.json().sysinfo.auth) {
                 this.router.navigateByUrl('login');
                 return false;
             }
@@ -101,71 +98,6 @@ export class ActivityService {
             return true;
         });
     }
-
-    /* getHadAplAct0(count: Number = 10) {
-        const body = JSON.stringify({
-            id: this.currentUser.id,
-            token: this.currentUser.token,
-            listAllEvent: '0',
-            eventCount: count.toString(),
-            status: '0'
-          });
-          const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http
-        .post('/volunteer/get-event', body, {headers: headers})
-        return this.http
-        .get('mock-data/activities-hadApl.json')
-        .takeWhile((response: Response) => {
-            if (response.json().sysinfo.tokenUpdate) {
-                this.router.navigateByUrl('login');
-                return false;
-            }
-            return true;
-        });
-    }
-    getHadAplAct1(count: Number = 10) {
-        const body = JSON.stringify({
-            id: this.currentUser.id,
-            token: this.currentUser.token,
-            listAllEvent: '0',
-            eventCount: count.toString(),
-            status: '1'
-          });
-          const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http
-        .post('/volunteer/get-event', body, {headers: headers})
-        return this.http
-        .get('mock-data/activities-hadApl.json')
-        .takeWhile((response: Response) => {
-            if (response.json().sysinfo.tokenUpdate) {
-                this.router.navigateByUrl('login');
-                return false;
-            }
-            return true;
-        });
-    }
-
-    getHadAplAct2(count: Number = 10) {
-        const body = JSON.stringify({
-            id: this.currentUser.id,
-            token: this.currentUser.token,
-            listAllEvent: '0',
-            eventCount: count.toString(),
-            status: '2'
-          });
-          const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http
-        .post('/volunteer/get-event', body, {headers: headers})
-        return this.http
-        .get('mock-data/activities-hadApl.json')
-        .takeWhile((response: Response) => {
-            if (response.json().sysinfo.tokenUpdate) {
-                this.router.navigateByUrl('login');
-                return false;
-            }
-            return true;
-        });
-    } */
 
     reportAct(act: Activity) {
         const data = JSON.stringify({

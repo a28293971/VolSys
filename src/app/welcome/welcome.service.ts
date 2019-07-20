@@ -46,30 +46,33 @@ export class WelcomeService {
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
     .post('/volunteer/get-event', body, {headers: headers})
-  /*         return this.http
-    .get('mock-data/activities.json') */
     .takeWhile((response: Response) => {
-        if (response.json().sysinfo.tokenUpdate) {
+        if (!response.json().sysinfo.auth) {
             this.router.navigateByUrl('login');
             return false;
         }
         return true;
     }).map((response: Response) => {
-      let res: any[] = [];
-      const data: any[] = response.json().data.events;
-      data.forEach((value, idx, arr) =>
-      res.push({
-        "title": value.name,
-        "start": value.start,
-        "end": value.end
-      }));
-      return res;
+      if (response.json().sysinfo.getEventResult) {
+        let res: any[] = [];
+        const data: any[] = response.json().data.events;
+        data.forEach((value, idx, arr) =>
+        res.push({
+          "title": value.name,
+          "start": value.start,
+          "end": value.end
+        }));
+        return res;
+      }else {
+        alert('获取活动列表失败');
+        return [];
+      }
     });
 }
 
   getUserDataLine(): Observable<any> {
     return new Observable((observer) => {
-      const tmp = this.currentUser.volunteer_time;
+      // const tmp = this.currentUser.volunteer_time;
       let res = {
         labels: [],
         datasets: [
@@ -86,12 +89,10 @@ export class WelcomeService {
         res.datasets[0].data = this.currentUser.volunteer_time.slice(1, 8);
       }else {
         res.labels = ['七月', '八月', '九月', '十月', '十一月', '十二月', '一月'];
-        // res.datasets[0].data = this.currentUser.volunteer_time.slice(-6, 2);
         let vTime = this.currentUser.volunteer_time
         res.datasets[0].data = vTime.slice(20, 22);
         res.datasets[0].data = res.datasets[0].data.concat(vTime.slice(9, 13));
         res.datasets[0].data.push(vTime[1]);
-        // console.log(res.datasets[0].data);
       }
       observer.next(res);
       observer.complete();
@@ -100,7 +101,7 @@ export class WelcomeService {
 
   getOrgDataLine(): Observable<any> {
     return new Observable((observer) => {
-      const tmp = this.currentUser.volunteer_time;
+      // const tmp = this.currentUser.volunteer_time;
       let res = {
         labels: [],
         datasets: [
@@ -127,6 +128,7 @@ export class WelcomeService {
 
   getRankList(count: Number = 10) {
     const body = JSON.stringify({
+      id: this.currentUser.id,
       rankCount: count.toString(),
       token: this.currentUser.token,
     });
@@ -136,28 +138,33 @@ export class WelcomeService {
   /*         return this.http
     .get('mock-data/activities.json') */
     .takeWhile((response: Response) => {
-        if (response.json().sysinfo.tokenUpdate) {
+        if (!response.json().sysinfo.auth) {
             this.router.navigateByUrl('login');
             return false;
         }
         return true;
     }).map((response: Response) => {
-      let res: any[] = response.json().data.rank;
-      let ret: any = {
-        labels: [],
-        datasets: [
-          {
-              label: 'VolTime',
-              data: [],
-              fill: false,
-              borderColor: '#2ea700',
-              backgroundColor: '#2ea700'
-          }]};
-      res.forEach((val, idx, arr) => {
-        ret.labels.push(val.name);
-        ret.datasets[0].data.push(val.volunteer_time);
-      });
-      return ret;
+      if (response.json().sysinfo.getRankResult) {
+        let res: any[] = response.json().data.rank;
+        let ret: any = {
+          labels: [],
+          datasets: [
+            {
+                label: 'VolTime',
+                data: [],
+                fill: false,
+                borderColor: '#2ea700',
+                backgroundColor: '#2ea700'
+            }]};
+        res.forEach((val) => {
+          ret.labels.push(val.name);
+          ret.datasets[0].data.push(val.volunteer_time);
+        });
+        return ret;
+      } else {
+        alert('获取排名失败');
+        return {};
+      }
     });
   }
 
@@ -174,22 +181,27 @@ export class WelcomeService {
     return this.http
     .post('/volunteer/get-event', body, {headers: headers})
     .takeWhile((response: Response) => {
-        if (response.json().sysinfo.tokenUpdate) {
+        if (!response.json().sysinfo.auth) {
             this.router.navigateByUrl('login');
             return false;
         }
         return true;
     })
     .map((response: Response) => {
-      const ls = response.json().data.events;
-      let creatList = [];
-      ls.forEach((val) => {
-        if (val.type === 1) {
-          creatList.push(val);
-        }
-      });
-      localStorage.setItem('orgCreateActList', CryptoJS.AES.encrypt(JSON.stringify(creatList), 'org').toString());
-      return creatList.length;
+      if (response.json().sysinfo.getEventResult) {
+        const ls = response.json().data.events;
+        let creatList = [];
+        ls.forEach((val) => {
+          if (val.type === 1) {
+            creatList.push(val);
+          }
+        });
+        localStorage.setItem('orgCreateActList', CryptoJS.AES.encrypt(JSON.stringify(creatList), 'org').toString());
+        return creatList.length;
+      }else {
+        alert('获取活动数量失败');
+        return 0;
+      }
     });
   }
 

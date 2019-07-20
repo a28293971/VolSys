@@ -51,10 +51,12 @@ export class AppComponent implements OnInit, OnDestroy {
             .subscribe(
                 data => {
                     const value = data.json();
-                    if (value.sysinfo.auth) {
+                    if (value.sysinfo.auth === 1) {
                         this.authGuard.isLoggedIn = true;
                         this.CUser.update();
                         this.router.navigateByUrl('/workspace/welcome');
+                    }else if (value.sysinfo.auth === 2) {
+                        alert('system error, please retry');
                     }else {
                         localStorage.clear();
                     }

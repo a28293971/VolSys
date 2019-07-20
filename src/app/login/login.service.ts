@@ -9,7 +9,7 @@ import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 
 @Injectable()
 export class LoginService {
-  private userLoginURL = 'http://192.168.148.6/login';
+  // private userLoginURL = 'http://192.168.148.6/login';
   // public subject: Subject<User> = new Subject<User>();
   public rMsg: Subject<number> = new Subject<number>();
 
@@ -33,33 +33,24 @@ export class LoginService {
       obj = 'user';
       this.userLoginURL = 'mock-data/user-login-mock.json';
     } */
-    const body = JSON.stringify({
+    const body = {
       id: user.id,
       password: CryptoJS.MD5(user.password).toString(),
       authType: 1
-    });
+    };
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post('/volunteer/login', body, {headers: headers})
 /*     return this.http.get('mock-data/' + obj + '-login-mock.json') */
       .subscribe((response: Response) => {
           const res = response.json();
-          // console.log(res);
-          // console.log('user.token = ' + res.token);
-          if (res.sysinfo.auth) {
+          if (res.sysinfo.auth === 1) {
             let nUser: User = res.data;
             nUser.token = res.sysinfo.token;
             if (res.sysinfo.idType) {
               nUser.isAdmin = true;
-              // localStorage.setItem('currentUser', JSON.stringify(nUser));
-              // localStorage.setItem('orgActivities', JSON.stringify(nUser.events));
-            }else {
-              // localStorage.setItem('currentUser', JSON.stringify(nUser));
-              // localStorage.setItem('userActivities', JSON.stringify(nUser.events));
             }
-            // delete nUser.events;
             localStorage.setItem('currentUser', CryptoJS.AES.encrypt(JSON.stringify(nUser), 'fuck').toString());
             this.CUser.update();
-            // this.subject.next(Object.assign({}, nUser));
           }else {
             this.rMsg.next(Number(res.sysinfo.errType));
           }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { flyIn } from '../../animations/fly-in';
 import { CreateActService } from './create-act.service';
 import { Activity } from '../../models/activity-model';
@@ -20,7 +21,8 @@ export class CreateActComponent implements OnInit {
   college: string;
 
   constructor(
-    private createActService: CreateActService
+    private createActService: CreateActService,
+    private router: Router,
   ) {
 
   }
@@ -38,8 +40,18 @@ export class CreateActComponent implements OnInit {
     }
     this.act.org_name = [this.currentUser.name];
     this.act.org_id = [this.currentUser.id];
-    // this.act.token = this.currentUser.token;
-    this.createActService.create(this.act);
+    this.createActService.create(this.act)
+    .subscribe(
+      data => {
+        if (data.json().sysinfo.createEvent) {
+          alert("活动创建成功!");
+          this.router.navigateByUrl('workspace/act/activities');
+        }else {
+          alert("活动创建失败 请重试!");
+        }
+      },
+      error => console.log(error)
+    );
   }
 
 }

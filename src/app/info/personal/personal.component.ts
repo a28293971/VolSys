@@ -31,81 +31,17 @@ export class PersonalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-/*     if (this.currentUser.isAdmin) {
-      this.actCreat = JSON.parse(localStorage.getItem("orgActivities"));
-      this.actCreat.sort(this.sortFunc);
-    }else {
-      let actTmp: Activity[] = JSON.parse(localStorage.getItem("userActivities"));
-      for (const i of actTmp) {
-        i.timestamp = new Date(i.timestamp);
-        if (i.status === 1) {
-          this.actAccepted.push(i);
-        }else if (i.status === 0) {
-          this.actWaiting.push(i);
-        }else {
-          this.actRefuse.push(i);
-        }
-      }
-      this.actAceppted.sort(this.sortFunc);
-      this.actWaiting.sort(this.sortFunc);
-      this.actRefuse.sort(this.sortFunc);
-    } */
     this.currentUser = this.personalService.currentUser;
 
     if (this.currentUser.isAdmin) {
-/*       this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token, -1)
-      .subscribe(
-        data => {
-          this.actCreat = data.json().data.events;
-          this.actCreat.forEach(this.trans2Date);
-          this.actCreat.sort(this.sortFunc);
-        }
-      ); */
       let tmp = localStorage.getItem('orgCreateActList');
       if (tmp) {
         this.actCreat = JSON.parse(CryptoJS.AES.decrypt(tmp, 'org').toString(CryptoJS.enc.Utf8));
-        // localStorage.removeItem('orgCreateActList');
         this.actCreat.forEach(this.trans2Date);
         this.actCreat.sort(this.sortFunc);
         this.actCreat.forEach((val) => console.log(val.status));
-      }/* else {
-        this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token, -1)
-        .subscribe(
-          data => {
-            this.actCreat = data.json().data.events;
-            this.actCreat.forEach(this.trans2Date);
-            this.actCreat.sort(this.sortFunc);
-          }
-        );
-      } */
-
+      }
     }else {
-      /* this.personalService.getRejectedActivities(this.currentUser.id, this.currentUser.token, -1)
-      .subscribe(
-        data => {
-          this.actRejecte = data.json().data.events;
-          this.actRejecte.forEach(this.trans2Date);
-          this.actRejecte.sort(this.sortFunc);
-        }
-      );
-      this.personalService.getAcceptedActivities(this.currentUser.id, this.currentUser.token, -1)
-      .subscribe(
-        data => {
-          this.actAceppted = data.json().data.events;
-          this.actAceppted.forEach(this.trans2Date);
-          this.actAceppted.sort(this.sortFunc);
-        }
-      );
-      this.personalService.getWaitingActivities(this.currentUser.id, this.currentUser.token, -1)
-      .subscribe(
-        data => {
-          this.actWaiting = data.json().data.events;
-          this.actWaiting.forEach(this.trans2Date);
-          this.actWaiting.sort(this.sortFunc);
-        }
-      ); */
-
       this.currentUser.events.forEach((val) => {
         if (val.status === 1) {
           val.timestamp = new Date(val.timestamp);
@@ -122,7 +58,6 @@ export class PersonalComponent implements OnInit {
       this.actAccepted.sort(this.sortFunc);
       this.actWaiting.sort(this.sortFunc);
       this.actRejected.sort(this.sortFunc);
-
     }
   }
 
@@ -133,14 +68,5 @@ export class PersonalComponent implements OnInit {
   sortFunc(a: Activity, b: Activity): number {
     return b.timestamp.valueOf() - a.timestamp.valueOf();
   }
-
-/*   showDialog(obj: Activity) {
-    this.confirmationService.confirm({
-        message: 'Are you sure you want to cancel the aplly?',
-        accept: () => {
-          console.log('you had cancel the aplly');
-        }
-    });
-  } */
 
 }
