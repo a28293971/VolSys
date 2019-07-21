@@ -70,11 +70,15 @@ export class UserRecordsComponent implements OnInit {
         this.userRecordsService.getUserRecords(val)
         .subscribe(
           data => {
-            this.allGradeRecords[val] = data.json().data;
-            this.displayDaya = this.allGradeRecords[val];
-            localStorage.setItem('userRecords' + val, CryptoJS.AES.encrypt(JSON.stringify(this.displayDaya), 'records').toString());
+            if (data.json().sysinfo.getUserRecords) {
+              this.allGradeRecords[val] = data.json().data;
+              this.displayDaya = this.allGradeRecords[val];
+              localStorage.setItem('userRecords' + val, CryptoJS.AES.encrypt(JSON.stringify(this.displayDaya), 'records').toString());
+            } else {
+              alert('获取用户信息失败');
+            }
           },
-          error => console.log(error)
+          error => console.error(error)
         );
       }
     }

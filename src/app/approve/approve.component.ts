@@ -20,6 +20,7 @@ export class ApproveComponent implements OnInit {
 
   public act: Activity[] = [];
   public mobileAccess: boolean = false;
+  public cols: any[] = [];
 
   constructor(
     private activityService: ActivityService,
@@ -45,10 +46,15 @@ export class ApproveComponent implements OnInit {
         alert('列表获取失败');
       }
     },
-      error => console.log(error)
+      error => console.error(error)
     );
 
     this.mobileAccess = this.approveService.CUser.mobileAccess;
+    this.cols = [
+      { field: 'name', header: '活动名称' },
+      { field: 'volunteer_time', header: '志愿时间' },
+      { field: 'end', header: '活动结束时间' }
+    ];
   }
 
   goToApprove(act: Activity) {
@@ -66,11 +72,10 @@ export class ApproveComponent implements OnInit {
         .subscribe(
           data => {
             if (data.json().sysinfo.deleteEvent) {
-              // this.act.splice(act.idx, 1);
               act.hide = true;
             }
           },
-          error => console.log(error)
+          error => console.error(error)
         );
       }
     });

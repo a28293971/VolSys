@@ -28,7 +28,7 @@ export class MsgComponent implements OnInit {
           this.msgList.push(ls[i]);
         }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 

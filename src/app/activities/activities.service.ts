@@ -69,10 +69,8 @@ export class ActivityService {
           });
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post("/volunteer/join-event", body, {headers: headers})
-        // return this.http.get('mock-data/allAccept.json')
         .takeWhile((response: Response) => {
-            let sysinfo = response.json().sysinfo;
-            if (!!sysinfo.tokenUpdat || !sysinfo.auth) {
+            if (!response.json().sysinfo.auth) {
                 this.router.navigateByUrl('login');
                 return false;
             }
@@ -88,10 +86,8 @@ export class ActivityService {
           });
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post("/volunteer/cancel-join-event", body, {headers: headers})
-        // return this.http.get('mock-data/allAccept.json')
         .takeWhile((response: Response) => {
-            let sysinfo = response.json().sysinfo;
-            if (!sysinfo.auth) {
+            if (!response.json().sysinfo.auth) {
                 this.router.navigateByUrl('login');
                 return false;
             }

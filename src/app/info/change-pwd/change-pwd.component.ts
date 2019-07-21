@@ -27,10 +27,14 @@ export class ChangePwdComponent implements OnInit {
     this.changePwdService.sendNewPassword(this.pwd1)
     .subscribe(
       data => {
-        alert('密码修改成功!');
-        this.changePwdService.router.navigateByUrl('/workspace/info/personal');
+        if (data.json().sysinfo.changePwd) {
+          alert('密码修改成功!');
+          this.changePwdService.router.navigateByUrl('/workspace/info/personal');
+        } else {
+          alert('密码修改失败!请重试!');
+        }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 

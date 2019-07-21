@@ -7,8 +7,9 @@
       <div>
         <p>志愿时间：{{actVolunteerTime}}</p>
       </div>
-      <p-table #dt [value]="membersWaiting" [(selection)]="selectedMembers" [globalFilterFields]="['id','name']"
-      [paginator]="true" [rows]="10" paginatorPosition="both" [rowsPerPageOptions]="[10,15,25,50]">
+      <p-table #dt [columns]="cols" [value]="membersWaiting" [(selection)]="selectedMembers" [globalFilterFields]="['id','name']"
+      [paginator]="true" [rows]="10" paginatorPosition="both" [rowsPerPageOptions]="[10,15,25,50]"
+      dataKey="id" >
         <ng-template pTemplate="caption">
           <div class="muti-btn-box">
             <button type="button" style="padding-top: 0.25rem;padding-bottom: 0.1875rem;float: left;" class="btn btn-info" routerLink="/workspace/apr/list">
@@ -40,16 +41,20 @@
             <img src="assets/imgs/volunteersLogo-alpha.png" style="width: 3rem;height: 3rem;">
           </div> -->
         </ng-template>
-        <ng-template pTemplate="header">
+        <ng-template pTemplate="header" let-columns>
           <tr style="word-wrap:break-word;">
             <th style="width: 2.25em">
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
-            <th>Id</th>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+            <!-- <th>Id</th>
             <th>Name</th>
-            <th>AplTime</th>
-            <th>Time</th>
-            <th>Opt</th>
+            <th>AplTime</th> -->
+            <th>志愿时间</th>
+            <th>操作</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
@@ -95,8 +100,8 @@
     <br/>
     <div class="content-section implementation compoment-box">
       <div class="secListTitle">活动已处理名单</div>
-      <p-table #dt1 [value]="membersDone" [paginator]="true" [rows]="10" paginatorPosition="both" [rowsPerPageOptions]="[10,15,25,50]"
-      [globalFilterFields]="['id','name']">
+      <p-table #dt1 [columns]="cols" [value]="membersDone" [paginator]="true" [rows]="10" paginatorPosition="both" [rowsPerPageOptions]="[10,15,25,50]"
+      dataKey="id" [globalFilterFields]="['id','name']">
         <ng-template pTemplate="caption">
             <div class="global-box">
               <!-- <i class="fa fa-search" style="margin:4px 4px 0 0"></i> -->
@@ -104,13 +109,18 @@
               <input type="text" placeholder="Global Filter" (input)="dt1.filterGlobal($event.target.value, 'contains')">
             </div>
           </ng-template>
-        <ng-template pTemplate="header"> 
+        <ng-template pTemplate="header" let-columns> 
           <tr style="word-wrap:break-word;">
-            <th>Id</th>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+            <!-- <th>Id</th>
             <th>Name</th>
             <th>OptTime</th>
-            <th>Time</th>
-            <th>Opt</th>
+            <th>Time</th> -->
+            <th>志愿时间</th>
+            <th>操作</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData>

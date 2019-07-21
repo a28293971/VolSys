@@ -39,7 +39,6 @@ export class PersonalComponent implements OnInit {
         this.actCreat = JSON.parse(CryptoJS.AES.decrypt(tmp, 'org').toString(CryptoJS.enc.Utf8));
         this.actCreat.forEach(this.trans2Date);
         this.actCreat.sort(this.sortFunc);
-        this.actCreat.forEach((val) => console.log(val.status));
       }
     }else {
       this.currentUser.events.forEach((val) => {

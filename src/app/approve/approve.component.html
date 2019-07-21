@@ -10,13 +10,17 @@
     <br/>
     
     <div class="content-section implementation compoment-box">
-      <p-table [value]="act" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,15,25,50]"
+      <p-table [columns]="cols" [value]="act" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,15,25,50]"
       paginatorPosition="both">
-        <ng-template pTemplate="header">
+        <ng-template pTemplate="header" let-columns>
           <tr>
-            <th>活动名称</th>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+            </th>
+            <!-- <th>活动名称</th>
             <th>志愿时间</th>
-            <th>活动结束时间</th>
+            <th>活动结束时间</th> -->
             <th>操作</th>
           </tr>
         </ng-template>

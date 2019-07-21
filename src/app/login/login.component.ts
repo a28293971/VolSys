@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
                     this.user.password = "";
                 }
             },
-            error => console.log(error)
+            error => console.error(error)
         );
         // console.log('encr => ' + CryptoJS.MD5('aaaaaaaa'));
         // const key = 'abc';

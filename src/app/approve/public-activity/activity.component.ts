@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute } from '@angular/router';
 
 import { ActivityService } from './activity.service';
 import { ConfirmationService } from 'primeng/components/common/api';
@@ -23,14 +22,13 @@ export class ActivityComponent implements OnInit {
   membersDone: any[] = [];
   selectedMembers: Member[] = [];
   public cols = [
-    { field: 'id', header: 'Id' },
-    { field: 'name', header: 'Name' },
-    { field: 'timestamp', header: 'AplTime' }
+    { field: 'id', header: '学号' },
+    { field: 'name', header: '姓名' },
+    { field: 'timestamp', header: '申请时间' }
     ];
 
 
   constructor(
-/*     private activeRoute: ActivatedRoute, */
     private activityService: ActivityService,
     private confirmationService: ConfirmationService
   ) { }
@@ -40,7 +38,7 @@ export class ActivityComponent implements OnInit {
     this.actVolunteerTime = this.activityService.eInfo.volunteer_time;
     if (this.activityService.eInfo.members) {
       let a = 0, b = 0;
-      this.activityService.eInfo.members.forEach((val, idx, arr) => {
+      this.activityService.eInfo.members.forEach((val) => {
         if (val.status === 0) {
           val.idx = a++;
           val.hide = false;
@@ -53,29 +51,10 @@ export class ActivityComponent implements OnInit {
       });
     }
 
-/*     this.activeRoute.params.subscribe(
-      params => {
-        const eId = params['id'];
-        this.activityService.eId = eId;
-        this.getActivityById(eId);
-      }
-    ); */
     this.mobileAccess = this.activityService.CUser.mobileAccess;
   }
 
-/*   getActivityById(id: number) {
-    return this.activityService.getActivityMembers(id)
-    .subscribe(
-      data => {
-        this.members = data.members;
-        this.actName = data.name;
-      },
-      error => console.log(error)
-    );
-  } */
-
   aprSingleMeb(mb: Member) {
-    // console.log('-----in-----')
     if (mb.time == null || mb.time < 0 || mb.time > this.actVolunteerTime) {
       return;
     }
@@ -88,7 +67,7 @@ export class ActivityComponent implements OnInit {
     this.activityService.sendMembers(member)
     .subscribe(
       data => {
-        if (data.json().sysinfo.auth) {
+        if (data.json().sysinfo.approveEvent) {
           mb.hide = true;
           this.membersDone.push({
             id: mb.id,
@@ -100,7 +79,7 @@ export class ActivityComponent implements OnInit {
           });
         }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 
@@ -113,7 +92,7 @@ export class ActivityComponent implements OnInit {
     }
 
     let members = [];
-    this.selectedMembers.forEach((val, idx, mbs) =>
+    this.selectedMembers.forEach((val) =>
       members.push({
         id: val.id,
         approval: '1',
@@ -124,8 +103,8 @@ export class ActivityComponent implements OnInit {
     this.activityService.sendMembers(members)
     .subscribe(
       data => {
-        if (data.json().sysinfo.auth) {
-          this.selectedMembers.forEach((val, idx, mbs) => {
+        if (data.json().sysinfo.approveEvent) {
+          this.selectedMembers.forEach((val) => {
             val.hide = true;
             this.membersDone.push({
               id: val.id,
@@ -139,7 +118,7 @@ export class ActivityComponent implements OnInit {
           this.selectedMembers = [];
         }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 
@@ -151,7 +130,7 @@ export class ActivityComponent implements OnInit {
     this.activityService.sendMembers(member)
     .subscribe(
       data => {
-        if (data.json().sysinfo.auth) {
+        if (data.json().sysinfo.approveEvent) {
           mb.hide = true;
           this.membersDone.push({
             id: mb.id,
@@ -163,14 +142,14 @@ export class ActivityComponent implements OnInit {
           });
         }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 
   rejMutileMeb() {
     if (!this.selectedMembers) { return; }
     let members = [];
-    this.selectedMembers.forEach((val, idx, mbs) =>
+    this.selectedMembers.forEach((val) =>
       members.push({
         id: val.id,
         approval: '2'
@@ -179,8 +158,8 @@ export class ActivityComponent implements OnInit {
     this.activityService.sendMembers(members)
     .subscribe(
       data => {
-        if (data.json().sysinfo.auth) {
-          this.selectedMembers.forEach((val, idx, mbs) => {
+        if (data.json().sysinfo.approveEvent) {
+          this.selectedMembers.forEach((val) => {
             val.hide = true;
             this.membersDone.push({
               id: val.id,
@@ -194,7 +173,7 @@ export class ActivityComponent implements OnInit {
           this.selectedMembers = [];
         }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 
@@ -209,7 +188,7 @@ export class ActivityComponent implements OnInit {
         this.activityService.sendMembers(member)
         .subscribe(
           data => {
-            if (data.json().sysinfo.auth) {
+            if (data.json().sysinfo.approveEvent) {
               let idxDone = this.membersDone.findIndex((val) => val.id === mb.id);
               let idxWaiting = this.membersWaiting.findIndex((val) => val.id === mb.id);
               if (idxDone !== -1) {
@@ -231,7 +210,7 @@ export class ActivityComponent implements OnInit {
               }
             }
           },
-          error => console.log(error)
+          error => console.error(error)
         );
       }
     });

@@ -47,7 +47,7 @@ export class SelfAppliedComponent implements OnInit {
           alert('获取活动列表失败');
         }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
 
     this.mobileAccess = this.selfAppliedService.CUser.mobileAccess;
@@ -64,7 +64,7 @@ export class SelfAppliedComponent implements OnInit {
     if (act.editTime == null || act.editTime < 0 || act.editTime > act.volunteer_time) {
       return;
     }
-    // console.log(act);
+
     const member = [{
       id: act.members[0].id,
       approval: '1',
@@ -78,16 +78,18 @@ export class SelfAppliedComponent implements OnInit {
     this.selfAppliedService.sendMembers(data)
     .subscribe(
       response => {
-        act.hide = 1;
-        this.actDone.push(act);
-        console.log(this.actDone);
+        if (response.json().sysinfo.approveEvent) {
+          act.hide = 1;
+          this.actDone.push(act);
+        }else {
+          alert('操作失败 请重试');
+        }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 
   public rejectActivity(act) {
-    // console.log(act);
     const member = [{
       id: act.members[0].id,
       approval: '2'
@@ -99,11 +101,14 @@ export class SelfAppliedComponent implements OnInit {
     this.selfAppliedService.sendMembers(data)
     .subscribe(
       response => {
-        act.hide = 1;
-        this.actDone.push(act);
-        console.log(this.actDone);
+        if (response.json().sysinfo.approveEvent) {
+          act.hide = 1;
+          this.actDone.push(act);
+        } else {
+          alert('操作失败 请重试');
+        }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 }

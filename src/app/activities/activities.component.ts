@@ -50,7 +50,7 @@ export class ActivitiesComponent implements OnInit {
                   alert('活动列表获取失败');
                 }
               },
-              err => console.log(err)
+              err => console.error(err)
             );
           }
         }else {
@@ -85,7 +85,7 @@ export class ActivitiesComponent implements OnInit {
             }
           }
         },
-        error => console.log(error),
+        error => console.error(error),
         () => act.disabled = act.loading = false
       );
     }
@@ -129,7 +129,7 @@ export class ActivitiesComponent implements OnInit {
               }
             }
           },
-          err => console.log(err),
+          err => console.error(err),
           () => act.disabled = act.loading = false
         );
       },

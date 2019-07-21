@@ -29,7 +29,7 @@ export class ChangePwdService {
     return this.http
     .post('/volunteer/change-pwd', body, {headers: headers})
     .takeWhile((response: Response) => {
-        if (response.json().sysinfo.tokenUpdate) {
+        if (!response.json().sysinfo.auth) {
             this.router.navigateByUrl('login');
             return false;
         }

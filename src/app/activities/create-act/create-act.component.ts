@@ -16,7 +16,6 @@ import { User } from '../../models/user-model';
 export class CreateActComponent implements OnInit {
 
   act: Activity = new Activity();
-  // edT: Data = new Data();
   currentUser: User;
   college: string;
 
@@ -30,7 +29,6 @@ export class CreateActComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.createActService.currentUser;
     this.act.start = new Date().toISOString().substr(0, 10);
-    // console.log(this.act.end);
   }
 
   createAct() {
@@ -50,7 +48,7 @@ export class CreateActComponent implements OnInit {
           alert("活动创建失败 请重试!");
         }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 

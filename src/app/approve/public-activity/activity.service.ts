@@ -40,7 +40,7 @@ export class ActivityService {
     .post('/volunteer/approve-event', body, {headers: headers})
     // .get('mock-data/activities.json')
     .takeWhile((response: Response) => {
-        if (response.json().sysinfo.tokenUpdate) {
+        if (!response.json().sysinfo.auth) {
             this.router.navigateByUrl('login');
             return false;
         }

@@ -61,7 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
                         localStorage.clear();
                     }
                 },
-                error => console.log(error)
+                error => console.error(error)
             );
 
         }

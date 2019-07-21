@@ -25,22 +25,12 @@ export class ApplyActService {
     // let headers = new Headers({'Content-Type': 'multipart/form-data'});
     return this.http.post("/volunteer/upload", value)
     .takeWhile((response: Response) => {
-      if (response.json().sysinfo.tokenUpdate) {
+      if (!response.json().sysinfo.auth) {
           this.router.navigateByUrl('login');
           return false;
       }
       return true;
-    }).subscribe(
-      data => {
-        if (data.json().sysinfo.fileAccepted) {
-          alert("活动申请成功!");
-          this.router.navigateByUrl('workspace/act/activities');
-        }else {
-          alert("活动申请失败 文件上传失败 请重试!");
-        }
-      },
-      error => console.log(error)
-    );
+    });
   }
 
 /*   afterUpload(res) {
@@ -69,13 +59,16 @@ export class ApplyActService {
       description: act.description,
       token: this.currentUser.token
     });
-    // console.log(body);
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
-    .post('/volunteer/create-personal-event', body, {headers: headers});
-/*     return this.http
-    .get('/mock-data/create-event.json') */
-
+    .post('/volunteer/create-personal-event', body, {headers: headers})
+    .takeWhile((response: Response) => {
+      if (!response.json().sysinfo.auth) {
+          this.router.navigateByUrl('login');
+          return false;
+      }
+      return true;
+    })
   }
 
 }

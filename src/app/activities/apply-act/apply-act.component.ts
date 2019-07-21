@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { flyIn } from '../../animations/fly-in';
 // import { FileUploader, FileItem } from 'ng2-file-upload';
 
@@ -41,6 +42,7 @@ export class ApplyActComponent implements OnInit {
   }); */
 
   constructor(
+    private router: Router,
     private applyActService: ApplyActService
   ) { }
 
@@ -95,12 +97,24 @@ export class ApplyActComponent implements OnInit {
     .subscribe(
       data => {
         let res = data.json();
-        if (res.sysinfo.auth) {
+        if (res.sysinfo.createPersonalEvent) {
           let formData = new FormData();
           formData.append("id", this.currentUser.id.toString());
           formData.append('eid', res.data.eid);
+          formData.append('token', this.currentUser.token);
           formData.append("file", this.tmp);
-          this.applyActService.upload(formData);
+          this.applyActService.upload(formData)
+          .subscribe(
+            data1 => {
+              if (data1.json().sysinfo.fileAccepted) {
+                alert("活动申请成功!");
+                this.router.navigateByUrl('workspace/act/activities');
+              }else {
+                alert("活动申请失败 文件上传失败 请重试!");
+              }
+            },
+            error => console.error(error)
+          );
 /*           this.uploader.setOptions({additionalParameter: {
             'eid': res.data.eid,
             'id': this.currentUser.id.toString()
@@ -110,7 +124,7 @@ export class ApplyActComponent implements OnInit {
           alert('活动创建失败 请重试');
         }
       },
-      error => console.log(error)
+      error => console.error(error)
     );
   }
 

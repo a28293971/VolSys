@@ -52,7 +52,7 @@ export class ApproveService {
   /*   return this.http
     .get("mock-data/act-waitingApr.json") */
     .takeWhile((response: Response) => {
-        if (response.json().sysinfo.tokenUpdate) {
+        if (!response.json().sysinfo.auth) {
             this.router.navigateByUrl('login');
             return false;
         }
