@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import { Router } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
 import { User } from '../models/user-model';
 import { AuthGuard } from '../auth/auth.guard';
@@ -20,19 +21,11 @@ export class LoginService {
   constructor(
     public http: Http,
     private authGuard: AuthGuard,
-    private CUser: CurrentUser
+    private CUser: CurrentUser,
+    private router: Router
   ) { }
 
   public login(user: User) {
-    // console.log(user);
-/*     let obj = '';
-    if (user.id[0] === '1') {
-      obj = 'org';
-      this.userLoginURL = 'mock-data/org-login-mock.json';
-    }else {
-      obj = 'user';
-      this.userLoginURL = 'mock-data/user-login-mock.json';
-    } */
     const body = {
       id: user.id,
       password: CryptoJS.MD5(user.password).toString(),
@@ -50,7 +43,9 @@ export class LoginService {
               nUser.isAdmin = true;
             }
             localStorage.setItem('currentUser', CryptoJS.AES.encrypt(JSON.stringify(nUser), 'fuck').toString());
+            this.authGuard.isLoggedIn = true;
             this.CUser.update();
+            this.router.navigateByUrl('/workspace/welcome');
           }else {
             this.rMsg.next(Number(res.sysinfo.errType));
           }

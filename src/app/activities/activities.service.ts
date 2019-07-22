@@ -100,6 +100,7 @@ export class ActivityService {
             eid: act.id,
             ename: act.name
         });
+        // 通过本地储存传值到下一个页面
         localStorage.setItem('feedbackAct', data);
         this.router.navigateByUrl('workspace/help');
     }

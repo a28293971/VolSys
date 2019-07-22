@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { appRoutes } from './app.routes';
 
+import { AppService } from './app.service';
 import { LoginService } from './login/login.service';
 import { AuthGuard } from './auth/auth.guard';
 import { CurrentUser } from './common/services/currentUser.data';
@@ -43,6 +44,7 @@ import { CurrentUser } from './common/services/currentUser.data';
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    AppService,
     LoginService,
     AuthGuard,
     CurrentUser
