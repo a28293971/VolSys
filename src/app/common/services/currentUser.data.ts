@@ -24,9 +24,11 @@ export class CurrentUser {
     return this.subject.asObservable();
   }
 
-  update() {
+  update(data) {
     // this.user = JSON.parse(localStorage.getItem('currentUser'));
-    this.user = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('currentUser'), 'fuck').toString(CryptoJS.enc.Utf8));
+    this.user = data;
+    localStorage.setItem('currentUser', CryptoJS.AES.encrypt(JSON.stringify(this.user), 'fuck').toString());
+    // this.user = JSON.parse(CryptoJS.AES.decrypt(localStorage.getItem('currentUser'), 'fuck').toString(CryptoJS.enc.Utf8));
     this.subject.next(this.user);
   }
 

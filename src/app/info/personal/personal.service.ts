@@ -6,6 +6,7 @@ import 'rxjs/add/operator/takeWhile';
 
 import { User } from '../../models/user-model';
 import { CurrentUser } from '../../common/services/currentUser.data';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PersonalService {
@@ -17,80 +18,95 @@ export class PersonalService {
   constructor(
     private http: Http,
     private router: Router,
-    private CUser: CurrentUser
+    public CUser: CurrentUser
   ) {
     this.currentUser = this.CUser.user;
     this.CUser.currentUser.subscribe(data => this.currentUser = data);
   }
 
-  getAcceptedActivities(id: string, token: string, count: Number = 10) {
-    const body = JSON.stringify({
+  updateInfo(id: string, token: string): Observable<Response> {
+    const body = {
       id: id,
-      token: token,
-      listAllEvent: '0',
-      status: '1',
-      eventCount: count.toString()
-    });
-    const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http
-    .post('/volunteer/get-event', body, {headers: headers})
+      token: token
+    };
+    return this.http.post('/volunteer/get-info-by-token', body)
     .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.auth) {
-            this.router.navigateByUrl('login');
-            return false;
-        }
-        return true;
+      if (!response.json().sysinfo.auth) {
+          this.router.navigateByUrl('login');
+          return false;
+      }
+      return true;
     });
   }
 
-  getWaitingActivities(id: string, token: string, count: Number = 10) {
-    const body = JSON.stringify({
-      id: id,
-      token: token,
-      listAllEvent: '0',
-      status: '0',
-      eventCount: count.toString()
-    });
-    const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http
-    .post('/volunteer/get-event', body, {headers: headers})
-    .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.auth) {
-            this.router.navigateByUrl('login');
-            return false;
-        }
-        return true;
-    });
-  }
+  // getAcceptedActivities(id: string, token: string, count: Number = 10) {
+  //   const body = JSON.stringify({
+  //     id: id,
+  //     token: token,
+  //     listAllEvent: '0',
+  //     status: '1',
+  //     eventCount: count.toString()
+  //   });
+  //   const headers = new Headers({'Content-Type': 'application/json'});
+  //   return this.http
+  //   .post('/volunteer/get-event', body, {headers: headers})
+  //   .takeWhile((response: Response) => {
+  //       if (!response.json().sysinfo.auth) {
+  //           this.router.navigateByUrl('login');
+  //           return false;
+  //       }
+  //       return true;
+  //   });
+  // }
 
-  getRejectedActivities(id: string, token: string, count: Number = 10) {
-    const body = JSON.stringify({
-      id: id,
-      token: token,
-      listAllEvent: '0',
-      status: '2',
-      eventCount: count.toString()
-    });
-    const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http
-    .post('/volunteer/get-event', body, {headers: headers})
-    .takeWhile((response: Response) => {
-        if (!response.json().sysinfo.auth) {
-            this.router.navigateByUrl('login');
-            return false;
-        }
-        return true;
-    });
-  }
+  // getWaitingActivities(id: string, token: string, count: Number = 10) {
+  //   const body = JSON.stringify({
+  //     id: id,
+  //     token: token,
+  //     listAllEvent: '0',
+  //     status: '0',
+  //     eventCount: count.toString()
+  //   });
+  //   const headers = new Headers({'Content-Type': 'application/json'});
+  //   return this.http
+  //   .post('/volunteer/get-event', body, {headers: headers})
+  //   .takeWhile((response: Response) => {
+  //       if (!response.json().sysinfo.auth) {
+  //           this.router.navigateByUrl('login');
+  //           return false;
+  //       }
+  //       return true;
+  //   });
+  // }
 
-  getCreatedActivities(id: string, token: string, count: Number = 10) {
-    const body = JSON.stringify({
+  // getRejectedActivities(id: string, token: string, count: Number = 10) {
+  //   const body = JSON.stringify({
+  //     id: id,
+  //     token: token,
+  //     listAllEvent: '0',
+  //     status: '2',
+  //     eventCount: count.toString()
+  //   });
+  //   const headers = new Headers({'Content-Type': 'application/json'});
+  //   return this.http
+  //   .post('/volunteer/get-event', body, {headers: headers})
+  //   .takeWhile((response: Response) => {
+  //       if (!response.json().sysinfo.auth) {
+  //           this.router.navigateByUrl('login');
+  //           return false;
+  //       }
+  //       return true;
+  //   });
+  // }
+
+  getCreatedActivities(id: string, token: string) {
+    const body = {
       id: id,
       token: token,
       listAllEvent: '0',
       status: '-1',
-      eventCount: count.toString()
-    });
+      eventCount: '-1'
+    };
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http
     .post('/volunteer/get-event', body, {headers: headers})

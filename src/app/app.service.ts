@@ -29,16 +29,16 @@ export class AppService {
           const res = response.json();
           if (res.sysinfo.auth === 1 && res.sysinfo.getInfoByToken === 1) {
               currentUser.events = res.data.events;
-            if (!res.sysinfo.idType) {
+            if (!currentUser.isAdmin) {
               currentUser.volunteer_time = res.data.volunteer_time;
               currentUser.score = res.data.score;
             }
-            localStorage.setItem('currentUser', CryptoJS.AES.encrypt(JSON.stringify(currentUser), 'fuck').toString());
+            // localStorage.setItem('currentUser', CryptoJS.AES.encrypt(JSON.stringify(currentUser), 'fuck').toString());
             this.authGuard.isLoggedIn = true;
-            this.CUser.update();
+            this.CUser.update(currentUser);
             this.router.navigateByUrl('/workspace/welcome');
           }else {
-            alert('更新数据失败');
+            alert('认证失败，系统发生错误，请重试');
           }
         },
       error =>  console.error(error)

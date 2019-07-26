@@ -33,7 +33,6 @@ export class LoginService {
     };
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post('/volunteer/login', body, {headers: headers})
-/*     return this.http.get('mock-data/' + obj + '-login-mock.json') */
       .subscribe((response: Response) => {
           const res = response.json();
           if (res.sysinfo.auth === 1) {
@@ -42,9 +41,9 @@ export class LoginService {
             if (res.sysinfo.idType) {
               nUser.isAdmin = true;
             }
-            localStorage.setItem('currentUser', CryptoJS.AES.encrypt(JSON.stringify(nUser), 'fuck').toString());
+            // localStorage.setItem('currentUser', CryptoJS.AES.encrypt(JSON.stringify(nUser), 'fuck').toString());
             this.authGuard.isLoggedIn = true;
-            this.CUser.update();
+            this.CUser.update(nUser);
             this.router.navigateByUrl('/workspace/welcome');
           }else {
             this.rMsg.next(Number(res.sysinfo.errType));
@@ -59,6 +58,13 @@ export class LoginService {
     // console.log('--------succees logout!-----------');
     localStorage.clear();
     // this.http.get('http://192.168.148.6');
+    const body = {
+      id: this.CUser.user.id,
+      token: this.CUser.user.token
+    };
+    this.http.post('/volunterr/logout', body)
+    .subscribe(res => null);
+    this.CUser.update(null);
     this.authGuard.isLoggedIn = false;
   }
 

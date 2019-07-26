@@ -196,7 +196,7 @@ export class WelcomeService {
             creatList.push(val);
           }
         });
-        localStorage.setItem('orgCreateActList', CryptoJS.AES.encrypt(JSON.stringify(creatList), 'org').toString());
+        // localStorage.setItem('orgCreateActList', CryptoJS.AES.encrypt(JSON.stringify(creatList), 'org').toString());
         return creatList.length;
       }else {
         alert('获取活动数量失败');

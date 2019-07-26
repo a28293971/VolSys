@@ -34,29 +34,51 @@ export class PersonalComponent implements OnInit {
     this.currentUser = this.personalService.currentUser;
 
     if (this.currentUser.isAdmin) {
-      let tmp = localStorage.getItem('orgCreateActList');
-      if (tmp) {
-        this.actCreat = JSON.parse(CryptoJS.AES.decrypt(tmp, 'org').toString(CryptoJS.enc.Utf8));
-        this.actCreat.forEach(this.trans2Date);
-        this.actCreat.sort(this.sortFunc);
-      }
-    }else {
-      this.currentUser.events.forEach((val) => {
-        if (val.status === 1) {
-          val.timestamp = new Date(val.timestamp);
-          this.actAccepted.push(val);
-        }else if (val.status === 0) {
-          val.timestamp = new Date(val.timestamp);
-          this.actWaiting.push(val);
-        }else if (val.status === 2 || val.status === 4) {
-          val.timestamp = new Date(val.timestamp);
-          this.actRejected.push(val);
+      this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token)
+      .subscribe(res => {
+        if (res.json().sysinfo.getEventResult) {
+          this.actCreat = res.json().data.events;
+          this.actCreat.forEach(this.trans2Date);
+          this.actCreat.sort(this.sortFunc);
+        }else {
+          alert('获取活动列表失败');
         }
       });
+    } else {
+      this.personalService.updateInfo(this.currentUser.id, this.currentUser.token)
+    .subscribe(res => {
+      if (res.json().sysinfo.getInfoByToken) {
+        const data = res.json().data;
+        this.currentUser.events = data.events;
+        this.currentUser.volunteer_time = data.volunteer_time;
+        this.currentUser.score = data.score;
 
-      this.actAccepted.sort(this.sortFunc);
-      this.actWaiting.sort(this.sortFunc);
-      this.actRejected.sort(this.sortFunc);
+        let tmpAccepted = [], tmpWaitting = [], tmpRejected = [];
+        this.currentUser.events.forEach((val) => {
+          if (val.status === 1) {
+            val.timestamp = new Date(val.timestamp);
+            tmpAccepted.push(val);
+          }else if (val.status === 0) {
+            val.timestamp = new Date(val.timestamp);
+            tmpWaitting.push(val);
+          }else if (val.status === 2 || val.status === 4) {
+            val.timestamp = new Date(val.timestamp);
+            tmpRejected.push(val);
+          }
+        });
+        this.actAccepted = tmpAccepted;
+        this.actWaiting = tmpWaitting;
+        this.actRejected = tmpRejected;
+
+        this.actAccepted.sort(this.sortFunc);
+        this.actWaiting.sort(this.sortFunc);
+        this.actRejected.sort(this.sortFunc);
+
+        this.personalService.CUser.update(this.currentUser);
+      }else {
+        alert('获取最新信息失败');
+      }
+    });
     }
   }
 
