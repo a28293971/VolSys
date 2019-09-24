@@ -62,7 +62,7 @@ export class LoginService {
       id: this.CUser.user.id,
       token: this.CUser.user.token
     };
-    this.http.post('/volunterr/logout', body)
+    this.http.post('/volunteer/logout', body)
     .subscribe(res => null);
     this.CUser.update(null);
     this.authGuard.isLoggedIn = false;
