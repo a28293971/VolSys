@@ -37,8 +37,14 @@ export class PersonalComponent implements OnInit {
       this.personalService.getCreatedActivities(this.currentUser.id, this.currentUser.token)
       .subscribe(res => {
         if (res.json().sysinfo.getEventResult) {
-          this.actCreat = res.json().data.events;
-          this.actCreat.forEach(this.trans2Date);
+          const createdEnvetLists = [];
+          res.json().data.events.forEach((val) => {
+            if (val.type === 1) {
+              val.timestamp = new Date(val.timestamp)
+              createdEnvetLists.push(val);
+            }
+          });
+          this.actCreat = createdEnvetLists;
           this.actCreat.sort(this.sortFunc);
         }else {
           alert('获取活动列表失败');
