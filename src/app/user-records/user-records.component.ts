@@ -15,10 +15,10 @@ export class UserRecordsComponent implements OnInit {
   public selected: string = '0000';
   public selectMenu = [
     { name: '请选择', val: '0000' },
-    { name: '2015级', val: '15' },
     { name: '2016级', val: '16' },
     { name: '2017级', val: '17' },
-    { name: '2018级', val: '18' }
+    { name: '2018级', val: '18' },
+    { name: '2019级', val: '19' },
   ]
   private allGradeRecords = {};
   public col = [
